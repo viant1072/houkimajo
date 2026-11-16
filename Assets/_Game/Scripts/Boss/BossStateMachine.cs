@@ -18,9 +18,26 @@ namespace Houkimajo.Boss
         private int currentPhaseIndex = -1;
         private float phaseTimer;
 
+        private bool started;
+
         private void Start()
         {
-            if (phases.Count > 0)
+            started = true;
+            if (phases.Count > 0 && currentPhaseIndex < 0)
+                EnterPhase(0);
+        }
+
+        /// <summary>
+        /// Nạp bộ pha của màn hiện tại (StageDirector gọi lúc boss xuất hiện). Thay list
+        /// pha bằng data, nên mỗi màn có boss khác nhau mà không sửa code.
+        /// </summary>
+        public void Configure(List<BossPhaseSO> newPhases)
+        {
+            phases = newPhases != null ? new List<BossPhaseSO>(newPhases) : new List<BossPhaseSO>();
+            currentPhaseIndex = -1;
+
+            // Start() đã chạy rồi thì tự vào pha đầu; chưa chạy thì để Start() lo.
+            if (started && phases.Count > 0)
                 EnterPhase(0);
         }
 

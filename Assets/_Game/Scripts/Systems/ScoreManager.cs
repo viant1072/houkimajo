@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Houkimajo.Bullets;
 
 namespace Houkimajo.Systems
 {
@@ -24,6 +25,25 @@ namespace Houkimajo.Systems
             }
 
             Instance = this;
+        }
+
+        private void OnEnable()
+        {
+            // Tạm thời: điểm = tổng sát thương gây ra, để dễ test. Nghe qua event để
+            // đạn không phải biết tới ScoreManager.
+            DamageEvents.OnPlayerDamageDealt += HandleDamageDealt;
+        }
+
+        private void OnDisable()
+        {
+            // Event static sống xuyên scene -> bắt buộc huỷ đăng ký, không thì giữ
+            // reference tới object đã bị huỷ.
+            DamageEvents.OnPlayerDamageDealt -= HandleDamageDealt;
+        }
+
+        private void HandleDamageDealt(int amount, DamageSource source)
+        {
+            AddScore(amount);
         }
 
         public void AddScore(int amount)

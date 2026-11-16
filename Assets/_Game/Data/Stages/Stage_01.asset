@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0485d1943368e47b9c3872df57ca4c, type: 3}
+  m_Name: Stage_01
+  m_EditorClassIdentifier: Assembly-CSharp::Houkimajo.Systems.StageSO
+  id: stage_01
+  stageName: "R\u1EEBng \u0110\xEAm"
+  waves:
+  - wave: {fileID: 11400000, guid: 0c464468cb28bbd4ea032ee395272d1f, type: 2}
+    openShopAfter: 0
+  - wave: {fileID: 11400000, guid: 5009146b257331f4cad228b32defdd27, type: 2}
+    openShopAfter: 0
+  - wave: {fileID: 11400000, guid: 545810ebb0bcc3549bc69d4e25c6895c, type: 2}
+    openShopAfter: 0
+  bossPhases:
+  - {fileID: 11400000, guid: baeeeff87d4090c43819727373f22712, type: 2}
+  - {fileID: 11400000, guid: c62eb189a3a82c4439b10f7751b80f63, type: 2}
+  - {fileID: 11400000, guid: b42a35d4ecf8aae4ba35fed875758749, type: 2}
+  bossMaxHP: 1000
+  bossTint: {r: 1, g: 1, b: 1, a: 1}
+  clearGold: 100

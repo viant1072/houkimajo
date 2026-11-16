@@ -6,12 +6,14 @@ namespace Houkimajo.Systems
     {
         MainMenu,
         Playing,
+        Shop,
         Paused,
-        GameOver
+        GameOver,
+        Victory
     }
 
     /// <summary>
-    /// Quản lý state tổng của game (menu / đang chơi / pause / thua).
+    /// Quản lý state tổng của game (menu / đang chơi / shop / pause / thua / thắng màn).
     /// Singleton đơn giản, sống xuyên suốt các scene.
     /// </summary>
     public class GameManager : MonoBehaviour
@@ -35,7 +37,8 @@ namespace Houkimajo.Systems
         public void SetState(GameState newState)
         {
             CurrentState = newState;
-            bool shouldFreeze = newState == GameState.Paused || newState == GameState.GameOver;
+            bool shouldFreeze = newState == GameState.Paused || newState == GameState.GameOver
+                || newState == GameState.Shop || newState == GameState.Victory;
             Time.timeScale = shouldFreeze ? 0f : 1f;
         }
     }

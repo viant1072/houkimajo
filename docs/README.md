@@ -10,6 +10,9 @@ Thư mục chứa spec kỹ thuật, viết trước khi triển khai code cho t
   - `boss.md` ↔ `Scripts/Boss/`
   - `systems.md` ↔ `Scripts/Systems/`
   - `ui.md` ↔ `Scripts/UI/`
+  - `enemies.md` ↔ `Scripts/Enemies/`
+  - `skills.md` ↔ `Scripts/Skills/`
+  - `progression.md` ↔ `Scripts/Progression/`
 - Thêm module code mới → thêm file spec mới cùng tên, theo cùng template.
 - Mỗi file theo khung 4 mục: **Goal / Requirements / Non-goals / Open questions**.
 - Spec viết trước khi code thay đổi lớn; code nhỏ/fix bug không bắt buộc phải có spec.

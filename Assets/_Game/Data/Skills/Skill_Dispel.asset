@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7e92925b8c4412a75626c01a93399c, type: 3}
+  m_Name: Skill_Dispel
+  m_EditorClassIdentifier: Assembly-CSharp::Houkimajo.Skills.DispelSkillSO
+  id: skill_dispel
+  displayName: "Ho\xE1 Gi\u1EA3i"
+  icon: {fileID: 21300000, guid: 907f8f3c9b9443da85440d67b1cc0ce0, type: 3}
+  castSprite: {fileID: 21300002, guid: 907f8f3c9b9443da85440d67b1cc0ce0, type: 3}
+  loopSprite: {fileID: 0}
+  endSprite: {fileID: 0}
+  projectileSprite: {fileID: 0}
+  warningSprite: {fileID: 0}
+  particleSprite: {fileID: 0}
+  overlaySprite: {fileID: 0}
+  attributeName: "Thanh t\u1EA9y"
+  impactSprite: {fileID: 21300004, guid: 907f8f3c9b9443da85440d67b1cc0ce0, type: 3}
+  masterySprite: {fileID: 21300006, guid: 907f8f3c9b9443da85440d67b1cc0ce0, type: 3}
+  impactSize: 0.5
+  impactDuration: 0.18
+  ringCoverage: 0.6
+  slot: 1
+  color: {r: 0.55, g: 0.8, b: 1, a: 1}
+  description: 
+  levels:
+  - cooldown: 12
+    damage: 0
+    count: 1
+    radius: 2
+    duration: 0
+    range: 0
+    charges: 1
+    upgradeCost: 0
+    hasMasteryEffect: 0
+  - cooldown: 11
+    damage: 0
+    count: 1
+    radius: 2.25
+    duration: 0
+    range: 0
+    charges: 1
+    upgradeCost: 100
+    hasMasteryEffect: 0
+  - cooldown: 10
+    damage: 0
+    count: 1
+    radius: 2.5
+    duration: 0
+    range: 0
+    charges: 1
+    upgradeCost: 250
+    hasMasteryEffect: 0
+  - cooldown: 9
+    damage: 0
+    count: 1
+    radius: 2.75
+    duration: 0
+    range: 0
+    charges: 1
+    upgradeCost: 500
+    hasMasteryEffect: 0
+  - cooldown: 8
+    damage: 0
+    count: 1
+    radius: 3
+    duration: 0
+    range: 0
+    charges: 1
+    upgradeCost: 1000
+    hasMasteryEffect: 1
+  maximumGold: 30
+  knockbackDistance: 2

@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Houkimajo.Systems;
 
 namespace Houkimajo.Player
 {
     /// <summary>
-    /// Điều khiển di chuyển của cô phù thủy. Giữ Shift (focus mode) để bay chậm lại
-    /// và né đạn chính xác hơn — đúng kiểu Touhou. WASD hoặc phím mũi tên để di chuyển.
+    /// Điều khiển di chuyển của cô phù thủy trong arena 1 màn hình. WASD hoặc phím mũi
+    /// tên để di chuyển, giữ Shift (focus mode) để bay chậm lại và né đạn chính xác hơn.
+    /// Skill có thể ra lệnh lướt (Dash) — trong lúc lướt, input di chuyển bị bỏ qua.
     /// </summary>
     [RequireComponent(typeof(PlayerHealth))]
     public class PlayerController : MonoBehaviour
@@ -14,16 +16,48 @@ namespace Houkimajo.Player
         [SerializeField] private float normalSpeed = 6f;
         [SerializeField] private float focusSpeed = 2.5f;
 
-        [Header("Giới hạn vùng chơi (world space)")]
-        [SerializeField] private Vector2 boundsMin = new Vector2(-4f, -4.5f);
-        [SerializeField] private Vector2 boundsMax = new Vector2(4f, 4.5f);
+        [Tooltip("Khoảng cách tối thiểu tới mép màn hình (đơn vị world), để nhân vật không bị khuất nửa người")]
+        [SerializeField] private float edgeMargin = 0.3f;
+
+        private Vector2 dashVelocity;
+        private float dashTimeRemaining;
 
         public bool IsFocusMode { get; private set; }
 
+        /// <summary>Hướng phím di chuyển đang giữ (chưa chuẩn hoá, có thể = 0).</summary>
+        public Vector2 MoveInput { get; private set; }
+
+        public bool IsDashing => dashTimeRemaining > 0f;
+        public float SkillSpeedMultiplier { get; set; } = 1f;
+
         private void Update()
         {
+            ReadInput();
+
+            Vector2 delta;
+            if (IsDashing)
+            {
+                float step = Mathf.Min(Time.deltaTime, dashTimeRemaining);
+                delta = dashVelocity * step;
+                dashTimeRemaining -= Time.deltaTime;
+            }
+            else
+            {
+                float speed = IsFocusMode ? focusSpeed : normalSpeed;
+                delta = MoveInput.normalized * (speed * SkillSpeedMultiplier * Time.deltaTime);
+            }
+
+            transform.position = ArenaBounds.Clamp((Vector2)transform.position + delta, edgeMargin);
+        }
+
+        private void ReadInput()
+        {
             var keyboard = Keyboard.current;
-            if (keyboard == null) return;
+            if (keyboard == null)
+            {
+                MoveInput = Vector2.zero;
+                return;
+            }
 
             Vector2 input = Vector2.zero;
             if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed) input.x -= 1f;
@@ -31,15 +65,27 @@ namespace Houkimajo.Player
             if (keyboard.upArrowKey.isPressed || keyboard.wKey.isPressed) input.y += 1f;
             if (keyboard.downArrowKey.isPressed || keyboard.sKey.isPressed) input.y -= 1f;
 
+            MoveInput = input;
             IsFocusMode = keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed;
+        }
 
-            float speed = IsFocusMode ? focusSpeed : normalSpeed;
-            Vector3 move = (Vector3)(input.normalized * speed * Time.deltaTime);
+        /// <summary>
+        /// Lướt đi <paramref name="distance"/> đơn vị theo <paramref name="direction"/> trong
+        /// <paramref name="duration"/> giây. Vẫn bị kẹp trong arena (lướt vào tường thì dừng).
+        /// </summary>
+        public void Dash(Vector2 direction, float distance, float duration)
+        {
+            if (direction.sqrMagnitude < 0.0001f || duration <= 0f) return;
 
-            Vector3 newPos = transform.position + move;
-            newPos.x = Mathf.Clamp(newPos.x, boundsMin.x, boundsMax.x);
-            newPos.y = Mathf.Clamp(newPos.y, boundsMin.y, boundsMax.y);
-            transform.position = newPos;
+            dashVelocity = direction.normalized * (distance / duration);
+            dashTimeRemaining = duration;
+        }
+
+        public void TeleportTo(Vector2 target, float maxDistance)
+        {
+            Vector2 delta = Vector2.ClampMagnitude(target - (Vector2)transform.position, maxDistance);
+            dashTimeRemaining = 0f;
+            transform.position = ArenaBounds.Clamp((Vector2)transform.position + delta, edgeMargin);
         }
     }
 }

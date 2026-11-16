@@ -13,6 +13,13 @@ namespace Houkimajo.Bullets
 
         private float timer;
         private float currentAngle;
+        private Transform playerTransform;
+
+        /// <summary>Gán pool lúc chạy — quái lấy từ pool nên không kéo reference qua Inspector được.</summary>
+        public void SetPool(BulletPool pool)
+        {
+            bulletPool = pool;
+        }
 
         public void SetPattern(BulletPatternSO newPattern)
         {
@@ -23,7 +30,7 @@ namespace Houkimajo.Bullets
 
         private void Update()
         {
-            if (pattern == null || bulletPool == null) return;
+            if (pattern == null || bulletPool == null || bulletPool.IsTimeStopped || Time.deltaTime <= 0f) return;
 
             timer -= Time.deltaTime;
             if (timer <= 0f)
@@ -58,18 +65,27 @@ namespace Houkimajo.Bullets
                 float angle = startAngle + step * i;
                 Vector2 dir = AngleToDirection(angle);
                 var bullet = bulletPool.Get(transform.position);
+                if (bullet == null) continue;
                 bullet.Launch(dir, pattern.bulletSpeed, playerOwned: false);
             }
         }
 
         private void FireAimed()
         {
-            var player = GameObject.FindGameObjectWithTag("Player");
-            Vector2 dir = player != null
-                ? ((Vector2)player.transform.position - (Vector2)transform.position).normalized
+            // Tìm player 1 lần rồi cache — FindGameObjectWithTag mỗi lượt bắn (vài lần/giây
+            // x nhiều quái) là tốn vô ích. Chỉ tìm lại nếu chưa có (player spawn muộn).
+            if (playerTransform == null)
+            {
+                var player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null) playerTransform = player.transform;
+            }
+
+            Vector2 dir = playerTransform != null
+                ? ((Vector2)playerTransform.position - (Vector2)transform.position).normalized
                 : Vector2.down;
 
             var bullet = bulletPool.Get(transform.position);
+            if (bullet == null) return;
             bullet.Launch(dir, pattern.bulletSpeed, playerOwned: false);
         }
 
