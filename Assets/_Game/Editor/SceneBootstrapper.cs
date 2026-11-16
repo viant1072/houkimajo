@@ -23,6 +23,8 @@ namespace Houkimajo.EditorTools
     /// </summary>
     public static class SceneBootstrapper
     {
+        private const float PlayerVisualScale = 1.2f;
+
         [MenuItem("Houkimajo/Setup Playtest Scene (Placeholder Art)")]
         public static void SetupScene()
         {
@@ -37,12 +39,18 @@ namespace Houkimajo.EditorTools
 
             // ---- Sprite placeholder ----
             var playerSprite = CreatePlaceholderSprite("player_witch", new Color(0.4f, 0.8f, 1f), 48, false);
-            var playerBulletSprite = CreatePlaceholderSprite("bullet_player", Color.yellow, 16, true);
+            var playerBulletSprite = AssetDatabase.LoadAssetAtPath<Sprite>(
+                "Assets/_Game/Art/Sprites/Bullets/bullet_player_arcane_v1.png")
+                ?? CreatePlaceholderSprite("bullet_player", Color.yellow, 16, true);
             var enemyBulletSprite = CreatePlaceholderSprite("bullet_enemy", new Color(1f, 0.2f, 0.2f), 16, true);
             var bossSprite = CreatePlaceholderSprite("boss", new Color(0.8f, 0.2f, 0.8f), 96, false);
+            // PPU = 64 cho 2 sprite dưới -> hitbox ~0.25 đơn vị (khớp collider 0.12), tâm ngắm ~0.5
+            var hitboxSprite = CreatePlaceholderSprite("hitbox", Color.white, 16, true, pixelsPerUnit: 64);
+            var crosshairSprite = CreatePlaceholderSprite("crosshair", new Color(0.3f, 1f, 0.4f), 32, true,
+                pixelsPerUnit: 64, innerRadiusRatio: 0.7f);
 
             // ---- Bullet prefab + pool ----
-            var playerBulletPrefab = CreateBulletPrefab("PlayerBullet", playerBulletSprite);
+            var playerBulletPrefab = CreateBulletPrefab("PlayerBullet", playerBulletSprite, true);
             var enemyBulletPrefab = CreateBulletPrefab("EnemyBullet", enemyBulletSprite);
 
             var playerPool = CreatePool("PlayerBulletPool", playerBulletPrefab);
@@ -51,26 +59,54 @@ namespace Houkimajo.EditorTools
             // ---- Player ----
             var player = new GameObject("Player");
             player.tag = "Player";
-            player.AddComponent<SpriteRenderer>().sprite = playerSprite;
+            var playerRenderer = CreatePlayerVisual(player, playerSprite);
             player.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             var playerCollider = player.AddComponent<CircleCollider2D>();
             playerCollider.isTrigger = true;
             playerCollider.radius = 0.12f;
 
             var playerHealth = player.AddComponent<PlayerHealth>();
+            var aim = player.AddComponent<PlayerAim>();
             var shooting = player.AddComponent<PlayerShooting>();
             player.AddComponent<PlayerController>();
-
-            var firePoint = new GameObject("FirePoint").transform;
-            firePoint.SetParent(player.transform);
-            firePoint.localPosition = new Vector3(0f, 0.3f, 0f);
+            var visuals = player.AddComponent<PlayerVisuals>();
 
             var shootingSO = new SerializedObject(shooting);
             shootingSO.FindProperty("bulletPool").objectReferenceValue = playerPool;
-            shootingSO.FindProperty("firePoint").objectReferenceValue = firePoint;
             shootingSO.ApplyModifiedProperties();
 
-            player.transform.position = new Vector3(0f, -3.5f, 0f);
+            // Chấm hitbox: chỉ hiện khi giữ Shift, vẽ đè lên người player
+            var hitbox = new GameObject("HitboxIndicator");
+            hitbox.transform.SetParent(player.transform, false);
+            var hitboxRenderer = hitbox.AddComponent<SpriteRenderer>();
+            hitboxRenderer.sprite = hitboxSprite;
+            hitboxRenderer.sortingOrder = 10;
+            hitbox.SetActive(false);
+
+            // Vùng graze: collider con lớn hơn hitbox, dùng chung Rigidbody2D của Player
+            var grazeZone = new GameObject("GrazeZone");
+            grazeZone.transform.SetParent(player.transform, false);
+            var grazeCollider = grazeZone.AddComponent<CircleCollider2D>();
+            grazeCollider.isTrigger = true;
+            grazeCollider.radius = 0.5f;
+            grazeZone.AddComponent<GrazeDetector>();
+
+            // Tâm ngắm: object riêng ngoài Player, PlayerAim kéo nó theo chuột mỗi frame
+            var crosshair = new GameObject("Crosshair");
+            var crosshairRenderer = crosshair.AddComponent<SpriteRenderer>();
+            crosshairRenderer.sprite = crosshairSprite;
+            crosshairRenderer.sortingOrder = 20;
+
+            var aimSO = new SerializedObject(aim);
+            aimSO.FindProperty("crosshair").objectReferenceValue = crosshair.transform;
+            aimSO.ApplyModifiedProperties();
+
+            var visualsSO = new SerializedObject(visuals);
+            visualsSO.FindProperty("bodyRenderer").objectReferenceValue = playerRenderer;
+            visualsSO.FindProperty("hitboxIndicator").objectReferenceValue = hitbox;
+            visualsSO.ApplyModifiedProperties();
+
+            player.transform.position = new Vector3(0f, -2.5f, 0f);
 
             // ---- Boss ----
             var boss = new GameObject("Boss");
@@ -88,7 +124,7 @@ namespace Houkimajo.EditorTools
             emitterSO.FindProperty("bulletPool").objectReferenceValue = enemyPool;
             emitterSO.ApplyModifiedProperties();
 
-            boss.transform.position = new Vector3(0f, 3.5f, 0f);
+            boss.transform.position = new Vector3(0f, 3f, 0f);
 
             // ---- Data asset test (3 pha: Radial -> Spiral -> Aimed) ----
             var phases = CreateOrLoadPhases();
@@ -116,18 +152,148 @@ namespace Houkimajo.EditorTools
             // ---- HUD debug (score / lives / boss HP) ----
             CreateHud(playerHealth, bossHealth);
 
+            // ---- Skill Q/E/R (giai đoạn 4a) ----
+            SkillBootstrapper.Setup(player, enemyPool);
+
+            // ---- Quái, wave, 3 màn, StageDirector (giai đoạn 2) ----
+            StageBootstrapper.SetupStageObjects();
+
             EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
-            Debug.Log("[Houkimajo] Dựng scene xong — bấm Play để thử " +
-                "(WASD/mũi tên di chuyển, Shift = focus mode, Z = bắn).");
+            // Thiếu MainMenu trong Build Settings thì Esc/phá đảo sẽ lỗi load scene — dựng luôn ở đây.
+            StageBootstrapper.BuildMainMenuScene();
+            Debug.Log("[Houkimajo] Dựng scene xong — Ctrl+S để lưu, rồi bấm Play " +
+                "(WASD di chuyển, chuột ngắm, giữ Space bắn, Shift = focus mode, Q/E = skill).");
         }
 
-        private static GameObject CreateBulletPrefab(string name, Sprite sprite)
+        /// <summary>
+        /// Tên các object gốc mà SetupScene() tạo ra — Rebuild xoá đúng những object này,
+        /// không đụng vào Main Camera hay object người dùng tự thêm vào scene.
+        /// </summary>
+        private static readonly string[] GeneratedRootNames =
+        {
+            "Player", "Boss", "Crosshair", "PlayerBulletPool", "EnemyBulletPool",
+            "GameManager", "ScoreManager", "HUDCanvas", "HUDController", "EndStateUI",
+            "SkillPools", "SkillBarUI", "StageSystems", "StageHudUI"
+        };
+
+        [MenuItem("Houkimajo/Rebuild Playtest Scene (xoá object cũ rồi dựng lại)")]
+        public static void RebuildScene()
+        {
+            foreach (var rootName in GeneratedRootNames)
+            {
+                // Lặp vì có thể có nhiều object trùng tên (lỡ dựng 2 lần)
+                GameObject go;
+                while ((go = GameObject.Find(rootName)) != null)
+                {
+                    Undo.DestroyObjectImmediate(go);
+                }
+            }
+
+            SetupScene();
+        }
+
+        private static SpriteRenderer CreatePlayerVisual(GameObject player, Sprite fallback)
+        {
+            var visual = new GameObject("Visual");
+            visual.transform.SetParent(player.transform, false);
+            var renderer = visual.AddComponent<SpriteRenderer>();
+            renderer.sprite = fallback;
+
+            // Sắp theo tên để thứ tự phát không phụ thuộc thứ tự Unity trả sub-asset.
+            var frames = new List<Sprite>();
+            foreach (var asset in AssetDatabase.LoadAllAssetsAtPath(
+                "Assets/_Game/Art/Sprites/Player/player_witch_flight_v1.png"))
+            {
+                if (asset is Sprite sprite) frames.Add(sprite);
+            }
+            frames.Sort((left, right) => string.CompareOrdinal(left.name, right.name));
+            if (frames.Count != 4) return renderer;
+
+            visual.transform.localScale = new Vector3(PlayerVisualScale, PlayerVisualScale, 1f);
+            renderer.sprite = frames[0];
+            var animation = visual.AddComponent<PlayerFlightAnimation>();
+            var animationSO = new SerializedObject(animation);
+            var framesProperty = animationSO.FindProperty("frames");
+            framesProperty.arraySize = frames.Count;
+            for (int i = 0; i < frames.Count; i++)
+            {
+                framesProperty.GetArrayElementAtIndex(i).objectReferenceValue = frames[i];
+            }
+            animationSO.ApplyModifiedProperties();
+            return renderer;
+        }
+
+        [MenuItem("Houkimajo/Apply Player Flight Animation")]
+        public static void ApplyPlayerFlightAnimation()
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode) return;
+
+            var controller = Object.FindAnyObjectByType<PlayerController>();
+            if (controller == null)
+            {
+                Debug.LogWarning("[Houkimajo] Mở scene có Player trước khi gắn animation.");
+                return;
+            }
+
+            var player = controller.gameObject;
+            var existing = player.GetComponentInChildren<PlayerFlightAnimation>(true);
+            if (existing != null)
+            {
+                Undo.RecordObject(existing.transform, "Resize player visual");
+                existing.transform.localScale = new Vector3(PlayerVisualScale, PlayerVisualScale, 1f);
+                EditorSceneManager.MarkSceneDirty(player.scene);
+                Selection.activeGameObject = existing.gameObject;
+                return;
+            }
+
+            if (AssetDatabase.LoadAllAssetsAtPath(
+                "Assets/_Game/Art/Sprites/Player/player_witch_flight_v1.png").Length < 5)
+            {
+                Debug.LogWarning("[Houkimajo] Chưa import đủ 4 frame bay, kiểm tra sheet trong Art/Sprites/Player.");
+                return;
+            }
+
+            Undo.RegisterFullObjectHierarchyUndo(player, "Apply player flight animation");
+            var oldRenderer = player.GetComponent<SpriteRenderer>();
+            var renderer = CreatePlayerVisual(player, oldRenderer != null ? oldRenderer.sprite : null);
+            Undo.RegisterCreatedObjectUndo(renderer.gameObject, "Create player visual");
+            if (oldRenderer != null)
+            {
+                renderer.sharedMaterial = oldRenderer.sharedMaterial;
+                renderer.sortingLayerID = oldRenderer.sortingLayerID;
+                renderer.sortingOrder = oldRenderer.sortingOrder;
+                oldRenderer.enabled = false;
+            }
+
+            var visuals = player.GetComponent<PlayerVisuals>();
+            if (visuals == null) visuals = Undo.AddComponent<PlayerVisuals>(player);
+            var visualsSO = new SerializedObject(visuals);
+            visualsSO.FindProperty("bodyRenderer").objectReferenceValue = renderer;
+            visualsSO.ApplyModifiedProperties();
+            EditorSceneManager.MarkSceneDirty(player.scene);
+            Selection.activeGameObject = renderer.gameObject;
+            Debug.Log("[Houkimajo] Đã gắn animation bay. Ctrl+S để lưu, rồi bấm Play.");
+        }
+
+        private static GameObject CreateBulletPrefab(string name, Sprite sprite, bool alignToDirection = false)
         {
             const string dir = "Assets/_Game/Prefabs/Bullets";
             string path = $"{dir}/{name}.prefab";
 
             var existing = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-            if (existing != null) return existing;
+            if (existing != null)
+            {
+                // Prefab đạn player đã có từ placeholder vẫn phải nhận art mới khi Rebuild.
+                if (alignToDirection)
+                {
+                    existing.GetComponent<SpriteRenderer>().sprite = sprite;
+                    var bulletSO = new SerializedObject(existing.GetComponent<BulletBase>());
+                    bulletSO.FindProperty("alignToDirection").boolValue = true;
+                    bulletSO.ApplyModifiedPropertiesWithoutUndo();
+                    PrefabUtility.SavePrefabAsset(existing);
+                }
+                return existing;
+            }
 
             var go = new GameObject(name);
             go.AddComponent<SpriteRenderer>().sprite = sprite;
@@ -135,7 +301,10 @@ namespace Houkimajo.EditorTools
             var col = go.AddComponent<CircleCollider2D>();
             col.isTrigger = true;
             col.radius = 0.08f;
-            go.AddComponent<BulletBase>();
+            var bullet = go.AddComponent<BulletBase>();
+            var newBulletSO = new SerializedObject(bullet);
+            newBulletSO.FindProperty("alignToDirection").boolValue = alignToDirection;
+            newBulletSO.ApplyModifiedPropertiesWithoutUndo();
 
             var prefab = PrefabUtility.SaveAsPrefabAsset(go, path);
             Object.DestroyImmediate(go);
@@ -208,7 +377,10 @@ namespace Houkimajo.EditorTools
             return phase;
         }
 
-        private static Sprite CreatePlaceholderSprite(string name, Color color, int size, bool circle)
+        /// <param name="pixelsPerUnit">0 = bằng size (sprite rộng đúng 1 đơn vị world).</param>
+        /// <param name="innerRadiusRatio">&gt; 0 = vẽ vòng tròn rỗng (dùng cho tâm ngắm).</param>
+        internal static Sprite CreatePlaceholderSprite(string name, Color color, int size, bool circle,
+            int pixelsPerUnit = 0, float innerRadiusRatio = 0f)
         {
             const string dir = "Assets/_Game/Art/Sprites/_Placeholder";
             string path = $"{dir}/{name}.png";
@@ -230,7 +402,8 @@ namespace Houkimajo.EditorTools
             {
                 for (int x = 0; x < size; x++)
                 {
-                    bool inside = !circle || Vector2.Distance(new Vector2(x + 0.5f, y + 0.5f), center) <= radius;
+                    float dist = Vector2.Distance(new Vector2(x + 0.5f, y + 0.5f), center);
+                    bool inside = !circle || (dist <= radius && dist >= radius * innerRadiusRatio);
                     tex.SetPixel(x, y, inside ? color : new Color(0f, 0f, 0f, 0f));
                 }
             }
@@ -242,7 +415,7 @@ namespace Houkimajo.EditorTools
 
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             importer.textureType = TextureImporterType.Sprite;
-            importer.spritePixelsPerUnit = size;
+            importer.spritePixelsPerUnit = pixelsPerUnit > 0 ? pixelsPerUnit : size;
             importer.filterMode = FilterMode.Point;
             importer.alphaIsTransparency = true;
             importer.SaveAndReimport();
@@ -291,16 +464,15 @@ namespace Houkimajo.EditorTools
             endStateText.rectTransform.sizeDelta = new Vector2(600f, 100f);
             endStateText.gameObject.SetActive(false);
 
+            // EndStateUI nghe StageDirector — StageBootstrapper nối director + dòng gợi ý sau.
             var endGo = new GameObject("EndStateUI");
             var endUi = endGo.AddComponent<EndStateUI>();
             var endSO = new SerializedObject(endUi);
             endSO.FindProperty("endStateText").objectReferenceValue = endStateText;
-            endSO.FindProperty("playerHealth").objectReferenceValue = playerHealth;
-            endSO.FindProperty("bossHealth").objectReferenceValue = bossHealth;
             endSO.ApplyModifiedProperties();
         }
 
-        private static Text CreateHudText(Transform parent, string name, string defaultText,
+        internal static Text CreateHudText(Transform parent, string name, string defaultText,
             TextAnchor alignment, Vector2 anchor, Vector2 anchoredPosition)
         {
             var go = new GameObject(name);
@@ -330,7 +502,7 @@ namespace Houkimajo.EditorTools
         /// nhưng không ổn định ở Unity bản mới — thử nhiều tên, không để throw làm
         /// hỏng cả hàm gọi nó (từng khiến LivesText/BossHPText không được tạo).
         /// </summary>
-        private static Font GetDefaultFont()
+        internal static Font GetDefaultFont()
         {
             if (cachedDefaultFont != null) return cachedDefaultFont;
 
@@ -355,7 +527,7 @@ namespace Houkimajo.EditorTools
 
         private static T EnsureManager<T>(string name) where T : Component
         {
-            var existing = Object.FindFirstObjectByType<T>();
+            var existing = Object.FindAnyObjectByType<T>();
             if (existing != null) return existing;
 
             var go = new GameObject(name);

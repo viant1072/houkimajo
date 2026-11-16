@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b5c2cba22e43c4ac0543e12fe94676, type: 3}
+  m_Name: Skill_TimeStop
+  m_EditorClassIdentifier: Assembly-CSharp::Houkimajo.Skills.TimeStopSkillSO
+  id: skill_timestop
+  displayName: "Ng\u01B0ng \u0110\u1ECDng"
+  icon: {fileID: 21300000, guid: 3e78cafe77d345678ea6c1061bc3b5cc, type: 3}
+  castSprite: {fileID: 21300006, guid: 3e78cafe77d345678ea6c1061bc3b5cc, type: 3}
+  loopSprite: {fileID: 21300002, guid: 3e78cafe77d345678ea6c1061bc3b5cc, type: 3}
+  endSprite: {fileID: 21300008, guid: 3e78cafe77d345678ea6c1061bc3b5cc, type: 3}
+  projectileSprite: {fileID: 0}
+  warningSprite: {fileID: 0}
+  particleSprite: {fileID: 0}
+  overlaySprite: {fileID: 21300004, guid: 3e78cafe77d345678ea6c1061bc3b5cc, type: 3}
+  attributeName: "Th\u1EDDi gian"
+  impactSprite: {fileID: 0}
+  masterySprite: {fileID: 21300010, guid: 3e78cafe77d345678ea6c1061bc3b5cc, type: 3}
+  impactSize: 0.5
+  impactDuration: 0.18
+  ringCoverage: 0.6
+  slot: 2
+  color: {r: 1, g: 0.8, b: 0.4, a: 1}
+  description: 
+  levels:
+  - cooldown: 0
+    damage: 0
+    count: 1
+    radius: 0
+    duration: 4
+    range: 0
+    charges: 1
+    upgradeCost: 0
+    hasMasteryEffect: 0
+  - cooldown: 0
+    damage: 0
+    count: 1
+    radius: 0
+    duration: 4.5
+    range: 0
+    charges: 1
+    upgradeCost: 150
+    hasMasteryEffect: 0
+  - cooldown: 0
+    damage: 0
+    count: 1
+    radius: 0
+    duration: 5
+    range: 0
+    charges: 1
+    upgradeCost: 375
+    hasMasteryEffect: 0
+  - cooldown: 0
+    damage: 0
+    count: 1
+    radius: 0
+    duration: 5.5
+    range: 0
+    charges: 1
+    upgradeCost: 750
+    hasMasteryEffect: 0
+  - cooldown: 0
+    damage: 0
+    count: 1
+    radius: 0
+    duration: 6
+    range: 0
+    charges: 1
+    upgradeCost: 1500
+    hasMasteryEffect: 1
+  masteryClearRadius: 3
