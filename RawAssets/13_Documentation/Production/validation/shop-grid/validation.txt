@@ -1,0 +1,28 @@
+SHOP_GRID_VALIDATION_PASS — 2026-11-17, Unity 6000.6.5f1 isolated Play mode.
+Successful run: unity-checks.log. Product/save isolated as HoukimajoShopValidation.
+
+Two simultaneous 5x5 grids (50 prebuilt cells) and left category buttons:
+Vật phẩm, Trang bị, Nâng cấp. Close X, B/Escape; existing HP quick use preserved.
+Native queued mouse press/release checks: buy potion60, sell selected potion30;
+empty equipment category disables trade; select Q/E/R offers and buy upgrade.
+
+Upgrade checks: price from next SkillSO level; exact gold deduction; Q cooldown
+ratio/depleted charge retained; R energy unchanged; E Lv5 gains max2 charges but
+new charge must recharge. Maximum level and insufficient gold spend nothing.
+Existing healing clamps at max, sell-empty blocked, sell doesn't clear item cooldown.
+Save v2 migrates to v3 preserving gold, inventory, seed marker and stage progress.
+Actual scene reload restores paid Q2/E5/R2; re-equipping skill restores its saved level.
+X closes and resumes gameplay. Skill assets were not modified by purchases.
+
+User real save was not opened by validation. Production scene copied after checking
+original file hash unchanged. No item art/.asset items/equipment catalog created.
+No captured gameplay Error/Exception/Assert during successful run. Isolated editor
+SearchDatabase indexing exception is excluded by narrow editor-stack filter.
+Early checks required restoring the temporary validation project's missing packages
+and replacing a missing temporary screenshot helper; main Packages/Settings unchanged.
+
+Screenshots: shop-grid-items.png and shop-grid-upgrades.png, actual URP world plus
+UGUI capture at 1280x720 with layout fitted to that target, visually inspected.
+Equipment remains empty; upgrade applies only currently equipped Q/E/R, not SPACE.
+Save v3 stores purchased levels by stable skill ID; scene/debug loadout choice itself
+is not newly persisted by this change. Existing seed10000 remains one-time.

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Houkimajo.Bullets;
+using Houkimajo.Systems;
 
 namespace Houkimajo.Boss
 {
@@ -18,10 +19,12 @@ namespace Houkimajo.Boss
         public event Action OnDefeated;
 
         public bool IsAlive => CurrentHP > 0;
+        private HitFlash hitFlash;
 
         private void Awake()
         {
             CurrentHP = maxHP;
+            hitFlash = GetComponent<HitFlash>();
         }
 
         private void OnEnable()
@@ -47,6 +50,7 @@ namespace Houkimajo.Boss
         {
             if (CurrentHP <= 0) return;
 
+            if (amount > 0) hitFlash?.Flash();
             CurrentHP = Mathf.Max(0, CurrentHP - amount);
             OnHPChanged?.Invoke(CurrentHP, maxHP);
 

@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "shadow_bat",
+    "prompt": "Production game sprite, a single isolated enemy bullet for a cute chibi witch 2D bullet hell: a violet shadow thorn, narrow upright pointed purple dart, ivory-lavender core, dark plum outline, tiny two-fin bat-like tail at bottom. Thick clean outline, simple flat cel shading, bold readable at 12-20 pixels. Centered in square canvas; entire projectile fits within central 55 percent of canvas, ample fully transparent margins. Upward-facing main axis +Y. No character, no scenery, no text, no frames, no circles around it, no broad halos, no particles, no ground shadow. True transparent alpha background. Opaque bright core, tightly confined soft edge glow only. One projectile only. Match the supplied enemy atlas in color and clean anime style; reference is style only, do not reproduce any monsters.",
+    "transparentBackground": true,
+    "tool": "built-in image_gen"
+  },
+  {
+    "slug": "ember_firefly",
+    "prompt": "Production game sprite, a single isolated enemy bullet for a cute chibi witch 2D bullet hell: an upright amber-orange ember teardrop, ivory hot core, red-orange flame edges, very short flame tail pointing down. Thick clean outline, simple flat cel shading, bold readable at 12-20 pixels. Centered in square canvas; entire projectile fits within central 55 percent of canvas, ample fully transparent margins. Upward-facing main axis +Y. No character, no scenery, no text, no frames, no circles around it, no broad halos, no particles, no ground shadow. True transparent alpha background. Opaque bright core, tightly confined soft edge glow only. One projectile only. Match the supplied enemy atlas in color and clean anime style; reference is style only, do not reproduce any monsters.",
+    "transparentBackground": true,
+    "tool": "built-in image_gen"
+  },
+  {
+    "slug": "flying_pumpkin",
+    "prompt": "Production game sprite, a single isolated enemy bullet for a cute chibi witch 2D bullet hell: a single upright golden-orange pumpkin seed projectile, pointed tip up, plump oval seed shell, pale yellow center, two simple brown rim lines. Thick clean outline, simple flat cel shading, bold readable at 12-20 pixels. Centered in square canvas; entire projectile fits within central 55 percent of canvas, ample fully transparent margins. Upward-facing main axis +Y. No character, no scenery, no text, no frames, no circles around it, no broad halos, no particles, no ground shadow. True transparent alpha background. Opaque bright core, tightly confined soft edge glow only. One projectile only. Match the supplied enemy atlas in color and clean anime style; reference is style only, do not reproduce any monsters.",
+    "transparentBackground": true,
+    "tool": "built-in image_gen"
+  },
+  {
+    "slug": "wisp_ghost",
+    "prompt": "Production game sprite, a single isolated enemy bullet for a cute chibi witch 2D bullet hell: a compact mint-cyan soul orb with pearl-white core, one short curved wisp tail trailing down, crisp dark teal edge. Thick clean outline, simple flat cel shading, bold readable at 12-20 pixels. Centered in square canvas; entire projectile fits within central 55 percent of canvas, ample fully transparent margins. Upward-facing main axis +Y. No character, no scenery, no text, no frames, no circles around it, no broad halos, no particles, no ground shadow. True transparent alpha background. Opaque bright core, tightly confined soft edge glow only. One projectile only. Match the supplied enemy atlas in color and clean anime style; reference is style only, do not reproduce any monsters.",
+    "transparentBackground": true,
+    "tool": "built-in image_gen"
+  },
+  {
+    "slug": "cursed_grimoire",
+    "prompt": "Production game sprite, a single isolated enemy bullet for a cute chibi witch 2D bullet hell: a single upright ruby-magenta diamond magic crystal projectile, pink-white core, two simple gold corner accents, short purple lower tail. Thick clean outline, simple flat cel shading, bold readable at 12-20 pixels. Centered in square canvas; entire projectile fits within central 55 percent of canvas, ample fully transparent margins. Upward-facing main axis +Y. No character, no scenery, no text, no frames, no circles around it, no broad halos, no particles, no ground shadow. True transparent alpha background. Opaque bright core, tightly confined soft edge glow only. One projectile only. Match the supplied enemy atlas in color and clean anime style; reference is style only, do not reproduce any monsters.",
+    "transparentBackground": true,
+    "tool": "built-in image_gen"
+  },
+  {
+    "slug": "moon_jelly",
+    "prompt": "Production game sprite, a single isolated enemy bullet for a cute chibi witch 2D bullet hell: a single compact round lavender lunar pearl projectile, pale blue-white center, ONE simple golden crescent embedded on its surface, crisp violet outline. Thick clean outline, simple flat cel shading, bold readable at 12-20 pixels. Centered in square canvas; entire projectile fits within central 55 percent of canvas, ample fully transparent margins. Upward-facing main axis +Y. No character, no scenery, no text, no frames, no circles around it, no broad halos, no particles, no ground shadow. True transparent alpha background. Opaque bright core, tightly confined soft edge glow only. One projectile only. Match the supplied enemy atlas in color and clean anime style; reference is style only, do not reproduce any monsters.",
+    "transparentBackground": true,
+    "tool": "built-in image_gen"
+  }
+]

@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4d170cfe63c3142aca661cfa9a1008, type: 3}
+  m_Name: Skill_IceArrowRain
+  m_EditorClassIdentifier: Assembly-CSharp::Houkimajo.Skills.IceArrowRainSkillSO
+  id: skill_ice_arrow_rain
+  displayName: "M\u01B0a B\u0103ng Ti\u1EC5n"
+  icon: {fileID: 21300000, guid: 56528bee052343a090c12ba18a1d62f7, type: 3}
+  castSprite: {fileID: 0}
+  loopSprite: {fileID: 0}
+  endSprite: {fileID: 0}
+  projectileSprite: {fileID: 0}
+  warningSprite: {fileID: 0}
+  particleSprite: {fileID: 0}
+  overlaySprite: {fileID: 0}
+  attributeName: "B\u0103ng"
+  impactSprite: {fileID: 21300004, guid: 56528bee052343a090c12ba18a1d62f7, type: 3}
+  masterySprite: {fileID: 21300006, guid: 56528bee052343a090c12ba18a1d62f7, type: 3}
+  impactSize: 0.5
+  impactDuration: 0.18
+  ringCoverage: 0.8
+  slot: 0
+  manaCost: 15
+  color: {r: 0.2, g: 0.85, b: 1, a: 1}
+  description: 
+  levels:
+  - cooldown: 7
+    damage: 12
+    count: 7
+    radius: 0
+    duration: 2
+    range: 0
+    charges: 1
+    upgradeCost: 0
+    hasMasteryEffect: 0
+  - cooldown: 6.5
+    damage: 14
+    count: 8
+    radius: 0
+    duration: 2.5
+    range: 0
+    charges: 1
+    upgradeCost: 100
+    hasMasteryEffect: 0
+  - cooldown: 6
+    damage: 16
+    count: 9
+    radius: 0
+    duration: 3
+    range: 0
+    charges: 1
+    upgradeCost: 250
+    hasMasteryEffect: 0
+  - cooldown: 5.5
+    damage: 18
+    count: 10
+    radius: 0
+    duration: 3.5
+    range: 0
+    charges: 1
+    upgradeCost: 500
+    hasMasteryEffect: 0
+  - cooldown: 5
+    damage: 20
+    count: 11
+    radius: 0
+    duration: 4
+    range: 0
+    charges: 1
+    upgradeCost: 1000
+    hasMasteryEffect: 1
+  projectilePrefab: {fileID: 8247397735519982803, guid: d492f17a86006104bbdac40664c40ec1, type: 3}
+  projectileSpeed: 10
+  lifetime: 3
+  spreadAngle: 60
+  slowFraction: 0.4

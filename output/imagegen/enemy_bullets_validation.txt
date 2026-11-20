@@ -1,0 +1,10 @@
+ENEMY_BULLET_VALIDATION_PASS: six live enemy projectile sprites; counts; fan angles; orientation; fixed collider; shared pool reset/capacity; legacy boss Aimed; pause/time stop.
+
+Unity 6000.6.5f1 actual Play mode in isolated copy. Setup applied twice.
+Exact counts: Bat1, Firefly1, Pumpkin8, Wisp3, Grimoire3, Jelly6.
+Fan angles30/36 degrees; directed sprite orientation; radius0.08 retained.
+Same pooled object resets sprite/tint/rotation and pool does not expand at capacity.
+Legacy Aimed stays single; one-projectile fan works; six live wave bullet sprites observed.
+Pause/time stop hold bullet positions. No captured gameplay Error/Exception/Assert.
+Narrow exclusion for unrelated UnityEditor.Search.SearchDatabase editor indexing exception.
+Validated assets copied after source hash comparison. Scene/prefab/player save unchanged.

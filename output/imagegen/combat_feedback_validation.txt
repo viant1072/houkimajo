@@ -1,0 +1,9 @@
+COMBAT_FEEDBACK_VALIDATION_PASS: actual Play-mode collision produces one hit effect and flash, damage10; muzzle spark and projectile Light2D; actor base tint preserved; pause/dialogue/lifetime; 48-slot capacity; no double-hit after bullet return; skill flash without duplicate impact; boss/enemy reset; killing-hit position retained; URP render captures.
+
+Unity 6000.6.5f1 actual Play mode with GPU/URP rendering, isolated company/product save path.
+Actual physics overlap collision dealt10, returned bullet, and emitted one spark/flash; an extra callback after return caused no duplicate damage/effect.
+Projectile Point Light2D, muzzle spark, actor flash, pause/dialogue, fixed 48-slot capacity, expiry, disable/reenable and killing-hit cleanup passed. Shader imported without errors and before/hit render captures were visually inspected.
+Skill damage flashes actor without duplicating the existing skill impact. Base sprite tint/fade is preserved.
+Only unrelated UnityEditor.Search.SearchDatabase indexing exception excluded by narrow stack filter; no captured gameplay Error/Exception/Assert in the successful run.
+Render capture uses a closer camera and stationary target for inspection; these test-only changes were not saved/copied.
+Source scene/prefab hashes checked before copying validated assets. No settings/save/runtime overrides copied.

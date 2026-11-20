@@ -8,7 +8,7 @@ namespace Houkimajo.Skills
     /// <summary>
     /// Mọi thứ skill cần biết lúc được dùng. SkillCaster tạo 1 lần rồi tái sử dụng (không
     /// cấp phát mỗi lần bấm skill). Gom về 1 object để thêm thông tin mới (vd. PlayerStats
-    /// ở giai đoạn 3) không phải đổi chữ ký hàm Activate của cả 13 skill.
+    /// ở giai đoạn 3) không phải đổi chữ ký hàm Activate của các skill.
     /// </summary>
     public class SkillContext
     {

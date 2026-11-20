@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Houkimajo.Player
 {
     /// <summary>
-    /// Phản hồi hình ảnh cho người chơi: hiện hitbox khi giữ Shift, nhấp nháy khi đang
+    /// Phản hồi hình ảnh cho người chơi: hiện hitbox khi giữ Left Control, nhấp nháy khi đang
     /// bất tử sau khi trúng đạn, lật sprite theo hướng ngắm. Tách riêng khỏi logic để
     /// sau này thay bằng animation thật không phải đụng vào code điều khiển/máu.
     /// </summary>

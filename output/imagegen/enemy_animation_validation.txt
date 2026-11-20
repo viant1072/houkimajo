@@ -1,0 +1,1 @@
+PASS: Unity 6000.6.5f1; six prefabs; 24 ordered sprites; 627x627/PPU627; RGBA imports; frame advancement, loop wrapping, zero-delta pause, pool reset and transform isolation. Checked deterministically in Unity Editor; not a full gameplay Play-mode run.

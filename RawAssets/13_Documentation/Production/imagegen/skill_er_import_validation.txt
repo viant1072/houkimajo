@@ -1,0 +1,10 @@
+ER_ART_PASS: E/e_broom_dash_v1.png / 4 named sprites
+ER_ART_PASS: E/e_magic_shield_v1.png / 4 named sprites
+ER_ART_PASS: E/e_dispel_v1.png / 4 named sprites
+ER_ART_PASS: E/e_hourglass_v1.png / 4 named sprites
+ER_ART_PASS: E/e_teleport_v1.png / 4 named sprites
+ER_ART_PASS: R/r_meteor_shower_v1.png / 6 named sprites
+ER_ART_PASS: R/r_familiar_summon_v1.png / 6 named sprites
+ER_ART_PASS: R/r_star_beam_v1.png / 6 named sprites
+ER_ART_PASS: R/r_time_stop_v1.png / 6 named sprites
+ER_ART_IMPORT_PASS: 9 atlases, 44 sprites, names, rects, fileIDs.

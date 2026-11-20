@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748babd1ae3d14c4bb1f2bebddca2c6b, type: 3}
   m_Name: Enemy_GrimoireAimed
   m_EditorClassIdentifier: Assembly-CSharp::Houkimajo.Bullets.BulletPatternSO
-  shape: 2
-  bulletCount: 1
+  shape: 3
+  bulletCount: 3
   bulletSpeed: 3
   fireInterval: 1.8
   rotationPerShot: 10
+  spreadAngle: 36
+  bulletSprite: {fileID: 21300000, guid: b5a92df32c624dfe896f35f70250918a, type: 3}
+  bulletTint: {r: 1, g: 1, b: 1, a: 1}
+  orientBulletToDirection: 1

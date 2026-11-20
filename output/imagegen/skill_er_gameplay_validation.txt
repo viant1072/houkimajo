@@ -1,0 +1,31 @@
+E/R gameplay integration validation — 2026-11-16
+Unity 6000.6.5f1; isolated copy at Temp/QValidationProject.
+
+PASS — ERSkillGameplayChecks: all 13 skill definitions/icons; 5 E / 4 R;
+cycling loadout; damage/graze energy; ultimate damage excluded; R consumes 100;
+shield hit counts; dispel clear/gold cap; field slow; freeze restoration;
+teleport range/invincibility; meteor warning/impact; familiars/fire/block limits;
+beam geometry/10Hz damage/channel restoration; cleanup.
+
+PASS — ERPlayModeSmokeChecks in actual player loop with queued Keyboard input:
+F2 switches E; E creates shield; F3 switches R; F4 fills energy; R summons cats;
+pooled familiar bullets fire; beam expires and restores movement/firing;
+TimeStop freezes bullets; pause holds effect timer; disabling releases state.
+No captured gameplay runtime Error/Exception/Assert.
+An unrelated UnityEditor.Search.SearchDatabase indexing exception during startup
+of the isolated editor is excluded by a narrow stack filter in the smoke runner.
+
+PASS — QSkillGameplayChecks regression: assets, chain, explosion, piercing,
+pool reuse/capacity, pause, burn ticks, target death.
+PASS — SkillHudChecks: 4 slots, repeated bootstrap, safe area, compact layout,
+profile/cooldown/charges, R percentage, rendering at normal/narrow widths.
+Preview: output/imagegen/skill_er_hud_preview.png
+
+Copied validated E/R data, FamiliarBullet prefab and saved Stage01 to the main
+project after verifying Stage01 had not changed during validation. Source scripts
+and their Unity .meta files are present. Test-only settings/runtime state were not copied.
+
+Controls in Unity Editor: F2 cycles E, F3 cycles R; E/R cast.
+F4 fills R, F5 increases levels (wraps after Lv5). F1 cycles Q.
+Remaining scope: normal enemy slow/stun/knockback hooks require normal enemies;
+bosses remain immune. Wallet records stage gold; shop/save are not implemented.

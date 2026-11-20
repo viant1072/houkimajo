@@ -17,3 +17,7 @@ MonoBehaviour:
   bulletSpeed: 3
   fireInterval: 1.6
   rotationPerShot: 0
+  spreadAngle: 30
+  bulletSprite: {fileID: 21300000, guid: 8a3b1de13e744dd2a8b03e4db382538b, type: 3}
+  bulletTint: {r: 1, g: 1, b: 1, a: 1}
+  orientBulletToDirection: 1

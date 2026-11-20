@@ -1,0 +1,38 @@
+HP potion shop prototype validation — 2026-11-17
+Unity 6000.6.5f1; isolated project and product name HoukimajoShopValidation.
+Authoritative successful log: unity-verified.log (HP_SHOP_VALIDATION_PASS).
+User's real save/profile was not used by automated checks.
+
+PASS: repeated builder yields one ShopController, inventory/UI and EventSystem.
+Saved scene reopened before Play; InputSystemUIInputModule works after serialization.
+PASS: Stage starts in Shop, timeScale0; seed 10000 once; v1 gold/stage migrates to v2.
+PASS: native queued mouse press+release clicks Buy, subtracts60 and adds1.
+PASS: full HP rejects use without consuming. Native Use button heals80->100,
+clamps healing to20, consumes1. Missing HP40 heals full40 as configured.
+PASS: stack9 cap, insufficient59 gold, reentrant wallet callbacks cannot overspend
+or duplicate items. Use cooldown blocks repeat use and advances in shop while
+gameplay Time.time remains frozen.
+PASS: native B resumes gameplay; native key1 consumes/heals in Playing.
+PASS: reopening never reseeds; actual Stage01 reload with reset save cache restores
+wallet, quantity and cooldown. GameOver blocks use; potion does not revive HP0.
+
+No captured gameplay runtime Error/Exception/Assert during successful run.
+Known isolated UnityEditor.Search.SearchDatabase startup indexing exception is
+excluded by narrow stack filter. Later high-resolution re-render attempt failed
+at native editor startup due allocation/graphics memory pressure before gameplay;
+its test process was stopped. Production code was unchanged after successful run
+apart from comments/docs; no additional passing run is claimed for that attempt.
+Preview.png is a diagnostic composite: URP world plus UGUI capture, with the
+640x480 editor GameView's UI scale retained in the 1280x720 render target.
+Inspected placeholder HP tile, pricing, stock, disabled-use reason, tabs and controls.
+
+Saved tested Stage01 to main after verifying original scene hash unchanged.
+No item art, item prefab, ItemSO file or .asset item created. Prototype balance is
+serialized on HpPotionInventory (60 gold, heal40, max9, cooldown2s).
+ShopController config seeds at least10000 once via persistent shopTestGoldSeeded.
+New Game clears the save and begins a new test account. Existing higher gold kept.
+
+Controls: shop opens at stage start; B toggles, Escape/Continue closes.
+Buy1 / Use1 in shop; key1 / small HP button uses in gameplay. HPfull consumes nothing.
+Save v2 stores gold, highestStageCleared, hpPotionCount, hpPotionCooldown and seed flag.
+Future catalog/equipment/multiple item types/checkpoint shop remain out of scope.

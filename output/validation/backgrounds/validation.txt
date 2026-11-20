@@ -1,0 +1,25 @@
+Background integration validation — 2026-11-17
+Unity 6000.6.5f1, URP 2D, isolated BackgroundValidationProject.
+
+PASS: all three StageSO assets reference the selected background sprites.
+PASS: repeated Apply Stage Backgrounds leaves exactly one StageBackground.
+PASS: camera coverage at 16:9, 4:3, 21:9, 9:16 without unequal X/Y scaling.
+PASS: missing stage art disables renderer rather than retaining previous art.
+PASS: actual Play mode loads Stage01 with GameSession index 0, 1, 2; each
+StageDirector startup event selects the matching forest/marsh/tower sprite.
+PASS: background sorting order -1000, no Collider2D.
+PASS: screenshots rendered with actual URP camera and HUD for all 3 stages;
+visually inspected placement, coverage, character visibility, HUD layering.
+
+No captured gameplay runtime Error/Exception/Assert during the successful run.
+The isolated editor's unrelated UnityEditor.Search.SearchDatabase indexing
+exception was excluded by a narrow stack filter. AI editor packages were omitted
+from the validation copy only; main Packages/ProjectSettings were not modified.
+This smoke run checks stage entry, not a full playthrough of every wave/boss.
+
+Source art: Assets/_Game/Art/Sprites/Backgrounds/
+Screenshots: output/validation/backgrounds/background-stage-1.png through -3.png
+Runtime: StageBackground listens to OnStageStarted and fits orthographic camera.
+Data: StageSO.Background, authored via serialized private field.
+Setup/Rebuild includes background; Apply Stage Backgrounds updates old scenes.
+Main scene/data copied only after original hashes were checked unchanged.

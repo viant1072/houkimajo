@@ -1,0 +1,134 @@
+[
+  {
+    "slug": "moth_queen",
+    "frame": 0,
+    "solidBoundsSampled": [
+      100,
+      56,
+      536,
+      552
+    ],
+    "edgeAlphaMaxSampled": 1
+  },
+  {
+    "slug": "moth_queen",
+    "frame": 1,
+    "solidBoundsSampled": [
+      12,
+      68,
+      600,
+      548
+    ],
+    "edgeAlphaMaxSampled": 1
+  },
+  {
+    "slug": "moth_queen",
+    "frame": 2,
+    "solidBoundsSampled": [
+      28,
+      56,
+      600,
+      536
+    ],
+    "edgeAlphaMaxSampled": 1
+  },
+  {
+    "slug": "moth_queen",
+    "frame": 3,
+    "solidBoundsSampled": [
+      12,
+      56,
+      600,
+      536
+    ],
+    "edgeAlphaMaxSampled": 1
+  },
+  {
+    "slug": "pumpkin_regent",
+    "frame": 0,
+    "solidBoundsSampled": [
+      48,
+      24,
+      588,
+      576
+    ],
+    "edgeAlphaMaxSampled": 1
+  },
+  {
+    "slug": "pumpkin_regent",
+    "frame": 1,
+    "solidBoundsSampled": [
+      64,
+      24,
+      584,
+      596
+    ],
+    "edgeAlphaMaxSampled": 1
+  },
+  {
+    "slug": "pumpkin_regent",
+    "frame": 2,
+    "solidBoundsSampled": [
+      72,
+      24,
+      572,
+      572
+    ],
+    "edgeAlphaMaxSampled": 1
+  },
+  {
+    "slug": "pumpkin_regent",
+    "frame": 3,
+    "solidBoundsSampled": [
+      64,
+      24,
+      588,
+      596
+    ],
+    "edgeAlphaMaxSampled": 0
+  },
+  {
+    "slug": "astral_archwitch",
+    "frame": 0,
+    "solidBoundsSampled": [
+      56,
+      24,
+      552,
+      592
+    ],
+    "edgeAlphaMaxSampled": 1
+  },
+  {
+    "slug": "astral_archwitch",
+    "frame": 1,
+    "solidBoundsSampled": [
+      80,
+      24,
+      564,
+      592
+    ],
+    "edgeAlphaMaxSampled": 1
+  },
+  {
+    "slug": "astral_archwitch",
+    "frame": 2,
+    "solidBoundsSampled": [
+      96,
+      24,
+      588,
+      588
+    ],
+    "edgeAlphaMaxSampled": 1
+  },
+  {
+    "slug": "astral_archwitch",
+    "frame": 3,
+    "solidBoundsSampled": [
+      88,
+      24,
+      568,
+      588
+    ],
+    "edgeAlphaMaxSampled": 1
+  }
+]

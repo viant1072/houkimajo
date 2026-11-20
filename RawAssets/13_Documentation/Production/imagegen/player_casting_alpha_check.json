@@ -1,0 +1,39 @@
+{
+  "castingFrames": [
+    {
+      "frame": 0,
+      "clearSamples": 15368,
+      "solidSamples": 8583,
+      "edgeAlphaMax": 1
+    },
+    {
+      "frame": 1,
+      "clearSamples": 15262,
+      "solidSamples": 8724,
+      "edgeAlphaMax": 0
+    },
+    {
+      "frame": 2,
+      "clearSamples": 15189,
+      "solidSamples": 8779,
+      "edgeAlphaMax": 1
+    },
+    {
+      "frame": 3,
+      "clearSamples": 15400,
+      "solidSamples": 8648,
+      "edgeAlphaMax": 0
+    }
+  ],
+  "orbCornerAlpha": [
+    1,
+    0,
+    0,
+    0
+  ],
+  "pivot": [
+    0.61,
+    0.42
+  ],
+  "pixelsPerUnit": 627
+}

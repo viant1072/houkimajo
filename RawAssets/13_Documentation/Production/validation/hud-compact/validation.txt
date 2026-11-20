@@ -1,0 +1,6 @@
+COMPACT_HUD_PASS — Unity 6000.6.5f1 isolated Play mode.
+Strip: 100 -> 76 px. Avatar: 176 -> 105.6 px. Skills: scale .78; vitals .8; pet .75.
+Repeated build and safe-width fit 480/1280/1920 passed. Runtime viewport reserves
+76px scaled HUD height. Preview inspected. HP/MP and skill behavior unchanged.
+Saved Stage01 after checking original hash. No gameplay runtime errors; isolated
+editor SearchDatabase indexing exception excluded by existing narrow stack filter.

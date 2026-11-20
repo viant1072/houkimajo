@@ -2,11 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Houkimajo.Bullets;
+using Houkimajo.Systems;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 namespace Houkimajo.Player
 {
     /// <summary>
-    /// Bắn đạn phép liên tục khi giữ Space, bay về phía con trỏ chuột (lấy hướng từ
+    /// Bắn đạn phép liên tục khi giữ chuột trái, bay về phía con trỏ chuột (lấy hướng từ
     /// PlayerAim). Đạn lấy từ BulletPool thay vì Instantiate trực tiếp.
     /// </summary>
     [RequireComponent(typeof(PlayerAim))]
@@ -40,22 +43,46 @@ namespace Houkimajo.Player
 
         private PlayerAim aim;
         private float cooldownTimer;
+        private PlayerHealth health;
+        private Camera aimCamera;
+        private EventSystem eventSystem;
+        private PointerEventData pointer;
+        private readonly List<RaycastResult> uiHits = new List<RaycastResult>(32);
+        private bool requireRelease;
+        private PlayerFlightAnimation flightAnimation;
+        private PlayerCastingOrb castingOrb;
 
         private void Awake()
         {
             aim = GetComponent<PlayerAim>();
+            health = GetComponent<PlayerHealth>();
+            flightAnimation = GetComponentInChildren<PlayerFlightAnimation>();
+            castingOrb = GetComponent<PlayerCastingOrb>();
+            aimCamera = Camera.main;
+            eventSystem = FindAnyObjectByType<EventSystem>();
+            if (eventSystem != null) pointer = new PointerEventData(eventSystem);
         }
 
         private void Update()
         {
-            if (Time.timeScale <= 0f) return;
+            var mouse = Mouse.current;
+            bool held = mouse != null && mouse.leftButton.isPressed;
+            if (Time.timeScale <= 0f || (health != null && health.CurrentHP <= 0)
+                || (GameManager.Instance != null && GameManager.Instance.CurrentState != GameState.Playing))
+            { requireRelease = held; return; }
             cooldownTimer = Mathf.Max(0f, cooldownTimer - Time.deltaTime);
+            if (requireRelease) { if (!held) requireRelease = false; return; }
             if (!CanFire || SkillFireBlocked) return;
-            var keyboard = Keyboard.current;
-            if (keyboard == null) return;
-
-            if (keyboard.spaceKey.isPressed && cooldownTimer <= 0f)
+            if (held && cooldownTimer <= 0f)
             {
+                if (aimCamera != null && !aimCamera.pixelRect.Contains(mouse.position.ReadValue()))
+                { requireRelease = true; return; }
+                if (pointer != null && eventSystem != null)
+                {
+                    pointer.position = mouse.position.ReadValue(); uiHits.Clear();
+                    eventSystem.RaycastAll(pointer, uiHits);
+                    if (uiHits.Count > 0) { requireRelease = true; return; }
+                }
                 if (Fire()) cooldownTimer = CooldownTotal;
             }
         }
@@ -84,12 +111,18 @@ namespace Houkimajo.Player
             // Scene cũ dựng trước khi có PlayerAim sẽ thiếu component này -> bắn thẳng lên tạm.
             Vector2 direction = aim != null ? aim.AimDirection : Vector2.up;
             Vector2 spawnPos = (Vector2)transform.position + direction * muzzleOffset;
+            if (castingOrb != null) spawnPos = castingOrb.GetEmissionPosition(direction);
 
             var bullet = bulletPool.Get(spawnPos);
             if (bullet == null) return false;
             bullet.Launch(direction, CurrentBulletSpeed, playerOwned: true, damageOverride: CurrentDamage);
             bullet.SetAppearance(basicAttack != null ? basicAttack.projectileSprite : null,
                 basicAttack != null ? basicAttack.projectileTint : Color.white);
+            bullet.SetAnimatedAppearance(basicAttack != null ? basicAttack.projectileAnimationFrames : null,
+                basicAttack != null ? basicAttack.projectileAnimationFramesPerSecond : 12f);
+            CombatFeedback.Instance?.PlayMuzzle(spawnPos, direction);
+            flightAnimation?.NotifyShot();
+            castingOrb?.NotifyShot(direction);
             return true;
         }
     }

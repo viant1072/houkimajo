@@ -1,0 +1,74 @@
+[
+  {
+    "column": 0,
+    "rowFromTop": 0,
+    "solidBoundsSampled": [
+      40,
+      148,
+      492,
+      416
+    ],
+    "transparentFractionSampled": 0.724,
+    "edgeAlphaMaxSampled": 1
+  },
+  {
+    "column": 1,
+    "rowFromTop": 0,
+    "solidBoundsSampled": [
+      68,
+      100,
+      444,
+      432
+    ],
+    "transparentFractionSampled": 0.695,
+    "edgeAlphaMaxSampled": 0
+  },
+  {
+    "column": 2,
+    "rowFromTop": 0,
+    "solidBoundsSampled": [
+      28,
+      116,
+      468,
+      428
+    ],
+    "transparentFractionSampled": 0.638,
+    "edgeAlphaMaxSampled": 0
+  },
+  {
+    "column": 0,
+    "rowFromTop": 1,
+    "solidBoundsSampled": [
+      112,
+      24,
+      444,
+      408
+    ],
+    "transparentFractionSampled": 0.696,
+    "edgeAlphaMaxSampled": 1
+  },
+  {
+    "column": 1,
+    "rowFromTop": 1,
+    "solidBoundsSampled": [
+      24,
+      48,
+      484,
+      400
+    ],
+    "transparentFractionSampled": 0.575,
+    "edgeAlphaMaxSampled": 0
+  },
+  {
+    "column": 2,
+    "rowFromTop": 1,
+    "solidBoundsSampled": [
+      60,
+      28,
+      424,
+      420
+    ],
+    "transparentFractionSampled": 0.65,
+    "edgeAlphaMaxSampled": 0
+  }
+]

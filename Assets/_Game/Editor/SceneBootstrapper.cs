@@ -75,7 +75,7 @@ namespace Houkimajo.EditorTools
             shootingSO.FindProperty("bulletPool").objectReferenceValue = playerPool;
             shootingSO.ApplyModifiedProperties();
 
-            // Chấm hitbox: chỉ hiện khi giữ Shift, vẽ đè lên người player
+            // Chấm hitbox: chỉ hiện khi giữ Left Control, vẽ đè lên người player
             var hitbox = new GameObject("HitboxIndicator");
             hitbox.transform.SetParent(player.transform, false);
             var hitboxRenderer = hitbox.AddComponent<SpriteRenderer>();
@@ -162,7 +162,7 @@ namespace Houkimajo.EditorTools
             // Thiếu MainMenu trong Build Settings thì Esc/phá đảo sẽ lỗi load scene — dựng luôn ở đây.
             StageBootstrapper.BuildMainMenuScene();
             Debug.Log("[Houkimajo] Dựng scene xong — Ctrl+S để lưu, rồi bấm Play " +
-                "(WASD di chuyển, chuột ngắm, giữ Space bắn, Shift = focus mode, Q/E = skill).");
+                "(WASD di chuyển, chuột trái bắn, Left Shift lướt, Left Control bay chậm, Q/E/R = skill).");
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace Houkimajo.EditorTools
         {
             "Player", "Boss", "Crosshair", "PlayerBulletPool", "EnemyBulletPool",
             "GameManager", "ScoreManager", "HUDCanvas", "HUDController", "EndStateUI",
-            "SkillPools", "SkillBarUI", "StageSystems", "StageHudUI"
+            "SkillPools", "SkillBarUI", "StageSystems", "StageHudUI", "StageBackground"
         };
 
         [MenuItem("Houkimajo/Rebuild Playtest Scene (xoá object cũ rồi dựng lại)")]

@@ -1,0 +1,98 @@
+[
+  {
+    "slug": "shadow_bat",
+    "name": "ShadowBat",
+    "framesPerSecond": 6,
+    "path": "Assets/_Game/Art/Sprites/Enemies/enemy_shadow_bat_flight_v1.png",
+    "width": 1254,
+    "height": 1254,
+    "cellSize": 627,
+    "sprites": [
+      "Enemy_ShadowBat_Flight_0",
+      "Enemy_ShadowBat_Flight_1",
+      "Enemy_ShadowBat_Flight_2",
+      "Enemy_ShadowBat_Flight_3"
+    ],
+    "source": "C:\\Users\\FOXAI\\.codex\\generated_images\\01a1e594-3521-7561-9f67-300e4c52dfed\\exec-d41ed777-0186-4c06-937b-ad11624f2ad2.png"
+  },
+  {
+    "slug": "ember_firefly",
+    "name": "EmberFirefly",
+    "framesPerSecond": 10,
+    "path": "Assets/_Game/Art/Sprites/Enemies/enemy_ember_firefly_flight_v1.png",
+    "width": 1254,
+    "height": 1254,
+    "cellSize": 627,
+    "sprites": [
+      "Enemy_EmberFirefly_Flight_0",
+      "Enemy_EmberFirefly_Flight_1",
+      "Enemy_EmberFirefly_Flight_2",
+      "Enemy_EmberFirefly_Flight_3"
+    ],
+    "source": "C:\\Users\\FOXAI\\.codex\\generated_images\\01a1e594-3521-7561-9f67-300e4c52dfed\\exec-af51b9bc-1d93-49bc-88d6-243b98abc26e.png"
+  },
+  {
+    "slug": "flying_pumpkin",
+    "name": "FlyingPumpkin",
+    "framesPerSecond": 5,
+    "path": "Assets/_Game/Art/Sprites/Enemies/enemy_flying_pumpkin_flight_v1.png",
+    "width": 1254,
+    "height": 1254,
+    "cellSize": 627,
+    "sprites": [
+      "Enemy_FlyingPumpkin_Flight_0",
+      "Enemy_FlyingPumpkin_Flight_1",
+      "Enemy_FlyingPumpkin_Flight_2",
+      "Enemy_FlyingPumpkin_Flight_3"
+    ],
+    "source": "C:\\Users\\FOXAI\\.codex\\generated_images\\01a1e594-3521-7561-9f67-300e4c52dfed\\exec-f985145d-a5c9-40e0-b624-acc3875a41ce.png"
+  },
+  {
+    "slug": "wisp_ghost",
+    "name": "WispGhost",
+    "framesPerSecond": 5,
+    "path": "Assets/_Game/Art/Sprites/Enemies/enemy_wisp_ghost_flight_v1.png",
+    "width": 1254,
+    "height": 1254,
+    "cellSize": 627,
+    "sprites": [
+      "Enemy_WispGhost_Flight_0",
+      "Enemy_WispGhost_Flight_1",
+      "Enemy_WispGhost_Flight_2",
+      "Enemy_WispGhost_Flight_3"
+    ],
+    "source": "C:\\Users\\FOXAI\\.codex\\generated_images\\01a1e594-3521-7561-9f67-300e4c52dfed\\exec-05b7ab75-2141-474f-9e52-ff48912fbed2.png"
+  },
+  {
+    "slug": "cursed_grimoire",
+    "name": "CursedGrimoire",
+    "framesPerSecond": 6,
+    "path": "Assets/_Game/Art/Sprites/Enemies/enemy_cursed_grimoire_flight_v1.png",
+    "width": 1254,
+    "height": 1254,
+    "cellSize": 627,
+    "sprites": [
+      "Enemy_CursedGrimoire_Flight_0",
+      "Enemy_CursedGrimoire_Flight_1",
+      "Enemy_CursedGrimoire_Flight_2",
+      "Enemy_CursedGrimoire_Flight_3"
+    ],
+    "source": "C:\\Users\\FOXAI\\.codex\\generated_images\\01a1e594-3521-7561-9f67-300e4c52dfed\\exec-a5e4c9c4-a077-4c76-855e-982002d5eff4.png"
+  },
+  {
+    "slug": "moon_jelly",
+    "name": "MoonJelly",
+    "framesPerSecond": 4,
+    "path": "Assets/_Game/Art/Sprites/Enemies/enemy_moon_jelly_flight_v1.png",
+    "width": 1254,
+    "height": 1254,
+    "cellSize": 627,
+    "sprites": [
+      "Enemy_MoonJelly_Flight_0",
+      "Enemy_MoonJelly_Flight_1",
+      "Enemy_MoonJelly_Flight_2",
+      "Enemy_MoonJelly_Flight_3"
+    ],
+    "source": "C:\\Users\\FOXAI\\.codex\\generated_images\\01a1e594-3521-7561-9f67-300e4c52dfed\\exec-b50977dd-762f-4964-a9f0-83ab5169f003.png"
+  }
+]

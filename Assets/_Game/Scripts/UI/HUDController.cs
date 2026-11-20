@@ -29,7 +29,7 @@ namespace Houkimajo.UI
                 ScoreManager.Instance.OnScoreChanged += UpdateScoreText;
 
             if (playerHealth != null)
-                playerHealth.OnLivesChanged += UpdateLivesText;
+                playerHealth.OnHPChanged += UpdateHealthText;
 
             if (bossHealth != null)
                 bossHealth.OnHPChanged += UpdateBossHpText;
@@ -40,7 +40,7 @@ namespace Houkimajo.UI
             // Start() chạy sau khi TOÀN BỘ object trong scene đã Awake() xong — an toàn
             // để đọc giá trị ban đầu ở đây.
             if (playerHealth != null)
-                UpdateLivesText(playerHealth.Lives);
+                UpdateHealthText(playerHealth.CurrentHP, playerHealth.MaxHP);
 
             if (bossHealth != null)
                 UpdateBossHpText(bossHealth.CurrentHP, bossHealth.MaxHP);
@@ -52,7 +52,7 @@ namespace Houkimajo.UI
                 ScoreManager.Instance.OnScoreChanged -= UpdateScoreText;
 
             if (playerHealth != null)
-                playerHealth.OnLivesChanged -= UpdateLivesText;
+                playerHealth.OnHPChanged -= UpdateHealthText;
 
             if (bossHealth != null)
                 bossHealth.OnHPChanged -= UpdateBossHpText;
@@ -64,10 +64,10 @@ namespace Houkimajo.UI
                 scoreText.text = $"Score: {score}";
         }
 
-        private void UpdateLivesText(int lives)
+        private void UpdateHealthText(int current, int max)
         {
             if (livesText != null)
-                livesText.text = $"Lives: {lives}";
+                livesText.text = $"HP: {current}/{max}";
         }
 
         private void UpdateBossHpText(int current, int max)

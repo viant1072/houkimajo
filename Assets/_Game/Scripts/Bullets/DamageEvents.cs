@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Houkimajo.Bullets
 {
@@ -19,13 +20,18 @@ namespace Houkimajo.Bullets
     {
         /// <summary>(sát thương, nguồn) — phát mỗi khi player gây sát thương.</summary>
         public static event Action<int, DamageSource> OnPlayerDamageDealt;
+        public static event Action<Vector2, DamageSource> OnPlayerHit;
 
-        public static void DealPlayerDamage(IDamageable target, int amount, DamageSource source)
+        public static void DealPlayerDamage(IDamageable target, int amount, DamageSource source, Vector2? hitPosition = null)
         {
             if (target == null || !target.IsAlive || amount <= 0) return;
 
+            var component = target as Component;
+            bool hasPosition = hitPosition.HasValue || component != null;
+            Vector2 position = hitPosition ?? (component != null ? (Vector2)component.transform.position : Vector2.zero);
             target.TakeDamage(amount);
             OnPlayerDamageDealt?.Invoke(amount, source);
+            if (hasPosition) OnPlayerHit?.Invoke(position, source);
         }
     }
 }

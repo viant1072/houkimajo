@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986f0ef93f64f3b4088f0d2018d4d481, type: 3}
+  m_Name: Enemy_Showcase
+  m_EditorClassIdentifier: Assembly-CSharp::Houkimajo.Enemies.WaveSO
+  startDelay: 0.5
+  entries:
+  - enemy: {fileID: 11400000, guid: 060e6002972181245b209045d7753b52, type: 2}
+    count: 2
+    spawnInterval: 0.5
+  - enemy: {fileID: 11400000, guid: 55452d1f3b5557e418d46a1934c8e0e1, type: 2}
+    count: 2
+    spawnInterval: 0.5
+  - enemy: {fileID: 11400000, guid: ad7a1cf0afbfad1458edad14c46a7164, type: 2}
+    count: 2
+    spawnInterval: 0.5
+  - enemy: {fileID: 11400000, guid: 930b9a084dd680b4fb1475cadcc308ba, type: 2}
+    count: 2
+    spawnInterval: 0.5
+  - enemy: {fileID: 11400000, guid: fffa99c8845b7e040b4b1740728f90d6, type: 2}
+    count: 2
+    spawnInterval: 0.5
+  - enemy: {fileID: 11400000, guid: bbad11c32ffe6454e9c4e5c12a6f6cfc, type: 2}
+    count: 2
+    spawnInterval: 0.5

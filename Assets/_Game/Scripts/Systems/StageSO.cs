@@ -27,6 +27,11 @@ namespace Houkimajo.Systems
         public string id;
         public string stageName = "Stage";
 
+        [Header("Background")]
+        [SerializeField, Tooltip("Ảnh nền phủ camera, nằm sau toàn bộ gameplay")]
+        private Sprite background;
+        public Sprite Background => background;
+
         public List<StageWave> waves = new List<StageWave>();
 
         [Header("Boss")]
@@ -34,6 +39,15 @@ namespace Houkimajo.Systems
         public int bossMaxHP = 1000;
         [Tooltip("Màu nhuộm sprite boss để mỗi màn trông khác nhau khi chưa có art riêng")]
         public Color bossTint = Color.white;
+
+        [Tooltip("Sprite boss của màn; để trống để dùng hình sẵn trong scene")]
+        public Sprite bossSprite;
+        [Tooltip("Bộ frame idle dùng chung, không giữ trạng thái animation trên asset")]
+        public Sprite[] bossAnimationFrames;
+        [Min(0.1f), Tooltip("Nhịp idle, số frame mỗi giây")]
+        public float bossAnimationFramesPerSecond = 6f;
+        [Min(0f), Tooltip("Bán kính hitbox thân boss; 0 giữ collider của scene")]
+        public float bossColliderRadius;
 
         [Header("Thưởng")]
         [Tooltip("Vàng cộng thêm khi qua màn")]

@@ -1,0 +1,4 @@
+ENEMY_GAMEPLAY_VALIDATION_PASS: six types spawned and animated in actual Play mode; real pause; pooled cross-species reuse; static fallback; colliders/fade preserved; idempotent setup; original balance preserved.
+
+Tested in an isolated project with Unity 6000.6.5f1. The smoke runner excludes only the unrelated UnityEditor.Search.SearchDatabase indexing exception. No captured gameplay Error/Exception/Assert.
+Validated data/prefab copied after comparing source hashes. Stage01 scene and player save were not changed by the integration.

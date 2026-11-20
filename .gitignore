@@ -20,6 +20,9 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
+# Unity automatic scene recovery (local backup)
+/Assets/_Recovery/
+/Assets/_Recovery.meta
 /[Uu]ser[Ss]ettings/
 *.log
 

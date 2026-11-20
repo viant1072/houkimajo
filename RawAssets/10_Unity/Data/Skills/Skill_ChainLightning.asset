@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51bfe818a419ae345ad9a6a4451497b2, type: 3}
+  m_Name: Skill_ChainLightning
+  m_EditorClassIdentifier: Assembly-CSharp::Houkimajo.Skills.ChainLightningSkillSO
+  id: skill_chain_lightning
+  displayName: "S\xE9t Lan"
+  icon: {fileID: 21300000, guid: ef4aa659d2b941be8369ce00a7e71ddd, type: 3}
+  castSprite: {fileID: 0}
+  loopSprite: {fileID: 0}
+  endSprite: {fileID: 0}
+  projectileSprite: {fileID: 0}
+  warningSprite: {fileID: 0}
+  particleSprite: {fileID: 0}
+  overlaySprite: {fileID: 0}
+  attributeName: "S\xE9t"
+  impactSprite: {fileID: 21300004, guid: ef4aa659d2b941be8369ce00a7e71ddd, type: 3}
+  masterySprite: {fileID: 21300006, guid: ef4aa659d2b941be8369ce00a7e71ddd, type: 3}
+  impactSize: 0.5
+  impactDuration: 0.18
+  ringCoverage: 0.8
+  slot: 0
+  manaCost: 15
+  color: {r: 1, g: 0.85, b: 0.1, a: 1}
+  description: 
+  levels:
+  - cooldown: 6
+    damage: 35
+    count: 3
+    radius: 0
+    duration: 0
+    range: 4
+    charges: 1
+    upgradeCost: 0
+    hasMasteryEffect: 0
+  - cooldown: 5.625
+    damage: 40
+    count: 4
+    radius: 0
+    duration: 0
+    range: 4
+    charges: 1
+    upgradeCost: 100
+    hasMasteryEffect: 0
+  - cooldown: 5.25
+    damage: 45
+    count: 5
+    radius: 0
+    duration: 0
+    range: 4
+    charges: 1
+    upgradeCost: 250
+    hasMasteryEffect: 0
+  - cooldown: 4.875
+    damage: 50
+    count: 6
+    radius: 0
+    duration: 0
+    range: 4
+    charges: 1
+    upgradeCost: 500
+    hasMasteryEffect: 0
+  - cooldown: 4.5
+    damage: 55
+    count: 7
+    radius: 0
+    duration: 0
+    range: 4
+    charges: 1
+    upgradeCost: 1000
+    hasMasteryEffect: 1
+  arcSprite: {fileID: 21300002, guid: ef4aa659d2b941be8369ce00a7e71ddd, type: 3}
+  jumpRange: 3
+  arcDuration: 0.16
+  arcWidth: 0.65
+  arcCoverage: 0.88
+  stunDuration: 0.5

@@ -45,18 +45,19 @@ namespace Houkimajo.EditorTools
                     if (skill.slot == SkillSlot.E) eCount++;
                     if (skill.slot == SkillSlot.R) rCount++;
                 }
-                Check(library.arraySize == 13 && eCount == 5 && rCount == 4, "Thư viện đủ 13 skill / 5 E / 4 R, không trùng sau setup");
+                Check(library.arraySize == 12 && eCount == 4 && rCount == 4, "Thư viện đủ 12 skill / 4 E / 4 R, lướt tách riêng");
                 Call(pools, "Awake"); Call(pools.Effects, "Awake");
                 Call(enemy, "Awake");
                 Call(runtime, "Awake");
+                Call(health, "Awake");
                 Call(caster, "Awake"); Call(caster, "OnEnable"); Call(caster, "Start");
                 typeof(TargetRegistry).GetMethod("ResetRegistry", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, null);
                 var target = MakeTarget(player.transform.position + Vector3.up * 2f);
                 Time.timeScale = 1f;
                 var originalQ = caster.GetSkill(SkillSlot.Q);
                 var types = new HashSet<Type>();
-                for (int i = 0; i < 5; i++) { types.Add(caster.GetSkill(SkillSlot.E).GetType()); Press(caster, Key.F2); }
-                Check(types.Count == 5 && caster.GetSkill(SkillSlot.Q) == originalQ, "Nhánh F2 đổi vòng đúng 5 E, giữ Q");
+                for (int i = 0; i < 4; i++) { types.Add(caster.GetSkill(SkillSlot.E).GetType()); Press(caster, Key.F2); }
+                Check(types.Count == 4 && caster.GetSkill(SkillSlot.Q) == originalQ, "Nhánh F2 đổi vòng đúng 4 E, giữ Q");
                 types.Clear();
                 for (int i = 0; i < 4; i++) { types.Add(caster.GetSkill(SkillSlot.R).GetType()); Press(caster, Key.F3); }
                 Check(types.Count == 4, "Nhánh F3 đổi vòng đúng 4 R");
@@ -86,7 +87,7 @@ namespace Houkimajo.EditorTools
                     Set(health, "skillInvincibleUntil", -1f);
                     health.TakeHit();
                 }
-                Check(health.Lives == 3 && health.ShieldHits == 0, "Khiên Lv5 đỡ 3 hit không mất mạng");
+                Check(health.CurrentHP == health.MaxHP && health.ShieldHits == 0, "Khiên Lv5 đỡ 3 hit không mất HP");
                 runtime.BeginShield(shield, shield.GetLevel(5));
                 Spawn(enemy, player.transform.position);
                 for (int i = 0; i < 3; i++) { Set(health, "skillInvincibleUntil", -1f); health.TakeHit(); }

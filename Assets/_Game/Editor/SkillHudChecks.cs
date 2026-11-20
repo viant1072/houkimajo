@@ -28,18 +28,18 @@ namespace Houkimajo.EditorTools
                 var bar = UnityEngine.Object.FindAnyObjectByType<SkillBarUI>();
                 var canvas = GameObject.Find("HUDCanvas").GetComponent<Canvas>();
                 var views = canvas.GetComponentsInChildren<SkillHudSlot>();
-                Check(views.Length == 4, "Build lại vẫn đúng 4 ô SPACE/Q/E/R");
+                Check(views.Length == 4, "Build lại vẫn đúng 4 ô LMB/Q/E/R");
                 var dock = (RectTransform)canvas.transform.Find("SkillDock");
                 Check(dock.anchorMin == Vector2.zero && dock.anchorMax == Vector2.zero && dock.pivot == Vector2.zero,
                     "HUD neo góc trái dưới");
-                Check(dock.rect.width == 420f && dock.rect.height == 114f, "HUD nhỏ gọn 420x114");
+                Check(dock.rect.height == 132f, "HUD đáy gọn với avatar nhỏ nhô lên");
                 bar.FitToSafeArea(new Rect(24f, 18f, 296f, 342f), 1f);
-                Check(dock.anchoredPosition == new Vector2(36f, 30f)
-                    && dock.rect.width * dock.localScale.x <= 272.01f, "Neo đúng safe area và co khi màn hình hẹp");
+                Check(dock.anchoredPosition == new Vector2(24f, 18f)
+                    && dock.rect.width * dock.localScale.x <= 296.01f, "Neo đúng safe area và co khi màn hình hẹp");
                 bar.FitToSafeArea(new Rect(0f, 0f, 1100f, 360f), 1f);
                 Check(views[0].transform.Find("Surface/Level").GetComponent<Text>().text == "I", "Cấp hiển thị số La Mã");
-                Check(views[0].GetComponentInChildren<ArcaneSealGraphic>().GetComponent<CanvasRenderer>() != null,
-                    "Họa tiết phép có CanvasRenderer để vẽ mesh");
+                Check(dock.Find("AvatarRim/AvatarClip").GetComponent<Mask>() != null,
+                    "avatar tròn cắt bằng Mask UI");
                 Check(canvas.transform.Find("SkillTextQ") == null && canvas.transform.Find("SkillIcon0") == null,
                     "Đã dọn HUD dọc cũ");
                 Check(shooting.Attack != null && shooting.Attack.icon != null, "Profile bắn thường có icon");

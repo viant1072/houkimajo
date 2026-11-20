@@ -13,7 +13,7 @@ Boss, Progression, UI) không phải tự biết thứ tự diễn ra.
 ### Scene & luồng tổng
 
 ```
-MainMenu ──Chơi tiếp / Chơi mới──▶ Stage01.unity (chạy StageSO số N)
+MainMenu ──Bắt đầu / Chơi tiếp / Chơi mới──▶ Stage01.unity (chạy StageSO số N)
                                          │
      ┌───────────────────────────────────┤
      ▼                                   ▼
@@ -27,12 +27,19 @@ MainMenu ──Chơi tiếp / Chơi mới──▶ Stage01.unity (chạy StageSO
 - Chỉ có **2 scene**: `MainMenu` và `Stage01`. `Stage01` là scene gameplay dùng chung
   cho **mọi màn** — nội dung màn (wave, boss) lấy từ `StageSO`, không tạo 1 scene/màn.
   Thêm màn mới = tạo asset `StageSO` và thêm vào `StageCatalogSO`, không sửa code.
-- `GameSession` (static) giữ chỉ số màn đang chơi giữa 2 lần load scene. Mở thẳng
-  `Stage01` trong Editor rồi bấm Play thì chơi màn 1 (tiện test).
+- Bản build và nút Play của Editor mặc định mở `MainMenu`. Khi cần thử màn 1 trực
+  tiếp, bỏ chọn **Houkimajo → Start Play Mode From Main Menu** rồi Play từ `Stage01`.
+- `GameSession` (static) giữ chỉ số màn đang chơi giữa 2 lần load scene.
 - `SceneFlow` (static): `LoadMainMenu()`, `LoadStage(index)`. Luôn trả
   `Time.timeScale = 1` trước khi load.
 
 ### Màn chơi
+
+- Mỗi `StageSO` giữ sprite background riêng: Rừng Đêm, Đầm Lầy Bí Ngô, Tháp Phù Thuỷ.
+  `StageBackground` nghe `OnStageStarted`, dùng một SpriteRenderer unlit phía sau
+  gameplay. Ảnh phủ camera orthographic, giữ tỷ lệ (crop phần dư), cập nhật khi đổi
+  kích thước cửa sổ; không có collider hay thay đổi arena. Stage thiếu ảnh sẽ ẩn nền.
+  Setup/Rebuild gắn sẵn nền; menu Apply Stage Backgrounds cập nhật scene cũ.
 
 - `StageSO` (Create → Houkimajo → Stage): `id`, `stageName`, danh sách
   `StageWave { WaveSO wave, bool openShopAfter }`, cấu hình boss (`bossPhases`,
@@ -56,6 +63,14 @@ MainMenu ──Chơi tiếp / Chơi mới──▶ Stage01.unity (chạy StageSO
 - `openShopAfter` đã có trong dữ liệu nhưng **chưa dùng** — shop làm ở giai đoạn 5.
 
 ### Lưu game (bản tối thiểu)
+
+- Save v3 bổ sung `skillUpgrades` (id skill/cấp đã mua); giữ nguyên trường v2 và
+  không seed lại vàng khi migrate. Cấp Q/E/R được áp dụng khi vào stage/đổi skill.
+
+- Prototype Bình HP dùng save version 2: thêm `hpPotionCount`, `hpPotionCooldown`,
+  `shopTestGoldSeeded`; migrate save v1 giữ vàng/màn. Mua/dùng/đóng shop/cooldown hoàn tất
+  đều lưu tiền+túi; ghi file tạm rồi replace để tránh file dở dang. Seed tối thiểu 10.000
+  vàng một lần khi bật chế độ thử trên ShopController, không seed lại mỗi màn/mở shop.
 
 - `SaveSystem` ghi JSON vào `Application.persistentDataPath/save.json`:
   `version`, `highestStageCleared` (-1 = chưa qua màn nào), `gold`.

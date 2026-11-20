@@ -6,8 +6,7 @@ namespace Houkimajo.Player
 {
     /// <summary>
     /// Điều khiển di chuyển của cô phù thủy trong arena 1 màn hình. WASD hoặc phím mũi
-    /// tên để di chuyển, giữ Shift (focus mode) để bay chậm lại và né đạn chính xác hơn.
-    /// Skill có thể ra lệnh lướt (Dash) — trong lúc lướt, input di chuyển bị bỏ qua.
+    /// tên để di chuyển, Left Control để focus. PlayerDash nhận Left Shift để lướt.
     /// </summary>
     [RequireComponent(typeof(PlayerHealth))]
     public class PlayerController : MonoBehaviour
@@ -21,6 +20,9 @@ namespace Houkimajo.Player
 
         private Vector2 dashVelocity;
         private float dashTimeRemaining;
+        private PlayerHealth health;
+
+        private void Awake() { health = GetComponent<PlayerHealth>(); }
 
         public bool IsFocusMode { get; private set; }
 
@@ -32,6 +34,9 @@ namespace Houkimajo.Player
 
         private void Update()
         {
+            if (Time.timeScale <= 0f || health.CurrentHP <= 0
+                || (GameManager.Instance != null && GameManager.Instance.CurrentState != GameState.Playing))
+            { MoveInput = Vector2.zero; IsFocusMode = false; return; }
             ReadInput();
 
             Vector2 delta;
@@ -56,6 +61,7 @@ namespace Houkimajo.Player
             if (keyboard == null)
             {
                 MoveInput = Vector2.zero;
+                IsFocusMode = false;
                 return;
             }
 
@@ -66,7 +72,7 @@ namespace Houkimajo.Player
             if (keyboard.downArrowKey.isPressed || keyboard.sKey.isPressed) input.y -= 1f;
 
             MoveInput = input;
-            IsFocusMode = keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed;
+            IsFocusMode = keyboard.leftCtrlKey.isPressed;
         }
 
         /// <summary>
@@ -87,5 +93,7 @@ namespace Houkimajo.Player
             dashTimeRemaining = 0f;
             transform.position = ArenaBounds.Clamp((Vector2)transform.position + delta, edgeMargin);
         }
+
+        public void CancelDash() { dashTimeRemaining = 0f; dashVelocity = Vector2.zero; }
     }
 }

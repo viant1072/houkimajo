@@ -6,8 +6,7 @@ using Houkimajo.Systems;
 namespace Houkimajo.UI
 {
     /// <summary>
-    /// Menu chính: Chơi tiếp (vào màn sau màn cao nhất đã qua) và Chơi mới (xoá save, vào
-    /// màn 1). Enter = Chơi tiếp, không có save thì Chơi mới.
+    /// Menu chính: Bắt đầu từ màn 1 hoặc Chơi tiếp từ tiến trình đã lưu.
     /// </summary>
     public class MainMenuUI : MonoBehaviour
     {
@@ -43,7 +42,7 @@ namespace Houkimajo.UI
 
             if (newGameButton != null) newGameButton.onClick.AddListener(NewGame);
             if (newGameLabel != null)
-                newGameLabel.text = hasProgress ? "Chơi mới (xoá tiến trình)" : "Chơi mới";
+                newGameLabel.text = hasProgress ? "Chơi mới (xoá tiến trình)" : "Bắt đầu";
 
             if (progressText != null)
             {

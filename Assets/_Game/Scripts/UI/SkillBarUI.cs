@@ -4,15 +4,19 @@ using UnityEngine;
 
 namespace Houkimajo.UI
 {
-    /// <summary>Dock SPACE/Q/E/R đọc cooldown thật, metadata cập nhật qua event.</summary>
+    /// <summary>Dock LMB/Q/E/R đọc cooldown thật, metadata cập nhật qua event.</summary>
     public class SkillBarUI : MonoBehaviour
     {
         [SerializeField] private SkillCaster caster;
         [SerializeField] private PlayerShooting shooting;
         [SerializeField] private SkillHudSlot[] slots = new SkillHudSlot[4];
         [SerializeField] private RectTransform dockRoot;
-        [SerializeField] private float dockWidth = 420f;
-        [SerializeField] private float edgeMargin = 12f;
+        [SerializeField] private float dockWidth = 1280f;
+        [SerializeField] private float edgeMargin = 0f;
+        [SerializeField, Min(1f), Tooltip("chiều cao dải HUD đặc ở scale Thiết kế, dùng để chừa viewport")]
+        private float stripHeight = 76f;
+        [SerializeField] private Camera gameplayCamera;
+        private Rect originalViewport;
         private readonly float[] castUntil = new float[4];
         private readonly float[] failUntil = new float[4];
         private bool identityDirty = true;
@@ -24,6 +28,7 @@ namespace Houkimajo.UI
         private void Awake()
         {
             if (dockRoot != null) canvas = dockRoot.GetComponentInParent<Canvas>();
+            if (gameplayCamera != null) originalViewport = gameplayCamera.rect;
         }
 
         private void OnEnable()
@@ -40,6 +45,7 @@ namespace Houkimajo.UI
 
         private void OnDisable()
         {
+            if (Application.isPlaying && gameplayCamera != null) gameplayCamera.rect = originalViewport;
             if (caster != null)
             {
                 caster.OnSkillCast -= HandleCast;
@@ -119,15 +125,23 @@ namespace Houkimajo.UI
             FitToSafeArea(safe, factor);
         }
 
-        /// <summary>Đặt huy hiệu vào góc trái dưới vùng an toàn, kể cả màn hình hẹp.</summary>
+        /// <summary>HUD Phủ ngang vùng an toàn; cửa sổ hẹp co cả bố cục để tránh chồng ô.</summary>
         public void FitToSafeArea(Rect safe, float canvasScale)
         {
             if (dockRoot == null) return;
             float factor = Mathf.Max(0.01f, canvasScale);
             float scale = Mathf.Min(1f, Mathf.Max(1f, safe.width / factor - edgeMargin * 2f) / dockWidth);
             dockRoot.localScale = new Vector3(scale, scale, 1f);
+            dockRoot.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,
+                Mathf.Max(1f, safe.width / factor - edgeMargin * 2f) / scale);
             dockRoot.anchoredPosition = new Vector2(safe.xMin / factor + edgeMargin,
                 safe.yMin / factor + edgeMargin);
+            if (Application.isPlaying && gameplayCamera != null && Screen.height > 0)
+            {
+                // tách dải HUD khỏi viewport để player/đạn không bay xuống dưới thanh đặc.
+                float bottom = Mathf.Clamp01((safe.yMin + (stripHeight * scale + edgeMargin) * factor) / Screen.height);
+                gameplayCamera.rect = new Rect(0f, bottom, 1f, Mathf.Max(0.01f, 1f - bottom));
+            }
         }
 
         private void HandleCast(SkillSlot slot) { castUntil[(int)slot + 1] = Time.unscaledTime + 0.18f; }

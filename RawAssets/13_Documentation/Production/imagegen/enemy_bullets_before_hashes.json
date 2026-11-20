@@ -1,0 +1,12 @@
+{
+  "Assets/_Game/Data/Enemies/Enemy_Bat.asset": "626cb17eda44c397dd2bf7eab43e218af0cead031d9fd6af947def60d9bbb493",
+  "Assets/_Game/Data/Enemies/Enemy_CursedGrimoire.asset": "f20bed24a036e804e151ea208b368a19d7760ff52c19125e01d80cfc15196285",
+  "Assets/_Game/Data/Enemies/Enemy_Firefly.asset": "f9ab21bb3c41cde8b64ae4e19e79b442a25a2380844a9e40e917da014586a01f",
+  "Assets/_Game/Data/Enemies/Enemy_MoonJelly.asset": "fc483cb7e57d7dd1e3af699d1ec843a5be80847cd30f9d2cf4abcc9e24e7ee06",
+  "Assets/_Game/Data/Enemies/Enemy_Pumpkin.asset": "caf6cf74d9705da8bb6d126de12cda9b974ee64a3125c1950a58c39a89ba07dd",
+  "Assets/_Game/Data/Enemies/Enemy_WispGhost.asset": "c1a3ceeb6ba99d7f6023489b6ac392214dcca05826b47ee547c56f3e2ce181e9",
+  "Assets/_Game/Data/BulletPatterns/Enemy_FireflyAimed.asset": "6f0a82256368121b48ef0b26c51b06c4a53466447092f099499a083c19ff2f5b",
+  "Assets/_Game/Data/BulletPatterns/Enemy_PumpkinRadial.asset": "c113a70c694b982e053362dd98c766ab3382d606a0b0ef36c82ad6a3529c7998",
+  "Assets/_Game/Data/BulletPatterns/Enemy_GrimoireAimed.asset": "648810d76598f6cea7a6c6e04b22723d8999ecf4b05a5ac9f43cd22ce785c83d",
+  "Assets/_Game/Data/BulletPatterns/Enemy_MoonJellyRadial.asset": "5af66453c39e3f2bc4a578dce1761ccfb9acf468720d6b7888db40132f24e098"
+}

@@ -1,0 +1,25 @@
+SHOP THEME — 2026-11-17
+Native UGUI vector styling; no item artwork or image-generation assets added.
+Purple gradient cover, antique gold borders, crescent/stars/broom crest,
+paired notebook pages, engraved empty slots and selected rune/star accents.
+Category glyphs and shaped buttons use actual target Graphics for hover/press/disable.
+Opening fade uses unscaled time (0.18s), so it works during Shop pause.
+
+PASS: Unity 6000.6.5f1 isolated Play mode, unity-final.log.
+Successful marker SHOP_GRID_VALIDATION_PASS. Existing full shop-grid regression
+checks use queued native Input System mouse events on the newly styled widgets:
+buy/sell/heal, equipment empty state, Q/E/R upgrade prices/max/insufficient gold,
+charge cooldown preservation, R energy, save v2->v3 and scene reload/re-equipping.
+X close/resume works. No captured gameplay Error/Exception/Assert in successful run.
+Known isolated Editor.SearchDatabase indexing issue excluded by narrow stack filter.
+Test save uses product HoukimajoShopValidation, not the user's profile.
+
+Visually reviewed both shop-items.png and shop-upgrades.png at 1280x720.
+The diagnostic capture combines URP world and UGUI, fitting UI to target dimensions
+and applying settled button tints so same-frame category transitions are represented
+at their completed state. Scene saved before runtime tests; no test balances/levels
+copied to production. Main scene hash checked before replacing configured Stage01.
+
+Production changes: reusable ArcanePanelGraphic, ArcaneWindowFade, shop builder,
+cell/selected-category presentation and scene. Purchase/save/balance logic unchanged.
+Item content still uses text placeholders; equipment remains empty as requested.

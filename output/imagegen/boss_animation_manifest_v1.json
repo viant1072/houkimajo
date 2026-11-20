@@ -1,0 +1,53 @@
+[
+  {
+    "slug": "moth_queen",
+    "name": "MothQueen",
+    "framesPerSecond": 6,
+    "path": "Assets/_Game/Art/Sprites/Bosses/boss_moth_queen_idle_v1.png",
+    "width": 1254,
+    "height": 1254,
+    "cellSize": 627,
+    "pixelsPerUnit": 256,
+    "sprites": [
+      "Boss_MothQueen_Idle_0",
+      "Boss_MothQueen_Idle_1",
+      "Boss_MothQueen_Idle_2",
+      "Boss_MothQueen_Idle_3"
+    ],
+    "source": "C:\\Users\\FOXAI\\.codex\\generated_images\\01a1e594-3521-7561-9f67-300e4c52dfed\\exec-3f11a7d0-1a9e-4c1f-b57e-ec759e802a50.png"
+  },
+  {
+    "slug": "pumpkin_regent",
+    "name": "PumpkinRegent",
+    "framesPerSecond": 5,
+    "path": "Assets/_Game/Art/Sprites/Bosses/boss_pumpkin_regent_idle_v1.png",
+    "width": 1254,
+    "height": 1254,
+    "cellSize": 627,
+    "pixelsPerUnit": 256,
+    "sprites": [
+      "Boss_PumpkinRegent_Idle_0",
+      "Boss_PumpkinRegent_Idle_1",
+      "Boss_PumpkinRegent_Idle_2",
+      "Boss_PumpkinRegent_Idle_3"
+    ],
+    "source": "C:\\Users\\FOXAI\\.codex\\generated_images\\01a1e594-3521-7561-9f67-300e4c52dfed\\exec-cc860924-4ba0-446d-a416-d0c2cb4f4781.png"
+  },
+  {
+    "slug": "astral_archwitch",
+    "name": "AstralArchwitch",
+    "framesPerSecond": 5,
+    "path": "Assets/_Game/Art/Sprites/Bosses/boss_astral_archwitch_idle_v1.png",
+    "width": 1254,
+    "height": 1254,
+    "cellSize": 627,
+    "pixelsPerUnit": 256,
+    "sprites": [
+      "Boss_AstralArchwitch_Idle_0",
+      "Boss_AstralArchwitch_Idle_1",
+      "Boss_AstralArchwitch_Idle_2",
+      "Boss_AstralArchwitch_Idle_3"
+    ],
+    "source": "C:\\Users\\FOXAI\\.codex\\generated_images\\01a1e594-3521-7561-9f67-300e4c52dfed\\exec-ccd6216e-bdd2-4a22-a724-ee8f1e5df338.png"
+  }
+]

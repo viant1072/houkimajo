@@ -29,6 +29,7 @@ MonoBehaviour:
   impactDuration: 0.18
   ringCoverage: 0.8
   slot: 0
+  manaCost: 15
   color: {r: 1, g: 0.35, b: 0.05, a: 1}
   description: 
   levels:

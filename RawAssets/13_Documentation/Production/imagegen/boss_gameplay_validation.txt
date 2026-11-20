@@ -1,0 +1,8 @@
+BOSS_GAMEPLAY_VALIDATION_PASS: all three stage bosses activated through RunBoss; correct animated art/palette; pause/dialogue; HP and phase1/2/3 transitions; body colliders; reactivation reset; legacy fallback; repeated setup.
+
+Unity 6000.6.5f1 actual Play mode, isolated copy with separate company/product save path.
+Boss tests use the real StageDirector.RunBoss coroutine for Stage01/02/03; wave waits and dialogue UI are bypassed only in the validation copy to reach all bosses promptly.
+Repeated art setup does not duplicate components and preserves HP/phase lists. All twelve frames bound through stage data.
+Animator progresses, pauses during Paused/Dialogue states, keeps original palette through phase changes, resets on reactivation. Body collider matches stage data. Legacy stage without art clears animation and uses scene sprite/tint.
+Only unrelated UnityEditor.Search.SearchDatabase indexing exception is excluded by a narrow stack filter. No captured gameplay Error/Exception/Assert.
+Source scene/stage hashes matched before copying validated files back. Test-only settings, save data and runtime overrides were not copied.

@@ -32,7 +32,7 @@ namespace Houkimajo.UI
             if (nameText.text != displayName) nameText.text = displayName;
             icon.sprite = sprite;
             icon.enabled = sprite != null;
-            cooldownMask.sprite = sprite != null ? sprite : cooldownShape;
+            cooldownMask.sprite = cooldownShape;
             fallbackText.text = sprite == null && fallback != "~" ? fallback : "";
             fallbackText.color = color;
             if (fallbackSigil != null) fallbackSigil.enabled = sprite == null && fallback == "~";

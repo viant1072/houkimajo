@@ -5,6 +5,8 @@ using Houkimajo.Boss;
 using Houkimajo.Bullets;
 using Houkimajo.Enemies;
 using Houkimajo.Player;
+using Houkimajo.Progression;
+using Houkimajo.UI;
 
 namespace Houkimajo.Systems
 {
@@ -29,6 +31,7 @@ namespace Houkimajo.Systems
         [Header("Player")]
         [SerializeField] private PlayerHealth playerHealth;
         [SerializeField] private Wallet wallet;
+        [SerializeField] private ShopController shop;
 
         [Header("Nhịp độ (giây)")]
         [SerializeField] private float stageIntroDuration = 2f;
@@ -52,6 +55,11 @@ namespace Houkimajo.Systems
         public event Action OnStageFailed;
 
         private StageSO stage;
+        private EnemySpriteAnimation bossAnimation;
+        private CircleCollider2D bossCollider;
+        private Sprite defaultBossSprite;
+        private float defaultBossColliderRadius;
+        private StoryDialogueUI dialogue;
         private bool waveCleared;
         private bool bossDefeated;
         private bool finished;
@@ -66,7 +74,14 @@ namespace Houkimajo.Systems
         private void Awake()
         {
             // Boss nằm sẵn trong scene để chỉnh tay cho dễ, nhưng ẩn tới lượt boss.
-            if (bossObject != null) bossObject.SetActive(false);
+            if (bossObject != null)
+            {
+                bossAnimation = bossObject.GetComponent<EnemySpriteAnimation>();
+                bossCollider = bossObject.GetComponent<CircleCollider2D>();
+                if (bossCollider != null) defaultBossColliderRadius = bossCollider.radius;
+                if (bossRenderer != null) defaultBossSprite = bossRenderer.sprite;
+                bossObject.SetActive(false);
+            }
         }
 
         private void OnEnable()
@@ -95,14 +110,26 @@ namespace Houkimajo.Systems
             stage = catalog.Get(StageIndex);
 
             if (wallet != null) wallet.SetGold(SaveSystem.Load().gold);
+            if (shop != null) shop.Initialize();
             GameManager.Instance?.SetState(GameState.Playing);
 
+            gameObject.AddComponent<PauseInventoryUI>().Bind(playerHealth);
             StartCoroutine(RunStage());
         }
 
         private IEnumerator RunStage()
         {
+            if (StageIndex == 0)
+            {
+                dialogue = gameObject.AddComponent<StoryDialogueUI>();
+                yield return dialogue.Read(FirstStageStory.Opening);
+            }
             OnStageStarted?.Invoke(stage, StageIndex, catalog.Count);
+            if (shop != null && shop.OpenAtStageStart)
+            {
+                shop.Open();
+                while (shop.IsOpen) yield return null;
+            }
             yield return new WaitForSeconds(stageIntroDuration);
 
             for (int i = 0; i < stage.waves.Count; i++)
@@ -126,6 +153,12 @@ namespace Houkimajo.Systems
             yield return RunBoss();
             if (finished) yield break;
 
+            if (dialogue != null && bossObject != null)
+            {
+                bossObject.SetActive(false);
+                CleanUpBattlefield();
+                yield return dialogue.Read(FirstStageStory.Farewell);
+            }
             yield return CompleteStage();
         }
 
@@ -138,10 +171,11 @@ namespace Houkimajo.Systems
             bossDefeated = false;
             if (bossObject != null)
             {
+                ApplyBossAppearance();
                 bossObject.SetActive(true);
-                if (bossRenderer != null) bossRenderer.color = stage.bossTint;
                 bossHealth.ResetHealth(stage.bossMaxHP);
                 bossStateMachine.Configure(stage.bossPhases);
+                if (dialogue != null) yield return dialogue.Read(FirstStageStory.Meeting);
             }
             else
             {
@@ -149,7 +183,34 @@ namespace Houkimajo.Systems
                 bossDefeated = true;
             }
 
-            while (!bossDefeated && !finished) yield return null;
+            bool readPostmark = false;
+            while (!bossDefeated && !finished)
+            {
+                if (dialogue != null && !readPostmark && bossStateMachine.CurrentPhaseIndex >= 1
+                    && GameManager.Instance.CurrentState == GameState.Playing)
+                {
+                    readPostmark = true;
+                    yield return dialogue.Read(FirstStageStory.Postmark);
+                }
+                yield return null;
+            }
+        }
+
+        private void ApplyBossAppearance()
+        {
+            bool hasFrames = stage.bossAnimationFrames != null && stage.bossAnimationFrames.Length > 0;
+            Sprite sprite = stage.bossSprite;
+            if (hasFrames && stage.bossAnimationFrames[0] != null) sprite = stage.bossAnimationFrames[0];
+            if (bossRenderer != null)
+            {
+                bossRenderer.sprite = sprite != null ? sprite : defaultBossSprite;
+                // Art đã có palette riêng, không nhuộm thêm màu placeholder theo màn.
+                bossRenderer.color = sprite != null ? Color.white : stage.bossTint;
+            }
+            if (bossAnimation != null)
+                bossAnimation.Configure(stage.bossAnimationFrames, stage.bossAnimationFramesPerSecond);
+            if (bossCollider != null)
+                bossCollider.radius = stage.bossColliderRadius > 0f ? stage.bossColliderRadius : defaultBossColliderRadius;
         }
 
         private IEnumerator CompleteStage()
@@ -166,6 +227,7 @@ namespace Houkimajo.Systems
             var save = SaveSystem.Load();
             save.highestStageCleared = Mathf.Max(save.highestStageCleared, StageIndex);
             if (wallet != null) save.gold = wallet.Gold;
+            if (shop != null) shop.Capture(save);
             SaveSystem.Save(save);
 
             bool hasNextStage = StageIndex + 1 < catalog.Count;
@@ -208,6 +270,7 @@ namespace Houkimajo.Systems
             // Thua vẫn giữ vàng đã nhặt (kiểu RPG, không phạt nặng).
             var save = SaveSystem.Load();
             if (wallet != null) save.gold = wallet.Gold;
+            if (shop != null) shop.Capture(save);
             SaveSystem.Save(save);
 
             GameManager.Instance?.SetState(GameState.GameOver);
