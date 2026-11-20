@@ -1,0 +1,937 @@
+[
+  {
+    "Guid": "275e7ce6aabe489892293e9b82db6b98",
+    "Skill": "broom_dash",
+    "Asset": "Assets/_Game/Art/Sprites/Skills/E/e_broom_dash_v1.png",
+    "Parts": [
+      {
+        "Rect": [
+          0,
+          627,
+          627,
+          627
+        ],
+        "FileId": 21300000,
+        "CenterAlpha": 252,
+        "Name": "E_BroomDash_Icon",
+        "ApproxContentBounds": [
+          126,
+          96,
+          546,
+          564
+        ],
+        "OpaqueSamples": 1357,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          627,
+          627,
+          627,
+          627
+        ],
+        "FileId": 21300002,
+        "CenterAlpha": 251,
+        "Name": "E_BroomDash_Trail",
+        "ApproxContentBounds": [
+          210,
+          90,
+          414,
+          558
+        ],
+        "OpaqueSamples": 703,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "FileId": 21300004,
+        "CenterAlpha": 253,
+        "Name": "E_BroomDash_CastSpark",
+        "ApproxContentBounds": [
+          180,
+          186,
+          462,
+          444
+        ],
+        "OpaqueSamples": 535,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          627,
+          0,
+          627,
+          627
+        ],
+        "FileId": 21300006,
+        "CenterAlpha": 1,
+        "Name": "E_BroomDash_MasteryEcho",
+        "ApproxContentBounds": [
+          186,
+          108,
+          462,
+          474
+        ],
+        "OpaqueSamples": 725,
+        "EdgeAlphaMax": 1
+      }
+    ],
+    "Slot": "E",
+    "Width": 1254,
+    "Height": 1254,
+    "CellSize": 627
+  },
+  {
+    "Guid": "3e853405ccb4431cb7dce801623f8d27",
+    "Skill": "magic_shield",
+    "Asset": "Assets/_Game/Art/Sprites/Skills/E/e_magic_shield_v1.png",
+    "Parts": [
+      {
+        "Rect": [
+          0,
+          627,
+          627,
+          627
+        ],
+        "FileId": 21300000,
+        "CenterAlpha": 253,
+        "Name": "E_MagicShield_Icon",
+        "ApproxContentBounds": [
+          186,
+          162,
+          444,
+          480
+        ],
+        "OpaqueSamples": 1525,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          627,
+          627,
+          627,
+          627
+        ],
+        "FileId": 21300002,
+        "CenterAlpha": 0,
+        "Name": "E_MagicShield_ShieldRing",
+        "ApproxContentBounds": [
+          150,
+          144,
+          474,
+          486
+        ],
+        "OpaqueSamples": 702,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "FileId": 21300004,
+        "CenterAlpha": 252,
+        "Name": "E_MagicShield_Hit",
+        "ApproxContentBounds": [
+          216,
+          180,
+          408,
+          408
+        ],
+        "OpaqueSamples": 244,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          627,
+          0,
+          627,
+          627
+        ],
+        "FileId": 21300006,
+        "CenterAlpha": 0,
+        "Name": "E_MagicShield_MasteryBreak",
+        "ApproxContentBounds": [
+          150,
+          144,
+          474,
+          462
+        ],
+        "OpaqueSamples": 799,
+        "EdgeAlphaMax": 1
+      }
+    ],
+    "Slot": "E",
+    "Width": 1254,
+    "Height": 1254,
+    "CellSize": 627
+  },
+  {
+    "Guid": "907f8f3c9b9443da85440d67b1cc0ce0",
+    "Skill": "dispel",
+    "Asset": "Assets/_Game/Art/Sprites/Skills/E/e_dispel_v1.png",
+    "Parts": [
+      {
+        "Rect": [
+          0,
+          627,
+          627,
+          627
+        ],
+        "FileId": 21300000,
+        "CenterAlpha": 154,
+        "Name": "E_Dispel_Icon",
+        "ApproxContentBounds": [
+          186,
+          210,
+          450,
+          426
+        ],
+        "OpaqueSamples": 525,
+        "EdgeAlphaMax": 2
+      },
+      {
+        "Rect": [
+          627,
+          627,
+          627,
+          627
+        ],
+        "FileId": 21300002,
+        "CenterAlpha": 4,
+        "Name": "E_Dispel_ClearRing",
+        "ApproxContentBounds": [
+          174,
+          186,
+          450,
+          456
+        ],
+        "OpaqueSamples": 272,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "FileId": 21300004,
+        "CenterAlpha": 253,
+        "Name": "E_Dispel_CoinSpark",
+        "ApproxContentBounds": [
+          186,
+          240,
+          438,
+          378
+        ],
+        "OpaqueSamples": 297,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          627,
+          0,
+          627,
+          627
+        ],
+        "FileId": 21300006,
+        "CenterAlpha": 1,
+        "Name": "E_Dispel_MasteryPush",
+        "ApproxContentBounds": [
+          162,
+          174,
+          462,
+          456
+        ],
+        "OpaqueSamples": 416,
+        "EdgeAlphaMax": 1
+      }
+    ],
+    "Slot": "E",
+    "Width": 1254,
+    "Height": 1254,
+    "CellSize": 627
+  },
+  {
+    "Guid": "04564abe2631481c81dbf3128b91dd59",
+    "Skill": "hourglass",
+    "Asset": "Assets/_Game/Art/Sprites/Skills/E/e_hourglass_v1.png",
+    "Parts": [
+      {
+        "Rect": [
+          0,
+          627,
+          627,
+          627
+        ],
+        "FileId": 21300000,
+        "CenterAlpha": 251,
+        "Name": "E_Hourglass_Icon",
+        "ApproxContentBounds": [
+          180,
+          186,
+          444,
+          456
+        ],
+        "OpaqueSamples": 1046,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          627,
+          627,
+          627,
+          627
+        ],
+        "FileId": 21300002,
+        "CenterAlpha": 0,
+        "Name": "E_Hourglass_SlowField",
+        "ApproxContentBounds": [
+          150,
+          144,
+          456,
+          504
+        ],
+        "OpaqueSamples": 391,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "FileId": 21300004,
+        "CenterAlpha": 111,
+        "Name": "E_Hourglass_TimeMote",
+        "ApproxContentBounds": [
+          294,
+          264,
+          366,
+          372
+        ],
+        "OpaqueSamples": 62,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          627,
+          0,
+          627,
+          627
+        ],
+        "FileId": 21300006,
+        "CenterAlpha": 0,
+        "Name": "E_Hourglass_MasteryField",
+        "ApproxContentBounds": [
+          120,
+          108,
+          474,
+          492
+        ],
+        "OpaqueSamples": 709,
+        "EdgeAlphaMax": 1
+      }
+    ],
+    "Slot": "E",
+    "Width": 1254,
+    "Height": 1254,
+    "CellSize": 627
+  },
+  {
+    "Guid": "8633e62427a846abb79197f1e6da8337",
+    "Skill": "teleport",
+    "Asset": "Assets/_Game/Art/Sprites/Skills/E/e_teleport_v1.png",
+    "Parts": [
+      {
+        "Rect": [
+          0,
+          627,
+          627,
+          627
+        ],
+        "FileId": 21300000,
+        "CenterAlpha": 0,
+        "Name": "E_Teleport_Icon",
+        "ApproxContentBounds": [
+          156,
+          198,
+          516,
+          498
+        ],
+        "OpaqueSamples": 324,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          627,
+          627,
+          627,
+          627
+        ],
+        "FileId": 21300002,
+        "CenterAlpha": 33,
+        "Name": "E_Teleport_Departure",
+        "ApproxContentBounds": [
+          162,
+          168,
+          456,
+          486
+        ],
+        "OpaqueSamples": 486,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "FileId": 21300004,
+        "CenterAlpha": 0,
+        "Name": "E_Teleport_Arrival",
+        "ApproxContentBounds": [
+          132,
+          138,
+          492,
+          474
+        ],
+        "OpaqueSamples": 522,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          627,
+          0,
+          627,
+          627
+        ],
+        "FileId": 21300006,
+        "CenterAlpha": 253,
+        "Name": "E_Teleport_MasteryExplosion",
+        "ApproxContentBounds": [
+          156,
+          156,
+          462,
+          444
+        ],
+        "OpaqueSamples": 551,
+        "EdgeAlphaMax": 1
+      }
+    ],
+    "Slot": "E",
+    "Width": 1254,
+    "Height": 1254,
+    "CellSize": 627
+  },
+  {
+    "Guid": "e06f85c4ab834ba3acfe19868674cf4d",
+    "Skill": "meteor_shower",
+    "Asset": "Assets/_Game/Art/Sprites/Skills/R/r_meteor_shower_v1.png",
+    "Parts": [
+      {
+        "Rect": [
+          0,
+          512,
+          512,
+          512
+        ],
+        "FileId": 21300000,
+        "CenterAlpha": 251,
+        "Name": "R_MeteorShower_Icon",
+        "ApproxContentBounds": [
+          132,
+          96,
+          384,
+          396
+        ],
+        "OpaqueSamples": 914,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          512,
+          512,
+          512,
+          512
+        ],
+        "FileId": 21300002,
+        "CenterAlpha": 252,
+        "Name": "R_MeteorShower_Projectile",
+        "ApproxContentBounds": [
+          180,
+          96,
+          330,
+          408
+        ],
+        "OpaqueSamples": 629,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          1024,
+          512,
+          512,
+          512
+        ],
+        "FileId": 21300004,
+        "CenterAlpha": 0,
+        "Name": "R_MeteorShower_WarningRing",
+        "ApproxContentBounds": [
+          96,
+          96,
+          414,
+          408
+        ],
+        "OpaqueSamples": 268,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "FileId": 21300006,
+        "CenterAlpha": 247,
+        "Name": "R_MeteorShower_Impact",
+        "ApproxContentBounds": [
+          108,
+          84,
+          414,
+          408
+        ],
+        "OpaqueSamples": 525,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          512,
+          0,
+          512,
+          512
+        ],
+        "FileId": 21300008,
+        "CenterAlpha": 1,
+        "Name": "R_MeteorShower_MasteryBurnZone",
+        "ApproxContentBounds": [
+          90,
+          78,
+          408,
+          378
+        ],
+        "OpaqueSamples": 547,
+        "EdgeAlphaMax": 2
+      },
+      {
+        "Rect": [
+          1024,
+          0,
+          512,
+          512
+        ],
+        "FileId": 21300010,
+        "CenterAlpha": 34,
+        "Name": "R_MeteorShower_Ember",
+        "ApproxContentBounds": [
+          228,
+          156,
+          276,
+          294
+        ],
+        "OpaqueSamples": 55,
+        "EdgeAlphaMax": 1
+      }
+    ],
+    "Slot": "R",
+    "Width": 1536,
+    "Height": 1024,
+    "CellSize": 512
+  },
+  {
+    "Guid": "a92a334acdb64525b58aa6b14f23314f",
+    "Skill": "familiar_summon",
+    "Asset": "Assets/_Game/Art/Sprites/Skills/R/r_familiar_summon_v1.png",
+    "Parts": [
+      {
+        "Rect": [
+          0,
+          512,
+          512,
+          512
+        ],
+        "FileId": 21300000,
+        "CenterAlpha": 253,
+        "Name": "R_FamiliarSummon_Icon",
+        "ApproxContentBounds": [
+          132,
+          162,
+          414,
+          408
+        ],
+        "OpaqueSamples": 1220,
+        "EdgeAlphaMax": 0
+      },
+      {
+        "Rect": [
+          512,
+          512,
+          512,
+          512
+        ],
+        "FileId": 21300002,
+        "CenterAlpha": 253,
+        "Name": "R_FamiliarSummon_Familiar",
+        "ApproxContentBounds": [
+          108,
+          144,
+          420,
+          408
+        ],
+        "OpaqueSamples": 1384,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          1024,
+          512,
+          512,
+          512
+        ],
+        "FileId": 21300004,
+        "CenterAlpha": 253,
+        "Name": "R_FamiliarSummon_Projectile",
+        "ApproxContentBounds": [
+          192,
+          162,
+          300,
+          378
+        ],
+        "OpaqueSamples": 251,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "FileId": 21300006,
+        "CenterAlpha": 0,
+        "Name": "R_FamiliarSummon_SummonRing",
+        "ApproxContentBounds": [
+          126,
+          120,
+          408,
+          396
+        ],
+        "OpaqueSamples": 638,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          512,
+          0,
+          512,
+          512
+        ],
+        "FileId": 21300008,
+        "CenterAlpha": 253,
+        "Name": "R_FamiliarSummon_Impact",
+        "ApproxContentBounds": [
+          156,
+          162,
+          360,
+          324
+        ],
+        "OpaqueSamples": 226,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          1024,
+          0,
+          512,
+          512
+        ],
+        "FileId": 21300010,
+        "CenterAlpha": 0,
+        "Name": "R_FamiliarSummon_MasteryBlock",
+        "ApproxContentBounds": [
+          120,
+          102,
+          372,
+          396
+        ],
+        "OpaqueSamples": 763,
+        "EdgeAlphaMax": 1
+      }
+    ],
+    "Slot": "R",
+    "Width": 1536,
+    "Height": 1024,
+    "CellSize": 512
+  },
+  {
+    "Guid": "17443943a66c4174b6c3ec2133d056cf",
+    "Skill": "star_beam",
+    "Asset": "Assets/_Game/Art/Sprites/Skills/R/r_star_beam_v1.png",
+    "Parts": [
+      {
+        "Rect": [
+          0,
+          512,
+          512,
+          512
+        ],
+        "FileId": 21300000,
+        "CenterAlpha": 2,
+        "Name": "R_StarBeam_Icon",
+        "ApproxContentBounds": [
+          180,
+          168,
+          378,
+          366
+        ],
+        "OpaqueSamples": 282,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          512,
+          512,
+          512,
+          512
+        ],
+        "FileId": 21300002,
+        "CenterAlpha": 253,
+        "Name": "R_StarBeam_BeamBody",
+        "ApproxContentBounds": [
+          234,
+          126,
+          282,
+          408
+        ],
+        "OpaqueSamples": 432,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          1024,
+          512,
+          512,
+          512
+        ],
+        "FileId": 21300004,
+        "CenterAlpha": 2,
+        "Name": "R_StarBeam_BeamStart",
+        "ApproxContentBounds": [
+          150,
+          168,
+          300,
+          390
+        ],
+        "OpaqueSamples": 336,
+        "EdgeAlphaMax": 0
+      },
+      {
+        "Rect": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "FileId": 21300006,
+        "CenterAlpha": 250,
+        "Name": "R_StarBeam_BeamEnd",
+        "ApproxContentBounds": [
+          204,
+          138,
+          342,
+          378
+        ],
+        "OpaqueSamples": 279,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          512,
+          0,
+          512,
+          512
+        ],
+        "FileId": 21300008,
+        "CenterAlpha": 254,
+        "Name": "R_StarBeam_Impact",
+        "ApproxContentBounds": [
+          192,
+          180,
+          318,
+          318
+        ],
+        "OpaqueSamples": 165,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          1024,
+          0,
+          512,
+          512
+        ],
+        "FileId": 21300010,
+        "CenterAlpha": 253,
+        "Name": "R_StarBeam_MasteryExplosion",
+        "ApproxContentBounds": [
+          84,
+          114,
+          390,
+          384
+        ],
+        "OpaqueSamples": 571,
+        "EdgeAlphaMax": 1
+      }
+    ],
+    "Slot": "R",
+    "Width": 1536,
+    "Height": 1024,
+    "CellSize": 512
+  },
+  {
+    "Guid": "3e78cafe77d345678ea6c1061bc3b5cc",
+    "Skill": "time_stop",
+    "Asset": "Assets/_Game/Art/Sprites/Skills/R/r_time_stop_v1.png",
+    "Parts": [
+      {
+        "Rect": [
+          0,
+          512,
+          512,
+          512
+        ],
+        "FileId": 21300000,
+        "CenterAlpha": 100,
+        "Name": "R_TimeStop_Icon",
+        "ApproxContentBounds": [
+          120,
+          108,
+          414,
+          408
+        ],
+        "OpaqueSamples": 984,
+        "EdgeAlphaMax": 2
+      },
+      {
+        "Rect": [
+          512,
+          512,
+          512,
+          512
+        ],
+        "FileId": 21300002,
+        "CenterAlpha": 2,
+        "Name": "R_TimeStop_TimeSeal",
+        "ApproxContentBounds": [
+          108,
+          108,
+          402,
+          408
+        ],
+        "OpaqueSamples": 523,
+        "EdgeAlphaMax": 2
+      },
+      {
+        "Rect": [
+          1024,
+          512,
+          512,
+          512
+        ],
+        "FileId": 21300004,
+        "CenterAlpha": 8,
+        "Name": "R_TimeStop_FrozenBulletOverlay",
+        "ApproxContentBounds": [
+          162,
+          162,
+          336,
+          342
+        ],
+        "OpaqueSamples": 154,
+        "EdgeAlphaMax": 1
+      },
+      {
+        "Rect": [
+          0,
+          0,
+          512,
+          512
+        ],
+        "FileId": 21300006,
+        "CenterAlpha": 27,
+        "Name": "R_TimeStop_CastRipple",
+        "ApproxContentBounds": [
+          126,
+          114,
+          396,
+          372
+        ],
+        "OpaqueSamples": 310,
+        "EdgeAlphaMax": 2
+      },
+      {
+        "Rect": [
+          512,
+          0,
+          512,
+          512
+        ],
+        "FileId": 21300008,
+        "CenterAlpha": 4,
+        "Name": "R_TimeStop_ResumeBurst",
+        "ApproxContentBounds": [
+          138,
+          132,
+          378,
+          348
+        ],
+        "OpaqueSamples": 169,
+        "EdgeAlphaMax": 2
+      },
+      {
+        "Rect": [
+          1024,
+          0,
+          512,
+          512
+        ],
+        "FileId": 21300010,
+        "CenterAlpha": 4,
+        "Name": "R_TimeStop_MasteryClearRing",
+        "ApproxContentBounds": [
+          84,
+          102,
+          408,
+          384
+        ],
+        "OpaqueSamples": 378,
+        "EdgeAlphaMax": 2
+      }
+    ],
+    "Slot": "R",
+    "Width": 1536,
+    "Height": 1024,
+    "CellSize": 512
+  }
+]

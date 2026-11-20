@@ -1,0 +1,214 @@
+[
+  {
+    "Asset": "Assets/_Game/Art/Sprites/Skills/Q/q_magic_missile_v1.png",
+    "Guid": "25d75eae8b7a497cbfd695c1c7429b7b",
+    "Parts": [
+      {
+        "FileId": 21300000,
+        "Rect": [
+          0,
+          627,
+          627,
+          627
+        ],
+        "OpaqueSamples": 283,
+        "Name": "Q_MagicMissile_Icon"
+      },
+      {
+        "FileId": 21300002,
+        "Rect": [
+          627,
+          627,
+          627,
+          627
+        ],
+        "OpaqueSamples": 320,
+        "Name": "Q_MagicMissile_Projectile"
+      },
+      {
+        "FileId": 21300004,
+        "Rect": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "OpaqueSamples": 174,
+        "Name": "Q_MagicMissile_Impact"
+      },
+      {
+        "FileId": 21300006,
+        "Rect": [
+          627,
+          0,
+          627,
+          627
+        ],
+        "OpaqueSamples": 210,
+        "Name": "Q_MagicMissile_MasteryExplosion"
+      }
+    ],
+    "CellSize": 627,
+    "Width": 1254,
+    "Skill": "magic_missile"
+  },
+  {
+    "Asset": "Assets/_Game/Art/Sprites/Skills/Q/q_fireball_v1.png",
+    "Guid": "411fa09f196d43f8b54b910cbd3276ab",
+    "Parts": [
+      {
+        "FileId": 21300000,
+        "Rect": [
+          0,
+          627,
+          627,
+          627
+        ],
+        "OpaqueSamples": 591,
+        "Name": "Q_Fireball_Icon"
+      },
+      {
+        "FileId": 21300002,
+        "Rect": [
+          627,
+          627,
+          627,
+          627
+        ],
+        "OpaqueSamples": 413,
+        "Name": "Q_Fireball_Projectile"
+      },
+      {
+        "FileId": 21300004,
+        "Rect": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "OpaqueSamples": 340,
+        "Name": "Q_Fireball_Impact"
+      },
+      {
+        "FileId": 21300006,
+        "Rect": [
+          627,
+          0,
+          627,
+          627
+        ],
+        "OpaqueSamples": 444,
+        "Name": "Q_Fireball_MasteryBurningZone"
+      }
+    ],
+    "CellSize": 627,
+    "Width": 1254,
+    "Skill": "fireball"
+  },
+  {
+    "Asset": "Assets/_Game/Art/Sprites/Skills/Q/q_chain_lightning_v1.png",
+    "Guid": "ef4aa659d2b941be8369ce00a7e71ddd",
+    "Parts": [
+      {
+        "FileId": 21300000,
+        "Rect": [
+          0,
+          627,
+          627,
+          627
+        ],
+        "OpaqueSamples": 255,
+        "Name": "Q_ChainLightning_Icon"
+      },
+      {
+        "FileId": 21300002,
+        "Rect": [
+          627,
+          627,
+          627,
+          627
+        ],
+        "OpaqueSamples": 138,
+        "Name": "Q_ChainLightning_Arc"
+      },
+      {
+        "FileId": 21300004,
+        "Rect": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "OpaqueSamples": 206,
+        "Name": "Q_ChainLightning_Impact"
+      },
+      {
+        "FileId": 21300006,
+        "Rect": [
+          627,
+          0,
+          627,
+          627
+        ],
+        "OpaqueSamples": 154,
+        "Name": "Q_ChainLightning_MasteryStun"
+      }
+    ],
+    "CellSize": 627,
+    "Width": 1254,
+    "Skill": "chain_lightning"
+  },
+  {
+    "Asset": "Assets/_Game/Art/Sprites/Skills/Q/q_ice_arrow_rain_v1.png",
+    "Guid": "56528bee052343a090c12ba18a1d62f7",
+    "Parts": [
+      {
+        "FileId": 21300000,
+        "Rect": [
+          0,
+          627,
+          627,
+          627
+        ],
+        "OpaqueSamples": 333,
+        "Name": "Q_IceArrowRain_Icon"
+      },
+      {
+        "FileId": 21300002,
+        "Rect": [
+          627,
+          627,
+          627,
+          627
+        ],
+        "OpaqueSamples": 108,
+        "Name": "Q_IceArrowRain_Projectile"
+      },
+      {
+        "FileId": 21300004,
+        "Rect": [
+          0,
+          0,
+          627,
+          627
+        ],
+        "OpaqueSamples": 89,
+        "Name": "Q_IceArrowRain_Impact"
+      },
+      {
+        "FileId": 21300006,
+        "Rect": [
+          627,
+          0,
+          627,
+          627
+        ],
+        "OpaqueSamples": 410,
+        "Name": "Q_IceArrowRain_MasteryShatter"
+      }
+    ],
+    "CellSize": 627,
+    "Width": 1254,
+    "Skill": "ice_arrow_rain"
+  }
+]

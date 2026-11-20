@@ -1,0 +1,8 @@
+Tool: built-in image_gen (reference image editing).
+Asset: Assets/_Game/Art/Sprites/Player/player_witch_gameplay_v1.png
+Reference: approved silver-haired violet chibi witch riding a broom facing right.
+Prompt: Preserve identity, colors and riding pose. Simplify for 64-96 px gameplay readability: bold outlines, large flat color masses, simple hair clumps and eyes, few broad broom bristles. Remove tiny dress patterns, dangling star charm and broom ribbons. Entire character and broom visible. One static sprite. Transparent background, no text, scenery, shadow or glow.
+Cleanup prompt: Keep character and pose unchanged. Remove all surrounding purple/brown glow, haze and vignette. Clean hard cutout with opaque character interiors and zero-alpha exterior apart from narrow antialiased edges.
+Result: 1536x1024 RGBA PNG; zero-alpha background exists, but a soft tinted halo remains despite cleanup. Requires further cleanup before final production use.
+Unity import: Sprite (Single), Full Rect, 1024 PPU, Bilinear, Clamp, no mipmaps, no compression, alpha transparency enabled. Approximate canvas size 1.5x1 world units at scale 1. Pivot is centered; align visual child to gameplay hitbox when integrating.
+Not assigned to scene or prefab; existing gameplay references remain intact. Unity import and Play mode were not run.

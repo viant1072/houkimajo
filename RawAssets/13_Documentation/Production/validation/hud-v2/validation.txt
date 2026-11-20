@@ -1,0 +1,34 @@
+Bottom HUD v2 — 2026-11-17
+User reference: circular player avatar protruding at lower left, smaller pet socket,
+four square skills in center, red HP and blue MP bars at right, full bottom strip.
+Retained purple/antique gold styling; pet intentionally empty, no equipped-pet system.
+
+Confirmed gameplay settings:
+100 HP, 20 HP per bullet/contact hit, existing post-hit invincibility and shields.
+100 MP, regeneration 5/second; Q 15 MP, E 20 MP, per-SkillSO Mana Cost editable.
+Basic fire free. R consumes only existing 100 ultimate energy, no MP.
+Stage entry fills HP/MP. MP regeneration pauses with gameplay and stops on death.
+
+Unity 6000.6.5f1 isolated Play mode: BOTTOM_HUD_VALIDATION_PASS.
+Checks: repeated build yields 4 slots/1 vitals panel; old lives text hidden;
+HUD fills safe width at 480/1280/1920 with uniform scaling;
+gameplay camera reserves opaque bottom strip; HP100/MP100 initial;
+hit subtracts20, repeat within invulnerability ignored;
+Q costs15, E costs20, insufficient MP preserves charge and cooldown;
+pause prevents regeneration, normal gameplay regenerates5/second;
+R casts with zeroMP if energy100 and consumes only energy;
+HP/MP labels reflect values; HP0 emits death once.
+Director was disabled only for final isolated death check to prevent writing user save.
+
+Preview bottom-hud-preview.png: actual URP world rendering plus separate built-in
+UGUI capture pass to preserve color outside the world camera's reduced viewport.
+Visually inspected portrait mask, square slots, HP/MP fills, background coverage.
+The final run has no MissingComponentException/CanvasRenderer error; an earlier
+iteration's missing vector graphic dependency was fixed and revalidated.
+UnityEditor.Search.SearchDatabase indexing exceptions are unrelated to gameplay
+and were excluded by a narrow editor-stack filter. Editor-only settings/package
+changes in validation clone were not copied to main.
+
+Saved configured Stage01 only after verifying original scene hash unchanged.
+Gameplay/balance remains Inspector-configurable; no pet mechanics or art generated.
+To apply to an older open scene: Houkimajo > Apply Bottom HUD Layout, then save.

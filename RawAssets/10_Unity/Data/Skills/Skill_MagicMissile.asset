@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25961158c90610642b2939d06949bc36, type: 3}
+  m_Name: Skill_MagicMissile
+  m_EditorClassIdentifier: Assembly-CSharp::Houkimajo.Skills.HomingMissileSkillSO
+  id: skill_magic_missile
+  displayName: "T\xEAn L\u1EEDa Ma Thu\u1EADt"
+  icon: {fileID: 21300000, guid: 25d75eae8b7a497cbfd695c1c7429b7b, type: 3}
+  castSprite: {fileID: 0}
+  loopSprite: {fileID: 0}
+  endSprite: {fileID: 0}
+  projectileSprite: {fileID: 0}
+  warningSprite: {fileID: 0}
+  particleSprite: {fileID: 0}
+  overlaySprite: {fileID: 0}
+  attributeName: "Ph\xE9p"
+  impactSprite: {fileID: 21300004, guid: 25d75eae8b7a497cbfd695c1c7429b7b, type: 3}
+  masterySprite: {fileID: 21300006, guid: 25d75eae8b7a497cbfd695c1c7429b7b, type: 3}
+  impactSize: 0.5
+  impactDuration: 0.18
+  ringCoverage: 0.8
+  slot: 0
+  manaCost: 15
+  color: {r: 0.75, g: 0.4, b: 1, a: 1}
+  description: "B\u1EAFn ch\xF9m t\xEAn l\u1EEDa t\u1EF1 \u0111u\u1ED5i theo \u0111\u1ECBch g\u1EA7n con tr\u1ECF nh\u1EA5t."
+  levels:
+  - cooldown: 7
+    damage: 15
+    count: 5
+    radius: 0.5
+    duration: 0
+    range: 0
+    charges: 1
+    upgradeCost: 0
+    hasMasteryEffect: 0
+  - cooldown: 6.5
+    damage: 18
+    count: 6
+    radius: 0.5
+    duration: 0
+    range: 0
+    charges: 1
+    upgradeCost: 100
+    hasMasteryEffect: 0
+  - cooldown: 6
+    damage: 21
+    count: 7
+    radius: 0.5
+    duration: 0
+    range: 0
+    charges: 1
+    upgradeCost: 250
+    hasMasteryEffect: 0
+  - cooldown: 5.5
+    damage: 24
+    count: 8
+    radius: 0.5
+    duration: 0
+    range: 0
+    charges: 1
+    upgradeCost: 500
+    hasMasteryEffect: 0
+  - cooldown: 5
+    damage: 27
+    count: 9
+    radius: 0.5
+    duration: 0
+    range: 0
+    charges: 1
+    upgradeCost: 1000
+    hasMasteryEffect: 1
+  projectilePrefab: {fileID: 8777573946898589136, guid: c4373eebefee66e4dbaa4d97d1fdd33b, type: 3}
+  projectileSpeed: 8
+  turnRate: 360
+  lifetime: 3
+  spreadAngle: 120

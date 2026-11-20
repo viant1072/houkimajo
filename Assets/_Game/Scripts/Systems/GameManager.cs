@@ -9,7 +9,8 @@ namespace Houkimajo.Systems
         Shop,
         Paused,
         GameOver,
-        Victory
+        Victory,
+        Dialogue
     }
 
     /// <summary>
@@ -38,7 +39,7 @@ namespace Houkimajo.Systems
         {
             CurrentState = newState;
             bool shouldFreeze = newState == GameState.Paused || newState == GameState.GameOver
-                || newState == GameState.Shop || newState == GameState.Victory;
+                || newState == GameState.Shop || newState == GameState.Victory || newState == GameState.Dialogue;
             Time.timeScale = shouldFreeze ? 0f : 1f;
         }
     }

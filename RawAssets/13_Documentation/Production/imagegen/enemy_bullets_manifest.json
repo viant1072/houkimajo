@@ -1,0 +1,92 @@
+[
+  {
+    "slug": "shadow_bat",
+    "path": "Assets/_Game/Art/Sprites/Bullets/bullet_enemy_shadow_bat_v1.png",
+    "source": "C:/Users/FOXAI/.codex/generated_images/01a1e594-3521-7561-9f67-300e4c52dfed/exec-a51331af-a9e5-49ca-9bdf-6025e27bb178.png",
+    "width": 1254,
+    "height": 1254,
+    "pixelsPerUnit": 2130,
+    "solidBoundsSampled": [
+      480,
+      248,
+      772,
+      968
+    ],
+    "targetMaxSize": 0.34
+  },
+  {
+    "slug": "ember_firefly",
+    "path": "Assets/_Game/Art/Sprites/Bullets/bullet_enemy_ember_firefly_v1.png",
+    "source": "C:/Users/FOXAI/.codex/generated_images/01a1e594-3521-7561-9f67-300e4c52dfed/exec-5e8aaa57-af99-4a06-b58a-43e9b2094ea8.png",
+    "width": 1254,
+    "height": 1254,
+    "pixelsPerUnit": 2240,
+    "solidBoundsSampled": [
+      412,
+      296,
+      836,
+      964
+    ],
+    "targetMaxSize": 0.3
+  },
+  {
+    "slug": "flying_pumpkin",
+    "path": "Assets/_Game/Art/Sprites/Bullets/bullet_enemy_flying_pumpkin_v1.png",
+    "source": "C:/Users/FOXAI/.codex/generated_images/01a1e594-3521-7561-9f67-300e4c52dfed/exec-13a7313c-330b-46de-8921-201dc01b0d87.png",
+    "width": 1254,
+    "height": 1254,
+    "pixelsPerUnit": 2075,
+    "solidBoundsSampled": [
+      400,
+      296,
+      844,
+      956
+    ],
+    "targetMaxSize": 0.32
+  },
+  {
+    "slug": "wisp_ghost",
+    "path": "Assets/_Game/Art/Sprites/Bullets/bullet_enemy_wisp_ghost_v1.png",
+    "source": "C:/Users/FOXAI/.codex/generated_images/01a1e594-3521-7561-9f67-300e4c52dfed/exec-f396b044-cff7-437e-9785-08f772eb742a.png",
+    "width": 1254,
+    "height": 1254,
+    "pixelsPerUnit": 2294,
+    "solidBoundsSampled": [
+      440,
+      304,
+      816,
+      988
+    ],
+    "targetMaxSize": 0.3
+  },
+  {
+    "slug": "cursed_grimoire",
+    "path": "Assets/_Game/Art/Sprites/Bullets/bullet_enemy_cursed_grimoire_v1.png",
+    "source": "C:/Users/FOXAI/.codex/generated_images/01a1e594-3521-7561-9f67-300e4c52dfed/exec-afcccb10-0cf2-49d5-ab7d-acbead64a419.png",
+    "width": 1254,
+    "height": 1254,
+    "pixelsPerUnit": 2212,
+    "solidBoundsSampled": [
+      444,
+      252,
+      808,
+      1000
+    ],
+    "targetMaxSize": 0.34
+  },
+  {
+    "slug": "moon_jelly",
+    "path": "Assets/_Game/Art/Sprites/Bullets/bullet_enemy_moon_jelly_v1.png",
+    "source": "C:/Users/FOXAI/.codex/generated_images/01a1e594-3521-7561-9f67-300e4c52dfed/exec-bdc67bcd-9fd3-42fc-8e39-00464afda40d.png",
+    "width": 1254,
+    "height": 1254,
+    "pixelsPerUnit": 1427,
+    "solidBoundsSampled": [
+      416,
+      424,
+      832,
+      848
+    ],
+    "targetMaxSize": 0.3
+  }
+]

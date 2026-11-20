@@ -41,6 +41,7 @@ namespace Houkimajo.Skills
         private float globalCooldownRemaining;
         private SkillContext context;
         private GrazeDetector graze;
+        private PlayerMana mana;
         private float ultimateEnergy;
         public float UltimateEnergy => ultimateEnergy;
         public event Action<float> OnUltimateEnergyChanged;
@@ -52,7 +53,21 @@ namespace Houkimajo.Skills
             context = new SkillContext(transform, GetComponent<PlayerAim>(),
                 GetComponent<PlayerController>(), GetComponent<PlayerHealth>(), pools, enemyBulletPool);
             runtime.Bind(context);
+            // Scene/save cũ có thể còn lắp Lướt Chổi ở E; chuyển sang kỹ năng E thường.
+            for (int i = 0; i < SlotCount; i++)
+            {
+                var slot = (SkillSlot)i;
+                if (!(loadout.GetSkill(slot) is DashSkillSO)) continue;
+                SkillSO replacement = null;
+                if (debugSkillLibrary != null)
+                    foreach (var candidate in debugSkillLibrary)
+                        if (candidate != null && !(candidate is DashSkillSO) && candidate.slot == slot)
+                        { replacement = candidate; break; }
+                loadout.Set(slot, replacement, 1);
+            }
             graze = GetComponentInChildren<GrazeDetector>();
+            mana = GetComponent<PlayerMana>();
+            if (mana == null) mana = gameObject.AddComponent<PlayerMana>();
         }
 
         private void OnEnable()
@@ -139,11 +154,18 @@ namespace Houkimajo.Skills
         public bool TryCast(SkillSlot slot)
         {
             if (Time.timeScale <= 0f) return false;
+            if (context.Health != null && context.Health.CurrentHP <= 0) return false;
             int index = (int)slot;
             var skill = loadout.GetSkill(slot);
             var data = GetLevelData(slot);
 
-            if (skill == null || data == null || GetCharges(slot) <= 0 || globalCooldownRemaining > 0f)
+            if (skill == null || skill is DashSkillSO || data == null || GetCharges(slot) <= 0 || globalCooldownRemaining > 0f)
+            {
+                OnSkillFailed?.Invoke(slot);
+                return false;
+            }
+
+            if (slot != SkillSlot.R && !mana.TrySpend(skill.ManaCost))
             {
                 OnSkillFailed?.Invoke(slot);
                 return false;
@@ -169,9 +191,33 @@ namespace Houkimajo.Skills
         /// <summary>Lắp skill vào ô (shop / debug). Ô được hồi đầy luôn.</summary>
         public void Equip(SkillSlot slot, SkillSO skill, int level)
         {
+            if (skill is DashSkillSO) return;
             loadout.Set(slot, skill, level);
             ResetSlot(slot);
             OnLoadoutChanged?.Invoke(slot);
+        }
+
+        /// <summary>Nâng cấp trong shop, giữ tiến độ hồi và năng lượng thay vì reset ô.</summary>
+        public bool UpgradeEquippedSkill(SkillSlot slot)
+        {
+            var skill = GetSkill(slot);
+            int level = GetLevel(slot);
+            if (skill == null || level >= skill.MaxLevel) return false;
+            int index = (int)slot;
+            float oldTotal = GetCooldownTotal(slot);
+            float oldRemaining = cooldownRemaining[index];
+            loadout.Set(slot, skill, level + 1);
+            if (slot != SkillSlot.R)
+            {
+                int maximum = GetMaxCharges(slot);
+                chargesAvailable[index] = Mathf.Min(chargesAvailable[index], maximum);
+                cooldownRemaining[index] = chargesAvailable[index] >= maximum ? 0f
+                    : oldRemaining > 0f && oldTotal > 0f
+                        ? Mathf.Clamp01(oldRemaining / oldTotal) * GetCooldownTotal(slot)
+                        : GetCooldownTotal(slot);
+            }
+            OnLoadoutChanged?.Invoke(slot);
+            return true;
         }
 
         private void TickCooldowns(float deltaTime)
@@ -250,7 +296,7 @@ namespace Houkimajo.Skills
             for (int step = 1; step <= debugSkillLibrary.Length; step++)
             {
                 var candidate = debugSkillLibrary[(currentIndex + step + debugSkillLibrary.Length) % debugSkillLibrary.Length];
-                if (candidate == null || candidate.slot != slot || candidate == current) continue;
+                if (candidate == null || candidate is DashSkillSO || candidate.slot != slot || candidate == current) continue;
 
                 Equip(slot, candidate, loadout.GetLevel(slot));
                 Debug.Log($"[Skills] Debug: ô {slot} = {candidate.displayName}");

@@ -68,6 +68,9 @@ namespace Houkimajo.EditorTools
             skill.id = "skill_" + id.ToLowerInvariant();
             skill.displayName = name;
             skill.slot = slot;
+            var resourceData = new SerializedObject(skill);
+            resourceData.FindProperty("manaCost").floatValue = slot == SkillSlot.E ? 20f : 0f;
+            resourceData.ApplyModifiedPropertiesWithoutUndo();
             skill.ringCoverage = 0.6f;
             skill.color = slot == SkillSlot.E ? new Color(0.55f, 0.8f, 1f) : new Color(1f, 0.8f, 0.4f);
             skill.levels = new SkillLevelData[5];

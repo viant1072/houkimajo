@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6611129837808448665}
   - component: {fileID: 4544380545767936961}
   - component: {fileID: 6236965197528702351}
+  - component: {fileID: 1363905219213725215}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -203,3 +204,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Houkimajo.Enemies.EnemySpriteAnimation
   frames: []
   framesPerSecond: 6
+--- !u!114 &1363905219213725215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6567140897915144748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0703a1b5d684be4aac94b10fac80a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Houkimajo.Systems.HitFlash
+  flashMaterial: {fileID: 2100000, guid: c2a5d77f1fad1b64cad1f9f558365906, type: 2}
+  duration: 0.07

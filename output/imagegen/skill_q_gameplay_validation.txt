@@ -1,0 +1,26 @@
+Q_CHECK_PASS: Asset và 3 sprite: Skill_MagicMissile
+Q_CHECK_PASS: Đủ 5 cấp: Skill_MagicMissile
+Q_CHECK_PASS: Asset và 3 sprite: Skill_Fireball
+Q_CHECK_PASS: Đủ 5 cấp: Skill_Fireball
+Q_CHECK_PASS: Asset và 3 sprite: Skill_ChainLightning
+Q_CHECK_PASS: Đủ 5 cấp: Skill_ChainLightning
+Q_CHECK_PASS: Asset và 3 sprite: Skill_IceArrowRain
+Q_CHECK_PASS: Đủ 5 cấp: Skill_IceArrowRain
+Q_CHECK_PASS: Sét chỉ trúng ba mục tiêu khác nhau trong tầm
+Q_CHECK_PASS: Boss miễn nhiễm slow/stun
+Q_CHECK_PASS: Tên lửa Lv1 phóng 5 quả
+Q_CHECK_PASS: Tên lửa dùng sprite Q mới
+Q_CHECK_PASS: Tên lửa dùng sprite Q mới
+Q_CHECK_PASS: Tên lửa dùng sprite Q mới
+Q_CHECK_PASS: Tên lửa dùng sprite Q mới
+Q_CHECK_PASS: Tên lửa dùng sprite Q mới
+Q_CHECK_PASS: Cầu lửa nổ vùng đúng một lần, không cộng thêm hit trực tiếp
+Q_CHECK_PASS: Băng Lv1 phóng 7 mũi
+Q_CHECK_PASS: Băng xuyên 3 mục tiêu, không trúng lặp collider
+Q_CHECK_PASS: Hết pool không Instantiate
+Q_CHECK_PASS: Pool reuse xóa danh sách mục tiêu cũ
+Q_CHECK_PASS: Pause không chạy tick vùng lửa
+Q_CHECK_PASS: Vùng lửa 2 giây gây đúng 40 damage kể cả frame dài
+Q_CHECK_PASS: Sét vẫn đúng chuỗi khi target registry thay đổi
+Q_SKILLS_CHECKS_PASS: assets, chain, explosion, piercing, reuse, capacity, pause, burn ticks, target death.
+Validation: Unity 6000.6.5f1 batch, isolated project, cached local packages. Checks invoke projectile collisions and VFX tick advancement in editor; interactive Play-mode visual QA not performed.

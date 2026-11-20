@@ -36,6 +36,10 @@ namespace Houkimajo.Skills
         [Range(0.1f, 1f)] public float ringCoverage = 0.8f;
         public SkillSlot slot = SkillSlot.Q;
 
+        [SerializeField, Min(0f), Tooltip("MP cho Q/E; R luôn dùng năng lượng ultimate riêng")]
+        private float manaCost = 15f;
+        public float ManaCost => slot == SkillSlot.R ? 0f : Mathf.Max(0f, manaCost);
+
         [Tooltip("Màu chủ đạo của skill (hiệu ứng, icon placeholder)")]
         public Color color = Color.white;
 

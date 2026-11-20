@@ -28,7 +28,7 @@ MonoBehaviour:
   movement: 0
   orbitRadius: 3
   contactDamage: 1
-  bulletPattern: {fileID: 0}
+  bulletPattern: {fileID: 11400000, guid: 4158b6b5c28eaa04c93b5bb45104245c, type: 2}
   reward:
     gold: 2
     xp: 3

@@ -3,8 +3,7 @@ using UnityEngine;
 namespace Houkimajo.Systems
 {
     /// <summary>
-    /// Màn đang chơi, giữ qua lần load scene. Mở thẳng scene Stage01 trong Editor rồi bấm
-    /// Play thì mặc định chơi màn đầu tiên.
+    /// Màn đang chơi, giữ qua lần load scene. Khi test trực tiếp Stage01, chỉ số mặc định là 0.
     /// </summary>
     public static class GameSession
     {

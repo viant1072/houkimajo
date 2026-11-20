@@ -16,6 +16,7 @@ namespace Houkimajo.Boss
         [SerializeField] private BossHealth health;
 
         private int currentPhaseIndex = -1;
+        public int CurrentPhaseIndex => currentPhaseIndex;
         private float phaseTimer;
 
         private bool started;
@@ -43,7 +44,7 @@ namespace Houkimajo.Boss
 
         private void Update()
         {
-            if (currentPhaseIndex < 0 || currentPhaseIndex >= phases.Count) return;
+            if (Time.timeScale <= 0f || currentPhaseIndex < 0 || currentPhaseIndex >= phases.Count) return;
 
             phaseTimer -= Time.deltaTime;
 

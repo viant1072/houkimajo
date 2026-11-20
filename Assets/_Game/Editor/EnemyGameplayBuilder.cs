@@ -78,6 +78,7 @@ namespace Houkimajo.EditorTools
                 stage.waves.Insert(0, new StageWave { wave = wave });
                 EditorUtility.SetDirty(stage);
             }
+            EnemyBulletBuilder.Apply();
             AssetDatabase.SaveAssets();
             Debug.Log("[Houkimajo] Đã gắn 6 quái có animation; wave đầu màn 1 gồm hai con mỗi loại.");
         }

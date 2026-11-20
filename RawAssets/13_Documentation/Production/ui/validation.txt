@@ -1,0 +1,12 @@
+HUD_CHECK_PASS: Build lại vẫn đúng 4 ô SPACE/Q/E/R
+HUD_CHECK_PASS: Đã dọn HUD dọc cũ
+HUD_CHECK_PASS: Profile bắn thường có icon
+HUD_CHECK_PASS: Lv1 giữ nguyên chỉ số bắn thường
+HUD_CHECK_PASS: Đổi profile/cấp dùng đúng chỉ số và kẹp cấp tối đa
+HUD_CHECK_PASS: Phát event, không sửa dữ liệu profile
+HUD_CHECK_PASS: Pause giữ nhịp bắn thường
+HUD_CHECK_PASS: Bắn thường không nhấp nháy số hồi 0.1s
+HUD_CHECK_PASS: Ô Q hiển thị đúng số giây hồi
+HUD_CHECK_PASS: Thanh nạp có sprite và tiến độ thật
+HUD_CHECK_PASS: Còn lượt dùng vẫn sáng, số lượt độc lập hồi chiêu
+SKILL_HUD_CHECKS_PASS: 4 slots, idempotence, real cooldown, profile swapping, upgrades, pause, charges, renders.

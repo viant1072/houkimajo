@@ -53,7 +53,7 @@ cho hệ thống RPG (xem [`progression.md`](progression.md)).
 
 | Tên | Movement | HP | Bắn | Vàng / XP |
 |---|---|---|---|---|
-| Dơi Bóng Đêm | Chase | 20 | không | 2 / 3 |
+| Dơi Bóng Đêm | Chase | 20 | Aimed 1 viên, thưa | 2 / 3 |
 | Đom Đóm Lửa | Orbit | 30 | Aimed, chậm | 3 / 5 |
 | Bí Ngô Bay | Strafe | 50 | Radial 8 viên | 5 / 8 |
 
@@ -71,13 +71,16 @@ cho hệ thống RPG (xem [`progression.md`](progression.md)).
   loại được cấu hình riêng, dùng thời gian gameplay để dừng khi pause.
 - Animation chỉ thay sprite trên object hình ảnh; không thay đổi collider, AI,
   phần thưởng hoặc wave. Khi tái sử dụng từ pool, vòng lặp bắt đầu lại từ frame 0.
+- Sáu loại đều có đạn riêng. Dơi thêm Aimed1 tốc độ3.2 mỗi2.5s; Ma Trơi bắn
+  AimedFan3 góc30 độ, tốc độ2.6 mỗi2.3s; Ma Thư dùng AimedFan3 góc36 độ.
+  Đom Đóm, Bí Ngô và Sứa giữ nhịp/tốc độ/số viên hiện có, chỉ gắn art.
 - `EnemyDataSO` giữ `animationFrames` và `animationFramesPerSecond`; prefab quái chung
   có `EnemySpriteAnimation`. Mỗi lần spawn cấu hình lại bộ frame, không tạo visual mới.
   Quái không có frame vẫn dùng sprite tĩnh. Animation không ghi đè màu hiện hình.
 - Màn 1 có wave mở đầu `Enemy_Showcase` (hai con mỗi loại, spawn cách 0.5s), sau đó
   giữ các wave cũ và boss. Setup lại không chèn trùng wave này.
 - Ba loại mới dùng chỉ số thử nghiệm: Ma Trơi Chase, HP25/speed3/gold3/XP4;
-  Ma Thư Orbit, HP45/speed1.5/radius3.5/gold5/XP7, bắn Aimed 1 viên tốc độ3 mỗi1.8s;
+  Ma Thư Orbit, HP45/speed1.5/radius3.5/gold5/XP7, bắn chùm3 viên tốc độ3 mỗi1.8s;
   Sứa Trăng Orbit, HP60/speed1/radius3/gold6/XP9, bắn Radial6 viên tốc độ1.8 mỗi2.5s.
   Collider lần lượt 0.2/0.24/0.25. Không có cơ chế vùng làm chậm mới ở bước này.
 

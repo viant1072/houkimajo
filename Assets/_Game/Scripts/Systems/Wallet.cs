@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Houkimajo.Systems
 {
-    /// <summary>Vàng của player trong stage, để progression/shop nối vào sau.</summary>
+    /// <summary>Vàng của player; giao dịch shop trừ tiền qua TrySpend.</summary>
     public class Wallet : MonoBehaviour
     {
         [SerializeField] private int gold;
@@ -21,6 +21,15 @@ namespace Houkimajo.Systems
             if (amount <= 0) return;
             gold += amount;
             OnGoldChanged?.Invoke(gold);
+        }
+
+        public bool TrySpend(int amount)
+        {
+            if (amount < 0 || gold < amount) return false;
+            if (amount == 0) return true;
+            gold -= amount;
+            OnGoldChanged?.Invoke(gold);
+            return true;
         }
     }
 }

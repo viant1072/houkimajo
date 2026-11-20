@@ -35,7 +35,7 @@ namespace Houkimajo.EditorTools
             var enemyPoolGo = GameObject.Find("EnemyBulletPool");
             Setup(controller.gameObject, enemyPoolGo != null ? enemyPoolGo.GetComponent<BulletPool>() : null);
             EditorSceneManager.MarkSceneDirty(controller.gameObject.scene);
-            Debug.Log("[Houkimajo] Đã gắn 13 skill: F1/F2/F3 đổi Q/E/R, F4 nạp R, F5 tăng cấp. Ctrl+S để lưu.");
+            Debug.Log("[Houkimajo] Đã gắn 12 skill + lướt mặc định Left Shift: F1/F2/F3 đổi Q/E/R, F4 nạp R, F5 tăng cấp. Ctrl+S để lưu.");
         }
 
         public static void Setup(GameObject player, BulletPool enemyPool)
@@ -67,6 +67,11 @@ namespace Houkimajo.EditorTools
             var pools = EnsureRoot<SkillPools>("SkillPools");
             if (player.GetComponent<Wallet>() == null) Undo.AddComponent<Wallet>(player);
             if (player.GetComponent<SkillEffectController>() == null) Undo.AddComponent<SkillEffectController>(player);
+            var defaultDash = player.GetComponent<PlayerDash>();
+            if (defaultDash == null) defaultDash = Undo.AddComponent<PlayerDash>(player);
+            var dashData = new SerializedObject(defaultDash);
+            dashData.FindProperty("dashProfile").objectReferenceValue = dashSkill;
+            dashData.ApplyModifiedProperties();
             if (player.GetComponentInChildren<GrazeDetector>() == null)
             {
                 var zone = new GameObject("GrazeZone");
@@ -94,9 +99,10 @@ namespace Houkimajo.EditorTools
                 casterSO.FindProperty("loadout.qSkill").objectReferenceValue = missileSkill;
                 casterSO.FindProperty("loadout.qLevel").intValue = 1;
             }
-            if (casterSO.FindProperty("loadout.eSkill").objectReferenceValue == null)
+            if (casterSO.FindProperty("loadout.eSkill").objectReferenceValue == null
+                || casterSO.FindProperty("loadout.eSkill").objectReferenceValue is DashSkillSO)
             {
-                casterSO.FindProperty("loadout.eSkill").objectReferenceValue = dashSkill;
+                casterSO.FindProperty("loadout.eSkill").objectReferenceValue = erSkills[1];
                 casterSO.FindProperty("loadout.eLevel").intValue = 1;
             }
             if (casterSO.FindProperty("loadout.rSkill").objectReferenceValue == null)
@@ -106,15 +112,18 @@ namespace Houkimajo.EditorTools
             }
 
             var library = casterSO.FindProperty("debugSkillLibrary");
-            SkillSO[] skills = new SkillSO[4 + erSkills.Length];
+            SkillSO[] skills = new SkillSO[4 + erSkills.Length - 1];
             skills[0] = missileSkill; skills[1] = fireball; skills[2] = lightning; skills[3] = ice;
-            System.Array.Copy(erSkills, 0, skills, 4, erSkills.Length);
+            int skillIndex = 4;
+            foreach (var skill in erSkills) if (!(skill is DashSkillSO)) skills[skillIndex++] = skill;
             library.arraySize = skills.Length;
             for (int i = 0; i < skills.Length; i++)
                 library.GetArrayElementAtIndex(i).objectReferenceValue = skills[i];
             casterSO.ApplyModifiedProperties();
 
             CreateSkillBar(caster);
+            PlayerBulletAnimationBuilder.Apply();
+            PlayerCastingBuilder.Apply();
             AssetDatabase.SaveAssets();
         }
 
@@ -291,6 +300,9 @@ namespace Houkimajo.EditorTools
 
             var skill = ScriptableObject.CreateInstance<DashSkillSO>();
             skill.id = "skill_broom_dash";
+            var resourceData = new SerializedObject(skill);
+            resourceData.FindProperty("manaCost").floatValue = 20f;
+            resourceData.ApplyModifiedPropertiesWithoutUndo();
             skill.displayName = "Lướt Chổi";
             skill.slot = SkillSlot.E;
             skill.color = new Color(0.4f, 0.8f, 1f);

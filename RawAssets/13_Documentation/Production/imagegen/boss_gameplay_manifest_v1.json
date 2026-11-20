@@ -1,0 +1,65 @@
+[
+  {
+    "slug": "moth_queen",
+    "path": "Assets/_Game/Art/Sprites/Bosses/boss_moth_queen_gameplay_v1.png",
+    "source": "C:/Users/FOXAI/.codex/generated_images/01a1e594-3521-7561-9f67-300e4c52dfed/exec-c9103bc0-7953-465d-9363-aa81a79c3f66.png",
+    "width": 1254,
+    "height": 1254,
+    "pixelsPerUnit": 512,
+    "solidBoundsSampled": [
+      24,
+      104,
+      1228,
+      1152
+    ],
+    "edgeAlphaMaxSampled": 1,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "slug": "pumpkin_regent",
+    "path": "Assets/_Game/Art/Sprites/Bosses/boss_pumpkin_regent_gameplay_v1.png",
+    "source": "C:/Users/FOXAI/.codex/generated_images/01a1e594-3521-7561-9f67-300e4c52dfed/exec-89359778-5960-442c-9d88-561d58b2cb3e.png",
+    "width": 1254,
+    "height": 1254,
+    "pixelsPerUnit": 512,
+    "solidBoundsSampled": [
+      68,
+      52,
+      1184,
+      1224
+    ],
+    "edgeAlphaMaxSampled": 0,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "slug": "astral_archwitch",
+    "path": "Assets/_Game/Art/Sprites/Bosses/boss_astral_archwitch_gameplay_v1.png",
+    "source": "C:/Users/FOXAI/.codex/generated_images/01a1e594-3521-7561-9f67-300e4c52dfed/exec-5c0778a5-e78c-476b-b2cf-79877ac332a8.png",
+    "width": 1254,
+    "height": 1254,
+    "pixelsPerUnit": 512,
+    "solidBoundsSampled": [
+      116,
+      44,
+      1132,
+      1224
+    ],
+    "edgeAlphaMaxSampled": 0,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+]

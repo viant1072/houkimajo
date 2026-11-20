@@ -33,6 +33,7 @@ namespace Houkimajo.Enemies
         private CircleCollider2D circleCollider;
         private BulletEmitter emitter;
         private EnemySpriteAnimation spriteAnimation;
+        private HitFlash hitFlash;
 
         private EnemyDataSO data;
         private EnemySpawner owner;
@@ -64,6 +65,7 @@ namespace Houkimajo.Enemies
             circleCollider = GetComponent<CircleCollider2D>();
             emitter = GetComponent<BulletEmitter>();
             spriteAnimation = GetComponent<EnemySpriteAnimation>();
+            hitFlash = GetComponent<HitFlash>();
         }
 
         private void OnEnable()
@@ -198,7 +200,7 @@ namespace Houkimajo.Enemies
         private void OnTriggerStay2D(Collider2D other)
         {
             if (data == null || !data.contactDamage || IsInGrace || currentHP <= 0) return;
-            // PlayerHealth tự bỏ qua khi đang bất tử, nên gọi mỗi frame chạm vẫn chỉ mất 1 mạng.
+            // PlayerHealth tự bỏ qua khi đang bất tử để không mất HP liên tiếp mỗi frame.
             if (other.TryGetComponent<PlayerHealth>(out var playerHealth))
                 playerHealth.TakeHit();
         }
@@ -209,6 +211,7 @@ namespace Houkimajo.Enemies
         {
             if (!IsAlive) return;
 
+            if (amount > 0) hitFlash?.Flash();
             currentHP -= amount;
             if (currentHP > 0) return;
 

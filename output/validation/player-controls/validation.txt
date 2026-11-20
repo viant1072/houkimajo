@@ -1,0 +1,44 @@
+Unity 6000.6.5f1 isolated batch Play mode input checks.
+Result: PASS. No runtime errors captured.
+Stage01 saved and copied after verifying source hash; local scene IDs/references valid.
+
+CONTROLS_PASS: One innate dash after repeated setup
+CONTROLS_PASS: Initial shop blocks gameplay
+CONTROLS_PASS: E migrates to Shield, purchased legacy dash level preserved
+CONTROLS_PASS: No equippable dash
+CONTROLS_PASS: No equippable dash
+CONTROLS_PASS: No equippable dash
+CONTROLS_PASS: No equippable dash
+CONTROLS_PASS: No equippable dash
+CONTROLS_PASS: No equippable dash
+CONTROLS_PASS: No equippable dash
+CONTROLS_PASS: No equippable dash
+CONTROLS_PASS: No equippable dash
+CONTROLS_PASS: No equippable dash
+CONTROLS_PASS: No equippable dash
+CONTROLS_PASS: No equippable dash
+CONTROLS_PASS: 12 equippable skills / four E
+CONTROLS_PASS: Legacy dash cannot be equipped into E
+CONTROLS_PASS: HUD label changed to LMB
+CONTROLS_PASS: Shop suppresses Shift and held LMB
+CONTROLS_PASS: Held shop click cannot fire through closing overlay
+CONTROLS_PASS: Held LMB fires pooled bullets in gameplay
+CONTROLS_PASS: Space no longer fires
+CONTROLS_PASS: Clicks below gameplay viewport/HUD do not shoot
+CONTROLS_PASS: Left Control enables focus
+CONTROLS_PASS: Focus movement speed is 2.5
+CONTROLS_PASS: Control shows hitbox
+CONTROLS_PASS: Left Shift dashes instead of focus
+CONTROLS_PASS: Innate dash grants invulnerability and costs no MP
+CONTROLS_PASS: Move keys take priority over mouse dash direction
+CONTROLS_PASS: Dash ends normally
+CONTROLS_PASS: Holding Shift does not auto-repeat after recharge
+CONTROLS_PASS: Right modifier keys do not trigger left bindings
+CONTROLS_PASS: Stationary dash uses mouse aim
+CONTROLS_PASS: Shop freezes dash recharge and blocks movement modifiers
+CONTROLS_PASS: Shop mouse clicks never shoot
+CONTROLS_PASS: F2 cycles four non-dash E skills
+CONTROLS_PASS: Beam-style firing block still works
+CONTROLS_PASS: Held LMB resumes after beam-style block ends
+CONTROLS_PASS: GameOver prevents innate dash
+CONTROLS_VALIDATION_PASS

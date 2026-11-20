@@ -6,7 +6,8 @@ namespace Houkimajo.Bullets
     {
         Radial,  // tỏa tròn đều quanh điểm bắn
         Spiral,  // như Radial nhưng xoay thêm 1 góc mỗi lượt bắn -> tạo xoắn ốc
-        Aimed    // bắn thẳng vào vị trí player
+        Aimed,   // bắn thẳng vào vị trí player
+        AimedFan // chùm đạn đối xứng quanh hướng tới player
     }
 
     /// <summary>
@@ -30,5 +31,14 @@ namespace Houkimajo.Bullets
 
         [Tooltip("Góc xoay thêm mỗi lượt bắn, chỉ dùng cho kiểu Spiral")]
         public float rotationPerShot = 10f;
+
+        [Tooltip("Góc mở toàn bộ chùm AimedFan, tính bằng độ")]
+        [Range(0f, 180f)] public float spreadAngle = 30f;
+
+        [Header("Hình ảnh đạn (trống = dùng hình mặc định của pool)")]
+        public Sprite bulletSprite;
+        public Color bulletTint = Color.white;
+        [Tooltip("Sprite có đầu hướng +Y; xoay hình theo hướng bay")]
+        public bool orientBulletToDirection;
     }
 }

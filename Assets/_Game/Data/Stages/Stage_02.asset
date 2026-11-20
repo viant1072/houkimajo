@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Houkimajo.Systems.StageSO
   id: stage_02
   stageName: "\u0110\u1EA7m L\u1EA7y B\xED Ng\xF4"
+  background: {fileID: 21300000, guid: f1e14aa5be4d8cd47839cef58829ccff, type: 3}
   waves:
   - wave: {fileID: 11400000, guid: 2e5f389a9aa6c7b4c819d1f024816c4a, type: 2}
     openShopAfter: 0
@@ -27,4 +28,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b17d7514db1a6a43b9d35440fbfb63a, type: 2}
   bossMaxHP: 1600
   bossTint: {r: 1, g: 0.65, b: 0.35, a: 1}
+  bossSprite: {fileID: 21300000, guid: fdda663cfa7d4cdabffe684934ee14b9, type: 3}
+  bossAnimationFrames:
+  - {fileID: 21300000, guid: fdda663cfa7d4cdabffe684934ee14b9, type: 3}
+  - {fileID: 21300002, guid: fdda663cfa7d4cdabffe684934ee14b9, type: 3}
+  - {fileID: 21300004, guid: fdda663cfa7d4cdabffe684934ee14b9, type: 3}
+  - {fileID: 21300006, guid: fdda663cfa7d4cdabffe684934ee14b9, type: 3}
+  bossAnimationFramesPerSecond: 5
+  bossColliderRadius: 0.52
   clearGold: 200

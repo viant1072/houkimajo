@@ -1,0 +1,11 @@
+PLAYER_BULLET_ANIMATION_VALIDATION_PASS: four frames bound; real left-mouse shooting uses and advances animation; pause/dialogue/time stop; original hitbox/scale/aim; pool state reset and frame0; static fallback; physical collision deals10 and returns bullet; damage10/fire0.1/speed12 preserved.
+
+Unity 6000.6.5f1 actual Play mode, isolated copy using separate company/product save path.
+Real virtual-mouse state events drive PlayerShooting; no production input code changed.
+Repeated setup keeps profile identity/icon/fallback and Lv1 damage10, interval0.1, speed12.
+Collider radius0.08, root scale1, aiming rotation and tint preserved.
+Same pooled instance resets animation, restarts frame0 and obeys fixed capacity.
+Pause/dialogue and pool TimeStop hold animation; static profile has no stale frames.
+Physical trigger collision dealt10 damage to BossHealth and returned the animated bullet.
+Only unrelated UnityEditor.Search.SearchDatabase indexing exception excluded by a narrow stack filter; no captured gameplay Error/Exception/Assert.
+Validated profile copied after checking source hash. Scene, bullet prefab and test settings/save were not copied.

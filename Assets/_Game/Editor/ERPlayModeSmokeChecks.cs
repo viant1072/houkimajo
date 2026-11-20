@@ -106,10 +106,14 @@ namespace Houkimajo.EditorTools
                         caster.GetComponent<PlayerHealth>().GrantInvincibility(30f);
                         foreach (var control in keyboard.allKeys) { _ = control.wasPressedThisFrame; }
                         Time.timeScale = 1f;
+                        var shop = caster.GetComponent<Houkimajo.Progression.ShopController>();
+                        if (shop != null) shop.Close();
+                        caster.Equip(SkillSlot.E, AssetDatabase.LoadAssetAtPath<TeleportSkillSO>(
+                            "Assets/_Game/Data/Skills/Skill_Teleport.asset"), 1);
                         Send(Key.F2);
                         break;
                     case 1:
-                        Check(caster.GetSkill(SkillSlot.E) is ShieldSkillSO, "F2 trong Play mode đổi Dash sang Shield");
+                        Check(caster.GetSkill(SkillSlot.E) is ShieldSkillSO, "F2 trong Play mode đổi Teleport sang Shield");
                         Send(Key.E);
                         break;
                     case 2:

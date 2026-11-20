@@ -11,6 +11,11 @@ build kiểu RPG mà vẫn giữ chất né đạn của bullet-hell.
 
 ## Requirements
 
+- Cập nhật điều khiển: Lướt Chổi là động tác mặc định Left Shift (PlayerDash),
+  không thuộc kho Q/E/R và không dùng MP. Kho trang bị còn 12 skill: 4 Q / 4 E / 4 R.
+  E mặc định Khiên Phép; F2 không đi qua Lướt Chổi. Bắn thường giữ chuột trái,
+  focus giữ Left Control. Profile/VFX dash cũ giữ để tái sử dụng và đọc cấp đã mua.
+
 ### 1. Nguyên tắc thiết kế
 
 1. **Mỗi ô một vai trò rõ ràng.** Q = gây sát thương, E = sống sót, R = lật ngược
@@ -45,7 +50,7 @@ Mốc so sánh: **đạn thường = 10 sát thương × 10 viên/giây = 100 DP
   trên HUD nháy đỏ.
 - **Global cooldown 0.15s** giữa 2 skill bất kỳ, tránh bấm Q+E+R cùng 1 frame làm
   hiệu ứng chồng lên nhau khó đọc.
-- Dùng skill **không ngắt bắn thường** (vẫn giữ Space được), trừ Tia Sao Băng.
+- Dùng skill **không ngắt bắn thường** (vẫn giữ chuột trái được), trừ Tia Sao Băng.
 - Game dừng (shop, pause, game over) → hồi chiêu và hiệu ứng đứng yên theo
   (dùng `Time.deltaTime` có scale).
 - Vào stage mới: mọi hồi chiêu về 0, năng lượng ultimate về 0 (trừ khi có Cuộn Phép).
@@ -100,7 +105,7 @@ Ký hiệu `a → b` nghĩa là giá trị ở Lv1 → Lv5, các cấp giữa t�
 - Đứng gần dồn cả quạt vào 1 mục tiêu thì sát thương rất cao. Đây là skill thưởng
   cho lối chơi liều.
 
-#### E – Phòng thủ / di chuyển (màu xanh dương/trắng)
+#### Lướt mặc định – Left Shift
 
 **🧹 Lướt Chổi**
 - Lao nhanh **0.18 giây**, **bất tử** trong lúc lướt và thêm 0.1 giây sau đó.
@@ -109,6 +114,8 @@ Ký hiệu `a → b` nghĩa là giá trị ở Lv1 → Lv5, các cấp giữa t�
   đang chạy tự nhiên hơn khi vừa né vừa ngắm ngược lại.)*
 - Khoảng cách **3 → 4.5** · hồi chiêu **6 → 3.5s**
 - **Lv5:** có **2 lượt lướt**, hồi từng lượt một.
+
+#### E – Phòng thủ / di chuyển (màu xanh dương/trắng)
 
 **🛡️ Khiên Phép**
 - Bật vòng khiên quanh người, đỡ được 1 số lần trúng đạn. Mỗi lần đỡ thì viên đạn
@@ -218,7 +225,7 @@ Ký hiệu `a → b` nghĩa là giá trị ở Lv1 → Lv5, các cấp giữa t�
   Đồng Hồ Cát phân biệt Ngưng Đọng bằng hạt cát/mote, không dùng biểu tượng băng.
 - Đây là sprite tĩnh để scale/fade/ghép hiệu ứng, không phải các frame animation.
   Runtime E/R dùng `SkillEffectController` trên Player, giữ trạng thái ở instance;
-  các SkillSO chỉ giữ cấu hình. F2 đổi 5 E, F3 đổi 4 R, F4 nạp R, F5 tăng cấp.
+  các SkillSO chỉ giữ cấu hình. F2 đổi 4 E, F3 đổi 4 R, F4 nạp R, F5 tăng cấp.
 - R cần 100 năng lượng: damage thường/skill +0.05 mỗi damage, graze +1; nguồn Ultimate
   (kể cả vùng lửa thiên thạch) không tự tích R. Đổi R giữ năng lượng, không nạp lại.
 - Shield chặn hit + bất tử 0.5s; Hoá Giải cộng tối đa 30 vàng/lần vào Wallet của stage.
@@ -246,7 +253,7 @@ Ký hiệu `a → b` nghĩa là giá trị ở Lv1 → Lv5, các cấp giữa t�
 | Build | Q | E | R | Lối chơi |
 |---|---|---|---|---|
 | Pháo Đài | Mưa Băng Tiễn | Khiên Phép | Ngưng Đọng | an toàn, hợp người mới |
-| Sát Thủ Lướt | Sét Lan | Lướt Chổi | Tia Sao Băng | cơ động, dồn sát thương lên boss |
+| Sát Thủ Lướt | Sét Lan | Dịch Chuyển | Tia Sao Băng | cơ động, dồn sát thương lên boss |
 | Phù Thuỷ Buôn | Tên Lửa Ma Thuật | Hoá Giải | Mưa Thiên Thạch | dọn quái, cày vàng |
 | Nhà Chiêm Tinh | Cầu Lửa | Dịch Chuyển | Triệu Hồi Linh Thú | ngắm chuẩn, đánh lâu dài |
 
@@ -310,11 +317,11 @@ sẵn asset skill và gắn `SkillCaster`.
 
 | Bước | Nội dung | Xong khi |
 |---|---|---|
-| **4a** | Khung skill: `SkillSO`, `SkillCaster`, `SkillLoadout`, `TargetRegistry`, pool projectile; thanh skill dạng chữ trên HUD; **Tên Lửa Ma Thuật** + **Lướt Chổi** | bấm Q tên lửa đuổi theo boss, bấm E lướt qua đạn không mất mạng, HUD hiện hồi chiêu |
+| **4a** | Khung skill: `SkillSO`, `SkillCaster`, `SkillLoadout`, `TargetRegistry`, pool projectile; thanh skill trên HUD; **Tên Lửa Ma Thuật** + lướt mặc định | bấm Q tên lửa đuổi theo boss, bấm Left Shift lướt qua đạn, HUD hiện hồi chiêu |
 | **4b** | Năng lượng R + **Tia Sao Băng** + **Mưa Thiên Thạch** | bắn và graze thì R đầy dần, bấm R ra được 2 ultimate |
 | **4c** | Q còn lại: **Cầu Lửa**, **Sét Lan**, **Mưa Băng Tiễn** (phần làm chậm chờ có quái) | đổi skill trong Inspector, cả 4 skill Q đều dùng được |
-| **4d** | E còn lại: **Khiên Phép**, **Hoá Giải**, **Đồng Hồ Cát**, **Dịch Chuyển** | 5 skill E dùng được, Hoá Giải đếm số đạn đã xoá |
-| **4e** | R còn lại: **Triệu Hồi Linh Thú**, **Ngưng Đọng** + toàn bộ hiệu ứng Lv5 | đủ 13 skill, chỉnh cấp 1–5 trong Inspector thấy khác biệt |
+| **4d** | E: **Khiên Phép**, **Hoá Giải**, **Đồng Hồ Cát**, **Dịch Chuyển** | 4 skill E dùng được, Hoá Giải đếm số đạn đã xoá |
+| **4e** | R còn lại: **Triệu Hồi Linh Thú**, **Ngưng Đọng** + toàn bộ hiệu ứng Lv5 | đủ 12 skill trang bị và lướt mặc định, chỉnh cấp 1–5 trong Inspector thấy khác biệt |
 
 - **Phím debug khi test** (chỉ chạy trong Editor): **F1/F2/F3** đổi vòng skill ở ô
   Q/E/R, **F4** nạp đầy năng lượng R, **F5** tăng cấp tất cả skill thêm 1. Nhờ vậy
@@ -327,7 +334,7 @@ sẵn asset skill và gắn `SkillCaster`.
 - Không làm cây kỹ năng (skill tree) phân nhánh, chỉ chọn skill và nâng cấp tuyến tính.
 - Không làm combo giữa các skill (vd. băng + lửa = nổ hơi nước). Ngoại lệ duy nhất là
   hiệu ứng Lv5 của Mưa Băng Tiễn.
-- Không dùng mana.
+- Q/E dùng MP theo chi phí trên từng SkillSO; bắn thường miễn phí, R dùng năng lượng riêng.
 - Không có ô skill bị động riêng (bị động đến từ thẻ lên cấp và trang bị).
 - Chưa làm sprite-sheet animation VFX hoàn chỉnh; Q/E/R dùng sprite trong suốt kết hợp chuyển động, scale và fade ở runtime.
 - Không đổi skill giữa trận, chỉ đổi ở shop.
@@ -336,6 +343,5 @@ sẵn asset skill và gắn `SkillCaster`.
 
 - **Làm skill trước hay quái trước?** Bước 4a–4b test được ngay với boss. Còn Sét Lan,
   làm chậm, Hoá Giải đẩy quái thì cần quái thường (giai đoạn 2) mới thấy hết tác dụng.
-- Lướt Chổi theo **phím di chuyển** (đề xuất mới) hay theo **chuột** như bản cũ?
 - Thiên thạch có nên gây sát thương lên cả player không (thêm rủi ro), hay luôn an toàn?
 - Boss có nên miễn nhiễm choáng (Sét Lan Lv5) hoàn toàn, hay chỉ bị giảm thời gian?

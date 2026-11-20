@@ -31,14 +31,24 @@ namespace Houkimajo.Bullets
         private BulletPool ownerPool;
         private SpriteRenderer bodyRenderer;
         private Sprite defaultSprite;
+        private Color defaultTint;
+        private Quaternion defaultRotation;
         private SpriteRenderer frozenRenderer;
         private int slowFrame = -1;
         private float fieldScale = 1f;
+        private Sprite[] animationFrames;
+        private float animationFramesPerSecond;
+        private float animationPosition;
 
         private void Awake()
         {
             bodyRenderer = GetComponent<SpriteRenderer>();
-            if (bodyRenderer != null) defaultSprite = bodyRenderer.sprite;
+            if (bodyRenderer != null)
+            {
+                defaultSprite = bodyRenderer.sprite;
+                defaultTint = bodyRenderer.color;
+            }
+            defaultRotation = transform.localRotation;
             var overlay = new GameObject("TimeStopSeal");
             overlay.transform.SetParent(transform, false);
             overlay.transform.localScale = Vector3.one * 1.6f;
@@ -51,9 +61,29 @@ namespace Houkimajo.Bullets
         /// <summary>Profile đổi hình/tint, còn collider và prefab pool giữ nguyên.</summary>
         public void SetAppearance(Sprite sprite, Color tint)
         {
+            animationFrames = null;
+            animationPosition = 0f;
             if (bodyRenderer == null) return;
             bodyRenderer.sprite = sprite != null ? sprite : defaultSprite;
             bodyRenderer.color = tint;
+        }
+
+        /// <summary>Dùng mảng frame của profile; mỗi lần bắn bắt đầu lại, không cấp phát trong pool.</summary>
+        public void SetAnimatedAppearance(Sprite[] frames, float framesPerSecond)
+        {
+            animationFrames = frames;
+            animationFramesPerSecond = Mathf.Max(0.1f, framesPerSecond);
+            animationPosition = 0f;
+            if (bodyRenderer != null && frames != null && frames.Length > 0 && frames[0] != null)
+                bodyRenderer.sprite = frames[0];
+        }
+
+        public void SetPatternAppearance(Sprite sprite, Color tint, bool orientToDirection)
+        {
+            if (sprite != null) SetAppearance(sprite, tint);
+            if (orientToDirection && direction.sqrMagnitude > 0f)
+                transform.rotation = Quaternion.Euler(0f, 0f,
+                    Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
         }
 
         /// <summary>Vị trí trong danh sách đạn đang bay của pool, -1 = đang nằm trong pool.</summary>
@@ -77,6 +107,8 @@ namespace Houkimajo.Bullets
             speed = spd;
             isPlayerBullet = playerOwned;
             damage = damageOverride >= 0 ? damageOverride : defaultDamage;
+            SetAppearance(null, defaultTint);
+            transform.localRotation = defaultRotation;
 
             if (alignToDirection && direction.sqrMagnitude > 0f)
             {
@@ -102,6 +134,14 @@ namespace Houkimajo.Bullets
 
         private void Update()
         {
+            if (Time.deltaTime > 0f && (ownerPool == null || !ownerPool.IsTimeStopped)
+                && bodyRenderer != null && animationFrames != null && animationFrames.Length > 0)
+            {
+                animationPosition = Mathf.Repeat(animationPosition + Time.deltaTime * animationFramesPerSecond,
+                    animationFrames.Length);
+                Sprite frame = animationFrames[Mathf.FloorToInt(animationPosition)];
+                if (frame != null && bodyRenderer.sprite != frame) bodyRenderer.sprite = frame;
+            }
             float poolScale = ownerPool != null ? ownerPool.MotionScale : 1f;
             float zoneScale = slowFrame == Time.frameCount ? fieldScale : 1f;
             transform.position += (Vector3)(direction * (speed * LocalSpeedScale * zoneScale * poolScale * Time.deltaTime));
@@ -127,13 +167,15 @@ namespace Houkimajo.Bullets
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (ownerPool != null && PoolIndex < 0) return;
             if (isPlayerBullet)
             {
                 if (other.TryGetComponent<IDamageable>(out var target))
                 {
                     // Đi qua DamageEvents để điểm / năng lượng ultimate nghe chung 1 chỗ
                     // với sát thương của skill.
-                    DamageEvents.DealPlayerDamage(target, damage, DamageSource.BasicShot);
+                    DamageEvents.DealPlayerDamage(target, damage, DamageSource.BasicShot,
+                        other.ClosestPoint(transform.position));
                     ReturnToPool();
                 }
             }

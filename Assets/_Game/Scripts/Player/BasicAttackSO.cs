@@ -14,6 +14,10 @@ namespace Houkimajo.Player
         public Color attributeColor = new Color(0.7f, 0.45f, 1f);
         public Sprite projectileSprite;
         public Color projectileTint = Color.white;
+        [Tooltip("Các frame chuyển động của đạn; để trống để dùng sprite tĩnh")]
+        public Sprite[] projectileAnimationFrames;
+        [Min(0.1f), Tooltip("Tốc độ animation đạn, số frame mỗi giây")]
+        public float projectileAnimationFramesPerSecond = 12f;
         public BasicAttackLevelData[] levels = { new BasicAttackLevelData() };
 
         public int MaxLevel => levels != null ? levels.Length : 0;

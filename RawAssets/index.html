@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#151220">
+  <title>Houkimajo · Asset Catalog</title>
+  <link rel="stylesheet" href="catalog.css">
+  <script src="catalog-data.js" defer></script>
+  <script src="catalog.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="index.html"><span class="seal" aria-hidden="true">✦</span><span>Houkimajo<small>ASSET LIBRARY</small></span></a>
+    <p class="nav-label">BỘ SƯU TẬP</p>
+    <nav id="categories" aria-label="Nhóm asset"></nav>
+    <div class="sidebar-note"><span aria-hidden="true">✧</span><p>Một thế giới phép thuật,<br>từng mảnh nhỏ.</p><a href="README.md">Hướng dẫn thư viện</a></div>
+  </aside>
+  <main>
+    <header class="masthead"><span>HO⁠UKIMAJO / RAW ASSETS</span><span class="offline">Thư viện cục bộ</span></header>
+    <section class="intro"><div><p class="eyebrow">THE WITCH’S COLLECTION</p><h1>Kho phép thuật nhỏ.</h1><p class="subtitle">Xem tạo hình, khám phá sprite và chọn asset cho thế giới của anh.</p></div><div class="totals"><strong id="totalImages">77</strong><span>ảnh & sprite sheet</span></div></section>
+    <section class="toolbar" aria-label="Tìm kiếm và lọc">
+      <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Tìm nhân vật, skill, tên file…" aria-label="Tìm asset"></label>
+      <label><span class="sr-only">Loại nội dung</span><select id="mode"><option value="images">Ảnh & sprite</option><option value="all">Tất cả file</option><option value="selected">Đã chọn</option></select></label>
+      <label><span class="sr-only">Sắp xếp</span><select id="sort"><option value="group">Theo bộ sưu tập</option><option value="name">Tên A–Z</option><option value="size">Dung lượng lớn nhất</option></select></label>
+      <button id="selectionView" class="primary">Đã chọn <span id="selectedCount">0</span></button>
+    </section>
+    <section class="viewbar"><div><h2 id="groupTitle">Tất cả bộ sưu tập</h2><span id="resultCount" aria-live="polite"></span></div><div class="display-controls"><label id="metaControl" hidden><input id="includeMeta" type="checkbox"> File .meta</label><label>Nền preview <select id="background"><option value="checker">Caro</option><option value="dark">Tối</option><option value="light">Sáng</option></select></label></div></section>
+    <div id="selectionTools" class="selection-tools" hidden><span>Lựa chọn được lưu trên trình duyệt này.</span><button id="exportSelection">Xuất danh sách JSON</button><button id="clearSelection">Bỏ chọn tất cả</button></div>
+    <div id="grid" class="grid"></div>
+    <div id="empty" class="empty" hidden><span aria-hidden="true">✧</span><h3>Chưa có asset phù hợp</h3><p>Thử từ khóa khác, đổi bộ lọc hoặc chọn vài asset yêu thích.</p><button id="resetFilters">Xóa bộ lọc</button></div>
+    <footer><span>Houkimajo · Raw Assets</span><span>Bấm ảnh để xem lớn & từng sprite trong sheet.</span></footer>
+  </main>
+  <dialog id="detail" aria-labelledby="detailTitle">
+    <div class="dialog-top"><span id="detailGroup"></span><button id="closeDetail" aria-label="Đóng chi tiết">✕</button></div>
+    <div class="detail-layout"><div class="detail-visual"><img id="detailImage" alt=""><canvas id="spriteCanvas" hidden></canvas></div><div class="detail-info"><p class="eyebrow">ASSET DETAILS</p><h2 id="detailTitle"></h2><p id="detailStats"></p><label id="spriteControl" hidden>Vùng sprite<select id="spriteSelect"></select></label><button id="animate" hidden>Phát animation</button><p id="animationNote" hidden>Preview khung hình; nhịp phát chỉ để xem trước.</p><label class="path-label">Trong RawAssets<textarea id="archivePath" readonly rows="3"></textarea></label><label class="path-label">Nguồn trong project<textarea id="sourcePath" readonly rows="3"></textarea></label><div class="detail-actions"><button id="detailSelect" class="primary">Chọn asset</button><button id="copyPath">Sao chép đường dẫn</button><a id="openOriginal" class="button" target="_blank" rel="noopener">Mở file gốc</a><a id="download" class="button" download>Tải file</a></div></div></div>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

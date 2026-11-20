@@ -32,7 +32,7 @@ namespace Houkimajo.EditorTools
         private const string PatternDir = "Assets/_Game/Data/BulletPatterns";
         private const string PhaseDir = "Assets/_Game/Data/BossPhases";
         private const string EnemyPrefabDir = "Assets/_Game/Prefabs/Enemies";
-        private const string MainMenuPath = "Assets/_Game/Scenes/MainMenu.unity";
+        internal const string MainMenuPath = "Assets/_Game/Scenes/MainMenu.unity";
         private const string GameplayPath = "Assets/_Game/Scenes/Stage01.unity";
 
         [MenuItem("Houkimajo/Setup Stages + Main Menu (3 màn, quái, menu chính)")]
@@ -49,8 +49,7 @@ namespace Houkimajo.EditorTools
             EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
 
             BuildMainMenuScene();
-            Debug.Log("[Houkimajo] Xong: 3 màn + quái + menu chính. Mở scene MainMenu rồi bấm Play " +
-                "(hoặc Play thẳng Stage01 để test màn 1).");
+            Debug.Log("[Houkimajo] Xong: 3 màn + quái + menu chính. Bấm Play để mở menu chính.");
         }
 
         // =====================================================================
@@ -127,6 +126,10 @@ namespace Houkimajo.EditorTools
             directorSO.ApplyModifiedProperties();
 
             SetupHud(director, wallet);
+            BossGameplayBuilder.Apply();
+            CombatFeedbackBuilder.Apply();
+            StageBackgroundBuilder.ApplyToCurrentScene();
+            HpPotionShopBuilder.ApplyToCurrentScene();
         }
 
         private static void SetupHud(StageDirector director, Wallet wallet)
@@ -471,7 +474,7 @@ namespace Houkimajo.EditorTools
             subtitle.rectTransform.sizeDelta = new Vector2(1200f, 50f);
 
             var continueButton = CreateButton(canvasGo.transform, "ContinueButton", "Chơi tiếp", new Vector2(0f, 10f), out var continueLabel);
-            var newGameButton = CreateButton(canvasGo.transform, "NewGameButton", "Chơi mới", new Vector2(0f, -100f), out var newGameLabel);
+            var newGameButton = CreateButton(canvasGo.transform, "NewGameButton", "Bắt đầu", new Vector2(0f, -100f), out var newGameLabel);
 
             var progress = SceneBootstrapper.CreateHudText(canvasGo.transform, "ProgressText", "",
                 TextAnchor.MiddleCenter, new Vector2(0.5f, 0.5f), new Vector2(0f, -210f));

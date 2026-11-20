@@ -1,0 +1,7 @@
+PASS — Unity 6000.6.5f1 imported all 12 frames and generated three animated visual prefabs in an isolated project.
+Builder completed in Unity batch with exit0: BOSS_ANIMATED_VISUALS_READY.
+Sheets1254x1254; four627x627 frames each; PPU256; center pivots; alpha enabled; mipmaps disabled.
+Alpha check with4px sampling: each frame has transparent background, visible body and no solid pixels at8px cell borders.
+Prefabs reuse the existing EnemySpriteAnimation frame player (6/5/5fps) with four ordered sprite references.
+No gameplay stage/prefab was replaced. No new boss Play-mode behavior test was run in this step.
+See boss_animation_alpha_check_v1.json and boss_animation_manifest_v1.json for pixel checks/source paths.

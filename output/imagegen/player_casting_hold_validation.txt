@@ -1,0 +1,1 @@
+PLAYER_CASTING_VALIDATION_PASS: real mouse input switches flight/cast poses and activates orb; raises hand once then holds final cast frame for sustained shooting; left/right aim and orb direction; pause; blocked firing/release returns to idle; shot spawns at orb; original collider, visual scale, damage/fire rate/speed; repeated setup.

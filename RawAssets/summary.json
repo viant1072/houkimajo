@@ -1,0 +1,61 @@
+{
+  "GeneratedAt": "2026-11-20T17:43:02.8990025+07:00",
+  "Files": 443,
+  "Images": 77,
+  "Bytes": 93262185.0,
+  "VerifiedSHA256": true,
+  "Groups": [
+    {
+      "Name": "01_Player",
+      "Count": 8
+    },
+    {
+      "Name": "02_Enemies",
+      "Count": 14
+    },
+    {
+      "Name": "03_Bosses",
+      "Count": 12
+    },
+    {
+      "Name": "04_Bullets",
+      "Count": 17
+    },
+    {
+      "Name": "05_Skills",
+      "Count": 29
+    },
+    {
+      "Name": "06_Backgrounds",
+      "Count": 8
+    },
+    {
+      "Name": "07_UI",
+      "Count": 2
+    },
+    {
+      "Name": "08_Placeholders",
+      "Count": 20
+    },
+    {
+      "Name": "09_Effects",
+      "Count": 6
+    },
+    {
+      "Name": "10_Unity",
+      "Count": 181
+    },
+    {
+      "Name": "11_Concepts",
+      "Count": 3
+    },
+    {
+      "Name": "12_Previews",
+      "Count": 22
+    },
+    {
+      "Name": "13_Documentation",
+      "Count": 121
+    }
+  ]
+}

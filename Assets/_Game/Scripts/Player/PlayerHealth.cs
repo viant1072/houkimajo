@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Houkimajo.Player
 {
     /// <summary>
-    /// Quản lý mạng (lives) của player và thời gian bất tử. Có 2 loại bất tử:
+    /// Quản lý HP của player và thời gian bất tử. Có 2 loại bất tử:
     /// - sau khi trúng đạn (nhấp nháy, tránh mất nhiều mạng liên tiếp trong 1 cú trúng)
     /// - do skill cấp (lướt, dịch chuyển...) — không nhấp nháy, để người chơi không
     ///   tưởng nhầm là mình vừa bị trúng.
@@ -12,12 +12,15 @@ namespace Houkimajo.Player
     /// </summary>
     public class PlayerHealth : MonoBehaviour
     {
-        [SerializeField] private int lives = 3;
+        [SerializeField, Min(1)] private int maxHP = 100;
+        [SerializeField, Min(1), Tooltip("HP mất mỗi hit đạn hoặc chạm quái")]
+        private int hitDamage = 20;
+        private int currentHP;
 
         [Tooltip("Thời gian bất tử sau khi trúng đạn (giây)")]
         [SerializeField] private float invincibilityDuration = 2f;
 
-        public event Action<int> OnLivesChanged;
+        public event Action<int, int> OnHPChanged;
         public event Action OnPlayerDied;
         public event Action<bool> OnShieldBlocked;
         private int shieldHits;
@@ -34,11 +37,18 @@ namespace Houkimajo.Player
         /// <summary>Đang trong thời gian bất tử sau khi trúng đạn (dùng để nhấp nháy).</summary>
         public bool IsRecoveringFromHit => Time.time < hitInvincibleUntil;
 
-        public int Lives => lives;
+        public int CurrentHP => currentHP;
+        public int MaxHP => maxHP;
+
+        private void Awake()
+        {
+            maxHP = Mathf.Max(1, maxHP);
+            currentHP = maxHP;
+        }
 
         public void TakeHit()
         {
-            if (IsInvincible || lives <= 0) return;
+            if (IsInvincible || currentHP <= 0) return;
             if (ShieldHits > 0)
             {
                 shieldHits--;
@@ -47,10 +57,10 @@ namespace Houkimajo.Player
                 return;
             }
 
-            lives--;
-            OnLivesChanged?.Invoke(lives);
+            currentHP = Mathf.Max(0, currentHP - Mathf.Max(1, hitDamage));
+            OnHPChanged?.Invoke(currentHP, maxHP);
 
-            if (lives <= 0)
+            if (currentHP <= 0)
             {
                 OnPlayerDied?.Invoke();
             }
@@ -58,6 +68,17 @@ namespace Houkimajo.Player
             {
                 hitInvincibleUntil = Time.time + invincibilityDuration;
             }
+        }
+
+        /// <summary>Hồi HP cho nhân vật còn sống; trả lượng hồi thực tế sau khi kẹp max.</summary>
+        public int Heal(int amount)
+        {
+            if (currentHP <= 0 || amount <= 0) return 0;
+            int restored = Mathf.Min(amount, maxHP - currentHP);
+            if (restored <= 0) return 0;
+            currentHP += restored;
+            OnHPChanged?.Invoke(currentHP, maxHP);
+            return restored;
         }
 
         /// <summary>Bất tử thêm <paramref name="seconds"/> giây (skill). Không rút ngắn bất tử đang có.</summary>

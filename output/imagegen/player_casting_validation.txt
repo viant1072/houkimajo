@@ -1,0 +1,9 @@
+PLAYER_CASTING_VALIDATION_PASS: real mouse input switches flight/cast poses and activates orb; >=3 distinct cast frames during sustained shooting; left/right aim and orb direction; pause; blocked firing/release returns to idle; shot spawns at orb; original collider, visual scale, damage/fire rate/speed; repeated setup.
+
+Unity 6000.6.5f1 actual Play mode with GPU render captures. Isolated company/product save path.
+Queued full MouseState drives the unchanged mouse input path. Sustained shooting observed at least three distinct casting sprites, showing animation is not reset every shot.
+Original idle frames, root collider0.12, visual scale1.2, damage10/fire0.1/speed12 preserved. New sheet uses the same custom pivot(0.61,0.42) and PPU627 as idle.
+Pause freezes pose and orb. Left/right aim mirrors actor and moves orb to the corresponding side. Release/blocked fire returns to idle and hides orb. Shot originates at computed orb position0.5 units along aim.
+Repeated setup leaves one orb controller/visual. No per-shot Instantiate/Destroy.
+Only unrelated UnityEditor.Search.SearchDatabase indexing exception excluded by a narrow stack filter; no captured gameplay Error/Exception/Assert.
+Validated scene copied after hash check. Runtime test camera zoom, settings and save path not copied.

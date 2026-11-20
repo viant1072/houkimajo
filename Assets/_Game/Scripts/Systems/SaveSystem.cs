@@ -1,22 +1,27 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Houkimajo.Systems
 {
     /// <summary>
-    /// Dữ liệu lưu xuống file. Bản tối thiểu cho menu + chuyển màn; giai đoạn 3 sẽ thêm
+    /// Dữ liệu lưu menu, chuyển màn và túi Bình HP prototype; giai đoạn 3 sẽ thêm
     /// level, XP, skill, đồ (xem docs/progression.md) — tăng <see cref="version"/> khi đổi cấu trúc.
     /// </summary>
     [Serializable]
     public class SaveData
     {
-        public int version = 1;
+        public int version = 3;
 
         [Tooltip("Chỉ số màn cao nhất đã qua, -1 = chưa qua màn nào")]
         public int highestStageCleared = -1;
 
         public int gold;
+        public int hpPotionCount;
+        public float hpPotionCooldown;
+        public bool shopTestGoldSeeded;
+        public List<SkillUpgradeSave> skillUpgrades = new List<SkillUpgradeSave>();
     }
 
     /// <summary>
@@ -45,6 +50,15 @@ namespace Houkimajo.Systems
             {
                 var loaded = JsonUtility.FromJson<SaveData>(File.ReadAllText(FilePath));
                 if (loaded != null) cached = loaded;
+                if (cached.version < 2)
+                {
+                    cached.hpPotionCount = 0;
+                    cached.hpPotionCooldown = 0f;
+                    cached.shopTestGoldSeeded = false;
+                    cached.version = 2;
+                }
+                if (cached.skillUpgrades == null) cached.skillUpgrades = new List<SkillUpgradeSave>();
+                if (cached.version < 3) cached.version = 3;
             }
             catch (Exception exception)
             {
@@ -55,16 +69,22 @@ namespace Houkimajo.Systems
             return cached;
         }
 
-        public static void Save(SaveData data)
+        public static bool Save(SaveData data)
         {
             cached = data;
             try
             {
-                File.WriteAllText(FilePath, JsonUtility.ToJson(data, true));
+                string temporaryPath = FilePath + ".tmp";
+                Directory.CreateDirectory(Application.persistentDataPath);
+                File.WriteAllText(temporaryPath, JsonUtility.ToJson(data, true));
+                if (File.Exists(FilePath)) File.Replace(temporaryPath, FilePath, null);
+                else File.Move(temporaryPath, FilePath);
+                return true;
             }
             catch (Exception exception)
             {
                 Debug.LogWarning($"[Save] Không ghi được save: {exception.Message}");
+                return false;
             }
         }
 

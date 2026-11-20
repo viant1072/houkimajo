@@ -52,25 +52,27 @@ namespace Houkimajo.Bullets
                     currentAngle += pattern.rotationPerShot;
                     break;
                 case PatternShape.Aimed:
-                    FireAimed();
+                    FireAimed(false);
+                    break;
+                case PatternShape.AimedFan:
+                    FireAimed(true);
                     break;
             }
         }
 
         private void FireRadial(float startAngle)
         {
-            float step = 360f / pattern.bulletCount;
-            for (int i = 0; i < pattern.bulletCount; i++)
+            int count = Mathf.Max(1, pattern.bulletCount);
+            float step = 360f / count;
+            for (int i = 0; i < count; i++)
             {
                 float angle = startAngle + step * i;
                 Vector2 dir = AngleToDirection(angle);
-                var bullet = bulletPool.Get(transform.position);
-                if (bullet == null) continue;
-                bullet.Launch(dir, pattern.bulletSpeed, playerOwned: false);
+                SpawnBullet(dir);
             }
         }
 
-        private void FireAimed()
+        private void FireAimed(bool fan)
         {
             // Tìm player 1 lần rồi cache — FindGameObjectWithTag mỗi lượt bắn (vài lần/giây
             // x nhiều quái) là tốn vô ích. Chỉ tìm lại nếu chưa có (player spawn muộn).
@@ -84,9 +86,22 @@ namespace Houkimajo.Bullets
                 ? ((Vector2)playerTransform.position - (Vector2)transform.position).normalized
                 : Vector2.down;
 
+            int count = fan ? Mathf.Max(1, pattern.bulletCount) : 1;
+            float center = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            float spread = Mathf.Clamp(pattern.spreadAngle, 0f, 180f);
+            for (int i = 0; i < count; i++)
+            {
+                float offset = count > 1 ? -spread * 0.5f + spread * i / (count - 1) : 0f;
+                SpawnBullet(AngleToDirection(center + offset));
+            }
+        }
+
+        private void SpawnBullet(Vector2 direction)
+        {
             var bullet = bulletPool.Get(transform.position);
             if (bullet == null) return;
-            bullet.Launch(dir, pattern.bulletSpeed, playerOwned: false);
+            bullet.Launch(direction, pattern.bulletSpeed, playerOwned: false);
+            bullet.SetPatternAppearance(pattern.bulletSprite, pattern.bulletTint, pattern.orientBulletToDirection);
         }
 
         private static Vector2 AngleToDirection(float degrees)

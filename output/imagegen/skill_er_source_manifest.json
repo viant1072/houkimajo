@@ -1,0 +1,168 @@
+[
+  {
+    "slot": "E",
+    "slug": "broom_dash",
+    "prefix": "E_BroomDash",
+    "source": "exec-85f1b095-168a-4caa-87e6-fd377d9fbcf9.png",
+    "cols": 2,
+    "parts": [
+      "Icon",
+      "Trail",
+      "CastSpark",
+      "MasteryEcho"
+    ],
+    "promptKey": "e_dash_prompt",
+    "rings": []
+  },
+  {
+    "slot": "E",
+    "slug": "magic_shield",
+    "prefix": "E_MagicShield",
+    "source": "exec-79681e42-eaf5-4abe-8b3d-d193f49c1de5.png",
+    "cols": 2,
+    "parts": [
+      "Icon",
+      "ShieldRing",
+      "Hit",
+      "MasteryBreak"
+    ],
+    "promptKey": "e_shield_prompt",
+    "rings": [
+      1,
+      3
+    ]
+  },
+  {
+    "slot": "E",
+    "slug": "dispel",
+    "prefix": "E_Dispel",
+    "source": "exec-34265d43-29d9-4dbb-9837-d119e9b584a7.png",
+    "cols": 2,
+    "parts": [
+      "Icon",
+      "ClearRing",
+      "CoinSpark",
+      "MasteryPush"
+    ],
+    "promptKey": "e_dispel_prompt",
+    "rings": [
+      1,
+      3
+    ]
+  },
+  {
+    "slot": "E",
+    "slug": "hourglass",
+    "prefix": "E_Hourglass",
+    "source": "exec-f5aa18d3-5ba1-4d35-b62b-5f5a185cbc3e.png",
+    "cols": 2,
+    "parts": [
+      "Icon",
+      "SlowField",
+      "TimeMote",
+      "MasteryField"
+    ],
+    "promptKey": "e_hourglass_prompt",
+    "rings": [
+      1,
+      3
+    ]
+  },
+  {
+    "slot": "E",
+    "slug": "teleport",
+    "prefix": "E_Teleport",
+    "source": "exec-3548edad-2a7e-4468-8f35-259c040605f7.png",
+    "cols": 2,
+    "parts": [
+      "Icon",
+      "Departure",
+      "Arrival",
+      "MasteryExplosion"
+    ],
+    "promptKey": "e_teleport_prompt",
+    "rings": [
+      1,
+      2
+    ]
+  },
+  {
+    "slot": "R",
+    "slug": "meteor_shower",
+    "prefix": "R_MeteorShower",
+    "source": "exec-a95aaf4e-b3a4-4239-b108-043739c050f0.png",
+    "cols": 3,
+    "parts": [
+      "Icon",
+      "Projectile",
+      "WarningRing",
+      "Impact",
+      "MasteryBurnZone",
+      "Ember"
+    ],
+    "promptKey": "r_meteor_prompt",
+    "rings": [
+      2,
+      4
+    ]
+  },
+  {
+    "slot": "R",
+    "slug": "familiar_summon",
+    "prefix": "R_FamiliarSummon",
+    "source": "exec-bf4fc9ab-b6ae-4b5d-8a77-8d17c88005b4.png",
+    "cols": 3,
+    "parts": [
+      "Icon",
+      "Familiar",
+      "Projectile",
+      "SummonRing",
+      "Impact",
+      "MasteryBlock"
+    ],
+    "promptKey": "r_familiar_prompt",
+    "rings": [
+      3
+    ]
+  },
+  {
+    "slot": "R",
+    "slug": "star_beam",
+    "prefix": "R_StarBeam",
+    "source": "exec-7e86d197-85ee-4edf-b1dd-616a31a07c4a.png",
+    "cols": 3,
+    "parts": [
+      "Icon",
+      "BeamBody",
+      "BeamStart",
+      "BeamEnd",
+      "Impact",
+      "MasteryExplosion"
+    ],
+    "promptKey": "r_beam_prompt",
+    "rings": []
+  },
+  {
+    "slot": "R",
+    "slug": "time_stop",
+    "prefix": "R_TimeStop",
+    "source": "exec-077f25ca-a23b-47b0-a475-2ede53dad3f6.png",
+    "cols": 3,
+    "parts": [
+      "Icon",
+      "TimeSeal",
+      "FrozenBulletOverlay",
+      "CastRipple",
+      "ResumeBurst",
+      "MasteryClearRing"
+    ],
+    "promptKey": "r_time_stop_prompt",
+    "rings": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+]
